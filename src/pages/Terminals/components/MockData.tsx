@@ -1,0 +1,3 @@
+export const TableData=[{branchName:'Stromag - Akute',serialNo:'NG0002589333',terminalNo:'2VISZCUW',terminalName:'STROM3988',date:'July 05, 2023',status:'Successful'},{branchName:'Stromag - Akute',serialNo:'NG0002589333',terminalNo:'2VISZCUW',terminalName:'STROM3988',date:'July 05, 2023',status:'Successful'},]
+
+export const headers=['Branch Name','Serial Number','Terminal Name / ID','Date Created','Status','Account']

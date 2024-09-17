@@ -1,0 +1,107 @@
+/* fonts.css */
+
+/* SF Pro Display Regular */
+@font-face {
+    font-family: 'SF Pro Display Regular';
+    src: url('./fonts/SFPRODISPLAYREGULAR.OTF') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  /* Helvetica Neue Display Regular */
+@font-face {
+  font-family: 'Helvetica Neue Regular';
+  src: url('./fonts/Helvetica\ Neue\ Medium\ Extended.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+  
+
+  /* Helvetica Neue Display utrla light */
+  @font-face {
+    font-family: 'Helvetica Neue light';
+    src: url('./fonts/Helvetica\ Neue\ UltraLight.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+    
+  /* SF Pro Display Ultralight Italic */
+  @font-face {
+    font-family: 'SF Pro Display Ultralight Italic';
+    src: url('./fonts/SFPRODISPLAYULTRALIGHTITALIC.OTF') format('opentype');
+    font-weight: normal;
+    font-style: italic;
+  }
+  
+  /* SF Pro Display Thin Italic */
+  @font-face {
+    font-family: 'SF Pro Display Thin Italic';
+    src: url('./fonts/SFPRODISPLAYTHINITALIC.OTF') format('opentype');
+    font-weight: normal;
+    font-style: italic;
+  }
+  
+  /* SF Pro Display Light Italic */
+  @font-face {
+    font-family: 'SF Pro Display Light Italic';
+    src: url('./fonts/SFPRODISPLAYLIGHTITALIC.OTF') format('opentype');
+    font-weight: normal;
+    font-style: italic;
+  }
+  
+  /* SF Pro Display Medium */
+  @font-face {
+    font-family: 'SF Pro Display Medium';
+    src: url('./fonts/SFPRODISPLAYMEDIUM.OTF') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  /* Helvetica Neue Medium */
+  @font-face {
+    font-family: 'Helvetica Neue Medium';
+    src: url('./fonts/Helvetica\ Neue\ Medium\ Extended.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  /* SF Pro Display Bold */
+  @font-face {
+    font-family: 'SF Pro Display Bold';
+    src: url('./fonts/SFPRODISPLAYBOLD.OTF') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+  }
+  
+  /* SF Pro Display Heavy Italic */
+  @font-face {
+    font-family: 'SF Pro Display Heavy Italic';
+    src: url('./fonts/SFPRODISPLAYHEAVYITALIC.OTF') format('opentype');
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  /* Helvetica Neue Heavy Italic */
+  @font-face {
+    font-family: 'Helvetica Neue Heavy Italic';
+    src: url('./fonts/Helvetica\ Neue\ LTW0697BlkCnObl.otf') format('opentype');
+    font-weight: bold;
+    font-style: italic;
+  }
+  
+  /* SF Pro Display Black Italic */
+  @font-face {
+    font-family: 'SF Pro Display Black Italic';
+    src: url('./fonts/SFPRODISPLAYBLACKITALIC.OTF') format('opentype');
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  /* Helvetica Neue Black Italic */
+  @font-face {
+    font-family: 'Helvetica Neue Black Italic';
+    src: url('./fonts/Helvetica\ NeueLTW0693BlkExtObl.otf') format('opentype');
+    font-weight: bold;
+    font-style: italic;
+  }
+  

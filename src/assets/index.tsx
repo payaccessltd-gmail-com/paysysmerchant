@@ -1,4 +1,4 @@
-import onboarding from './woman.svg'
+import onboarding from './onboarding.svg'
 import logo from './paysys-logo.svg'
 import receipt from './receipt-item.svg'
 import wallet from './wallet-2.svg'

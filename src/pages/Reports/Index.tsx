@@ -125,7 +125,7 @@ const Reports = () => {
   function getBranchPerformance() {
     if (startDate !== null && endDate !== null) {
       branchPerformance(startDate, endDate).then((res: any) => {
-        // console.log('get Branch response>>>', res);
+         console.log('get Branch response>>>', res);
         navigate("/reports/performance/branch", { state: JSON.stringify(res) });
       })
     } else {

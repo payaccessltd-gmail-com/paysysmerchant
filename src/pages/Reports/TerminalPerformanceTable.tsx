@@ -11,7 +11,7 @@ const TerminalPerformanceTable = ({ search }: any) => {
 
     const changeCurrentPage = (data: any) => {
         // console.log(data);
-        setchangePage(data.selected);
+        setchangePage(data?.selected);
     };
     const location = useLocation();
 //   console.log('searched>>>', JSON.parse(location?.state));

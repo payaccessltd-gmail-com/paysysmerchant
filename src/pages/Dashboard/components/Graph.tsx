@@ -48,7 +48,7 @@ const Graph = ({data}:any) => {
 
   }=data
 const card: number[] = Array.isArray(currentWeekCardGraphData?.axis)
-? currentWeekCardGraphData.axis.map((item:any) => item.total)
+? currentWeekCardGraphData?.axis.map((item:any) => item.total)
 : []
 const CashGraph=Array.isArray(currentWeekCardGraphData?.axis)
 ? currentWeekCashGraphData?.axis.map((item:any) => item.total) :[]
@@ -64,17 +64,17 @@ const graphdata = {
   datasets: [
     {
       label: 'Card',
-      data: labels.map((label,index) => card[index]),
+      data: labels?.map((label,index) => card[index]),
       backgroundColor: 'rgba(125, 124, 246, 1)',
     },
     {
       label: 'Transfer',
-      data: labels.map((label,index) => TransferGraph[index]),
+      data: labels?.map((label,index) => TransferGraph[index]),
       backgroundColor: 'rgba(91, 198, 242, 1)',
     },
     {
       label: 'Cash',
-      data: labels.map((label,index) => CashGraph[index]),
+      data: labels?.map((label,index) => CashGraph[index]),
       backgroundColor: 'rgba(100, 164, 254, 1)',
     },
   ],

@@ -43,7 +43,7 @@ const Users = () => {
         </div>
         <input type="text" className="placeholder:text-[#7B7B7B] border-[#D0D5DD] border-[1px] rounded-md py-[7px] pl-[44px] bg-[#F7F8FA]" placeholder='Search by name/email' name='search' value={search} onChange={(e:any)=>{setSearch(e.target.value)}}/>
       </div>
-    {TableData.length >0&&
+    {TableData?.length >0&&
           <div className="w-fit ">
           <Button onClick={handleExport} title='Export' className='!bg-white !mt-0 !text-[#3C4257] !border-[1px] shadow-sm m-auto' icon={<BsArrowUpRight  className="font-bold"/>}/>
           </div>

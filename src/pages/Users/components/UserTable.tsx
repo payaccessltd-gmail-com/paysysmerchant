@@ -134,7 +134,7 @@ const showDeactivateUser =(val:any)=>{
 
   const changeCurrentPage = (data: any) => {
    // console.log(data);
-    setchangePage(data.selected);
+    setchangePage(data?.selected);
     setpageDetails({
       ...pageDetails,
       PageNumber: data,

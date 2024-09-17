@@ -7,7 +7,7 @@ const SuccessPage = ({email,isOpen,toggleDropdown}:any) => {
     const navigate=useNavigate()
   return (
     <Overlay isOpen={isOpen} toggleDropdown={toggleDropdown} >
-    <img src={Image.logo} alt=""  className='m-auto' onClick={()=>navigate('/')}/>
+    <img src={Image.logo} alt=""  className='m-auto h-[100px] w-[80px]' onClick={()=>navigate('/')}/>
 
     <div className="text-center grid gap-[20px] lg:w-3/4  m-auto">
         <p>Please, kindly verify your email address. We sent an email with a verification link to <span className='text-primary m-0'>{email}</span>

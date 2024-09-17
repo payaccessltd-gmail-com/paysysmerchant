@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors:{
-        primary:'#3477E4'
+        primary:'#00acef'
       },
       fontFamily: {
         'sfpro-regular': ['SF Pro Display Regular', 'sans'],

@@ -3,7 +3,7 @@ import { Image } from "../../../assets";
 
 const OnboardingLayout = ({children}:any) => {
   return (
-    <div className="grid md:grid-cols-2 h-screen">
+    <div className="grid md:grid-cols-2 h-screen ">
       <div className="hidden md:block">
         <img
           src={Image.onboarding}
@@ -11,7 +11,7 @@ const OnboardingLayout = ({children}:any) => {
           className="object-cover w-fit  h-full"
         />
       </div>
-      <div className="">
+      <div className="px-12">
         {children}
       </div>
     </div>

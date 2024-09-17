@@ -16,7 +16,7 @@ const TransactionTable = ({ data, pageDetails, setPageNo, isLoading ,state,setSt
 
   const changeCurrentPage = (data: any) => {
    // console.log(data, "the number");
-    setchangePage(data.selected);
+    setchangePage(data?.selected);
     setPageNo(data);
   };
 

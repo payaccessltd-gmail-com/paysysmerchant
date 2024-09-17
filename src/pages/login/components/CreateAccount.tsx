@@ -147,7 +147,7 @@ function toggleSuccessModal() {
       <div className="grid gap-[10px] ">
 
       <div className=" w-full grid gap-[20px] ">
-        <img src={Image.logo} alt="visum logo" />
+      <img src={Image.logo} alt="paysys logo" className='w-[150px] h-[80px]'/>
         <p className="text-black text-[20px] font-500">Create an account</p>
       </div>
       <DefaultInput
@@ -246,7 +246,7 @@ function toggleSuccessModal() {
         <div className="flex gap-2 text-[12px]">
           <input type="checkbox"  onClick={() => setDisableBtn(!disableBtn)}/>
           <p className="opacity-50">
-            By clicking the “Create your account” button, you agree to VISUM{" "}
+            By clicking the “Create your account” button, you agree to PAYSYS{" "}
             <span className="text-[#5BC6F2] m-0 ">terms of acceptable
             use</span>. 
           </p>
@@ -259,7 +259,7 @@ function toggleSuccessModal() {
       }
         </div>
         <ErrorCard handleClear={() => setState({ ...state, submittingError: false })} error={errMsg} containerVariant={!submittingError ? "hidden" : ""} />
-        <button disabled={disableBtn}  onClick={handelSubmit} className="w-full rounded-lg bg-primary text-white py-[8px] px-[10px] mt-[20px] hover:bg-blue-500">
+        <button disabled={disableBtn}  onClick={handelSubmit} className="w-full rounded-lg bg-primary text-white py-[8px] px-[10px] mt-[20px] hover:bg-primary">
           Create Account
         </button>
       </div>

@@ -27,7 +27,7 @@ const TerminalTable = ({ data, isLoading, terminalData }: any) => {
   const [value, setvalue] = useState(null);
   const changeCurrentPage = (data: any) => {
     //console.log(data);
-    setchangePage(data.selected);
+    setchangePage(data?.selected);
   };
 
   const [openModal, setOpenModal] = useState(false);

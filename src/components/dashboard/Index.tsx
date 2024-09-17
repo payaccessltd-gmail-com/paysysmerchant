@@ -268,7 +268,7 @@ function togglesecurity() {
                     <Menu.Item>
                       {({ active }) => (
                         <button
-                          className={`${active && "bg-blue-500 "} py-[5px]`}
+                          className={`${active && "bg-primary "} py-[5px]`}
                           onClick={() => handleLogoutBtn(index)}
                         >
                           {val}
@@ -325,7 +325,7 @@ function togglesecurity() {
                 <Menu.Button>
                 <div className="flex gap-2 items-center ">
               <div
-                className="rounded-full p-[5px] h-fit bg-[#071B7B] text-white cursor-pointer"
+                className="rounded-full p-[5px] h-fit bg-[#00ACEF] text-white cursor-pointer"
                 // onClick={() => {
                 //   navigate("/");
                 //   localStorage?.clear();
@@ -356,7 +356,7 @@ function togglesecurity() {
                     <Menu.Item>
                       {({ active }) => (
                         <button
-                          className={`${active && "bg-blue-500"} py-[10px]`}
+                          className={`${active && "bg-primary"} py-[10px]`}
                           onClick={() => handleLogoutBtn(index)}
                         >
                           {val}

@@ -235,7 +235,7 @@ function SettlementInformation() {
                                     <br />
                                   </>
                                  }
-                                   <button onClick={handelSubmit} disabled={disableBtn} className="w-72 h-12 rounded-md bg-blue-500 text-white  transition-all duration-500 hover:scale-105 hover:brightness-110">Submit</button>
+                                   <button onClick={handelSubmit} disabled={disableBtn} className="w-72 h-12 rounded-md bg-primary text-white  transition-all duration-500 hover:scale-105 hover:brightness-110">Submit</button>
                                  
                                 </div>
           </div>

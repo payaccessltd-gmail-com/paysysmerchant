@@ -188,7 +188,7 @@ useEffect(() => {
 
           
             <div className="p-4 lg:w-1/3 w-72 h-12 rounded-md">
-              <button disabled={isDisabled} onClick={handelSubmit} className="w-full rounded-lg bg-primary text-white py-[8px] px-[10px] mt-[20px] hover:bg-blue-500">Continue</button>
+              <button disabled={isDisabled} onClick={handelSubmit} className="w-full rounded-lg bg-primary text-white py-[8px] px-[10px] mt-[20px] hover:bg-primary">Continue</button>
               {/* <Button title='Continue' disable={isDisabled}/> */}
             </div>
           </div>

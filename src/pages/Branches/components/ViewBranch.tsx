@@ -176,7 +176,7 @@ const ViewBranch = () => {
 
   const changeCurrentPage = (data: any) => {
    // console.log(data);
-    setchangePage(data.selected);
+    setchangePage(data?.selected);
     setpageDetails({
       ...pageDetails,
       PageNumber: data,
@@ -298,7 +298,7 @@ const ViewBranch = () => {
 
       <div className="flex justify-between gap-3 w-full mt-[20px] items-end flex-wrap">
         <div className="flex  justify-between items-center gap-[20px] text-[14px] w-fit">
-          {tabsData.map((tab) => (
+          {tabsData?.map((tab) => (
             <p
               className={` py-[5px] hover:cursor-pointer ${
                 selectedTab.id === tab.id

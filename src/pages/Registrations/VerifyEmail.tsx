@@ -164,7 +164,7 @@ function VerifyEmail() {
               <p className='lg:w-1/3'>
                 <ErrorCard handleClear={() => setState({ ...state, submittingError: false })} error={errMsg} containerVariant={!submittingError ? "hidden" : ""} /></p><br />
               <div onClick={handelSubmit}>
-              <button className="lg:w-1/3 w-72 h-12 rounded-md bg-blue-500 text-white  transition-all duration-500 hover:scale-105 hover:brightness-110">Continue</button>
+              <button className="lg:w-1/3 w-72 h-12 rounded-md bg-primary text-white  transition-all duration-500 hover:scale-105 hover:brightness-110">Continue</button>
               </div>
             </div>
           </div>

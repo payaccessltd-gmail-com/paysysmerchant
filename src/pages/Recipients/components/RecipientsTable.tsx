@@ -24,7 +24,7 @@ const RecipientsTable = ({  pageDetails, setPageNo ,state,setState}: any) => {
   let { content, totalElements, totalPages, number } = data;
 
   const changeCurrentPage = (data: any) => {
-    setchangePage(data.selected);
+    setchangePage(data?.selected);
   };
 
   function getBeneficiaryList() {

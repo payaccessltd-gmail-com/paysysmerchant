@@ -11,7 +11,7 @@ import { SpinnerIcon } from "./icons";
 const TableComponent = ({
   headers,
   children,
-  data,
+  data = [] ,
   isLoading = false,
   totalPages = 0,
   totalValue = 0,
@@ -21,11 +21,11 @@ const TableComponent = ({
   changePage,
 }: any) => {
 
-  // console.log("totalValue>>>", data);
+   console.log("totalValue>>>", data);
   // console.log("totalValue>>>", totalValue);
   const changeCurrentPage = (data: any) => {
-    //console.log(data);
-    changePage(data.selected);
+    console.log(data);
+    changePage(data?.selected);
   };
   return (
     <>
@@ -51,7 +51,7 @@ const TableComponent = ({
               <TableBody>
                 {isLoading ? (
                   <TableRow>
-                    <TableCell colSpan={headers.length}>
+                    <TableCell colSpan={headers?.length}>
                       <div className="m-auto w-fit  grid items-center">
                         <div className="m-auto text-center">
                           <SpinnerIcon className="m-auto" />
@@ -63,7 +63,7 @@ const TableComponent = ({
                 ) : totalValue?.totalPages ===  0 || data === undefined ? (
                   // totalValue
                   <TableRow>
-                    <TableCell colSpan={headers.length}>
+                    <TableCell colSpan={headers?.length}>
                       <div className="p-[100px] m-auto w-full">
                         <img src={Image.noData} alt="" className="m-auto" />
                         <p className="text-[#626F86] text-[15px] mt-5 text-center">

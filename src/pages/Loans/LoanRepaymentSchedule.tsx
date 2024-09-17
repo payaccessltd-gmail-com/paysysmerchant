@@ -563,7 +563,7 @@ function LoanRepaymentSchedule() {
                                                     :
                                                     <>
                                                         {/* repayAllLoan */}
-                                                        <button onClick={toggleTerminalRequestModal_} className="flex items-center bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded mr-4 font-medium text-sm" style={{ backgroundColor: '#3477E4', width: '260px', fontWeight: '400' }}>
+                                                        <button onClick={toggleTerminalRequestModal_} className="flex items-center bg-primary hover:bg-blue-700 text-white py-2 px-4 rounded mr-4 font-medium text-sm" style={{ backgroundColor: '#3477E4', width: '260px', fontWeight: '400' }}>
                                                             <span className="ml-14">Repay All Loans</span>
                                                             {
                                                                 showSpinner2 &&
@@ -596,7 +596,7 @@ function LoanRepaymentSchedule() {
                                                         <></>
                                                         :
                                                         <>
-                                                            <button onClick={rejectThisLoan} className="flex items-center bg-blue-500 mt-2 hover:bg-blue-700 text-white py-2 px-4 rounded font-medium text-sm" style={{ backgroundColor: '#E43434', width: '260px', fontWeight: '400' }}>
+                                                            <button onClick={rejectThisLoan} className="flex items-center bg-primary mt-2 hover:bg-blue-700 text-white py-2 px-4 rounded font-medium text-sm" style={{ backgroundColor: '#E43434', width: '260px', fontWeight: '400' }}>
                                                                 <span className="ml-14">Reject This Loan</span>
 
                                                                 {

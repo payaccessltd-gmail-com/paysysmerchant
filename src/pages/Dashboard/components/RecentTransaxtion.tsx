@@ -20,7 +20,7 @@ const RecentTransaction = ({data}:any) => {
   ];
   
   const changeCurrentPage = (data: any) => {
-    setchangePage(data.selected)
+    setchangePage(data?.selected)
 }
   return (
     <>

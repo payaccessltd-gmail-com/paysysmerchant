@@ -75,10 +75,10 @@ const RejectOfferModal = ({ toggleDropdown, isOpen, stage, setStage }: any) => {
             <p className="mb-4">Loan decisions are irreversible and may incur dire consequences.</p>
             <div className="flex justify-end">
              <div style={{marginLeft: '-300px'}}>
-             <button onClick={handleSubmit}  className="bg-blue-500 cursor-pointer hover:bg-blue-700 text-white  py-2 px-4 rounded mr-4 font-medium text-sm" style={{ backgroundColor: '#071B7B', width: '200px', fontWeight: '400' }}>
+             <button onClick={handleSubmit}  className="bg-primary cursor-pointer hover:bg-blue-700 text-white  py-2 px-4 rounded mr-4 font-medium text-sm" style={{ backgroundColor: '#00ACEF', width: '200px', fontWeight: '400' }}>
                 Reject Offer
               </button>
-              <button onClick={() => window?.location.reload()} className="bg-blue-500 cursor-pointer hover:bg-blue-700 text-white py-2 px-4 rounded font-medium text-sm" style={{ backgroundColor: '#E43434', width: '200px', fontWeight: '400' }}>
+              <button onClick={() => window?.location.reload()} className="bg-primary cursor-pointer hover:bg-blue-700 text-white py-2 px-4 rounded font-medium text-sm" style={{ backgroundColor: '#E43434', width: '200px', fontWeight: '400' }}>
                 Cancel
               </button>
              </div>

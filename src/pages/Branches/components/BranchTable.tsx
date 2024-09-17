@@ -22,7 +22,7 @@ const navigate=useNavigate()
   const changeCurrentPage = (data: any) => {
     //console.log(data,'the page number');
     setPageNo(data)
-    setchangePage(data.selected);
+    setchangePage(data?.selected);
   };
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {

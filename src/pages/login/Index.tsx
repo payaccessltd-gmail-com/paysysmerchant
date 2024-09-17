@@ -212,7 +212,7 @@ secreteQuestionsSet
       <div className='grid h-screen  md:w-3/4 m-auto items-center px-[20px] '>
 
         <div className=" w-full grid gap-[20px] ">
-          <img src={Image.logo} alt="visum logo" />
+          <img src={Image.logo} alt="paysys logo" className='w-[100px] h-100px]'/>
           <p className='text-black text-[20px] font-[500]'>Sign in to your account</p>
 <div style={{width: '380px'}}>
   
@@ -237,7 +237,7 @@ secreteQuestionsSet
           <div className="grid gap-1 text-[#344054]" style={{width: '380px'}}>
             <div className="flex justify-between">
               <label htmlFor="Password  text-[16px]">Password</label>
-              <p style={{color: '#071B7B'}} className="text-primary underline hover:cursor-pointer hover:text-primary/[150]" onClick={() => navigate('forgot-password')}>
+              <p style={{color: '#00ACEF'}} className="text-primary underline hover:cursor-pointer hover:text-primary/[150]" onClick={() => navigate('forgot-password')}>
                 Forgot password?
               </p>
             </div>
@@ -277,10 +277,10 @@ secreteQuestionsSet
             </div>
           }
           
-          <button style={{width: '380px', height: '50px'}} className='w-full rounded-lg bg-primary text-white py-[8px] px-[10px] mt-[20px] cursor-pointer hover:bg-blue-500' onClick={handelSubmit}>
+          <button style={{width: '380px', height: '50px'}} className='w-full rounded-lg bg-primary text-white py-[8px] px-[10px] mt-[20px] cursor-pointer hover:bg-primary' onClick={handelSubmit}>
             Login
           </button>
-          <p className='font-medium'>Don’t have an account ? <span style={{color: '#071B7B'}} className='text-primary underline m-0 cursor-pointer' onClick={() => navigate('create-account')}>
+          <p className='font-medium'>Don’t have an account ? <span style={{color: '#00acef'}} className='text-primary underline m-0 cursor-pointer' onClick={() => navigate('create-account')}>
             Sign up
           </span> </p>
         </div>

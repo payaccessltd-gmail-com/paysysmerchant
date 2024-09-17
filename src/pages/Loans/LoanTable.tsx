@@ -13,7 +13,7 @@ const LoanTable = ({ data, isLoading,setpages, terminalData,number,page }: any) 
 
   //console.log("vvvvvvv>>>",page);
 useEffect(() => {
- setdetail(data.details);
+ setdetail(data?.details);
 // console.log("data>>>", data?.details);
 }, [data])
 
@@ -35,7 +35,7 @@ useEffect(() => {
   const [changePage, setchangePage] = useState('')
 
   const changeCurrentPage = (data: any) => {
-    setchangePage(data.selected)
+    setchangePage(data?.selected)
     setpages((prevState:any) => ({
       ...prevState,
       number: data,

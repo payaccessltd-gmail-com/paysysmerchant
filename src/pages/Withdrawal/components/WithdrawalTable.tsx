@@ -15,7 +15,7 @@ const WithdrawalTable = ({withdrawalTable, setpages,number,isLoading}:any) => {
 console.log('')
     
     const changeCurrentPage = (data: any) => {
-        setchangePage(data.selected)
+        setchangePage(data?.selected)
         setpages((prevState:any)=>({
           ...prevState,
           number:data,

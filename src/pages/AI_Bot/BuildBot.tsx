@@ -82,7 +82,7 @@ function BuildBot() {
             <br /><br />
 
             <div className="bg-white p-8 border border-gray-300 rounded-lg shadow-lg md:w-1/2 mb-[40px]">
-                <h1>Welcome to Build Bank AI Chatbot</h1>
+                <h1>Welcome to Paysys AI Chatbot</h1>
                 <br />
                 <div className="flex flex-col justify-between p-4">
                     {
@@ -120,7 +120,7 @@ function BuildBot() {
                         }}
                     />
                     <button
-                        className="mt-2 px-4 py-2 bg-[#071B7B] text-white rounded-md"
+                        className="mt-2 px-4 py-2 bg-[#00ACEF] text-white rounded-md"
                         onClick={handleMessageSubmit}
                     >
                         Send

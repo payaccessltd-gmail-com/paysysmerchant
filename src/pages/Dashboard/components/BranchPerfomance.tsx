@@ -7,19 +7,19 @@ import { useNavigate } from "react-router-dom";
 import dayjs from 'dayjs';
 import CurrencyFormat from "react-currency-format";
 
-const BranchPerformance = ({data}:any) => {
-  const navigate=useNavigate()
-    const [changePage, setchangePage] = useState('')
-    
+const BranchPerformance = ({ data }: any) => {
+  const navigate = useNavigate()
+  const [changePage, setchangePage] = useState<any>('')
+
   const headers = [
     "Name",
     "Count",
     "Volume",
   ];
-  
+
   const changeCurrentPage = (data: any) => {
-    setchangePage(data.selected)
-}
+    setchangePage(data?.selected)
+  }
   return (
     <>
       <div className="flex justify-between items-center mt-[40px]">
@@ -27,9 +27,9 @@ const BranchPerformance = ({data}:any) => {
         <p className=" text-[12px]" >Last 7 days</p>
       </div>
       <TableComponent headers={headers} currentPage={1} totalPages={1} totalValue={data?.length || 0} changePage={changeCurrentPage}>
-        {data?.map((val:any, index:any) => (
+        {data?.map((val: any, index: any) => (
           <TableRow
-            className="flex items-center border-b-[1px]  justify-between space-x-[6em]  text-left px-[2em] py-[2em] text-[black] min-w-full "
+            className="flex items-center border-b-[1px] justify-between space-x-[6em]  text-left px-[2em] py-[2em] text-[black] min-w-full "
           >
             <TableCell>
               <p className="text-[12px] text-primary">{val?.name}</p>
@@ -39,18 +39,18 @@ const BranchPerformance = ({data}:any) => {
             </TableCell>
             <TableCell>
               <p className="text-[12px]">
-              <CurrencyFormat
-                value={val?.amount || 0}
-                displayType={"text"}
-                thousandSeparator={true}
-                prefix={"₦"}
-              />
+                <CurrencyFormat
+                  value={val?.amount || 0}
+                  displayType={"text"}
+                  thousandSeparator={true}
+                  prefix={"₦"}
+                />
               </p>
             </TableCell>
-            
-           
-            
-           
+
+
+
+
           </TableRow>
         ))}
       </TableComponent>

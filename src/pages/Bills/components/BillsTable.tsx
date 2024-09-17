@@ -12,7 +12,7 @@ const BillsTable = ({billingTable, setpages,number,isLoading}:any) => {
   const {size,totalPages,numberElements,totalElements}=pageDetails ?? {}
   const changeCurrentPage = (data: any) => {
    // console.log(data);
-    setchangePage(data.selected);
+    setchangePage(data?.selected);
     setpages((prevState:any)=>({
       ...prevState,
       number:data,

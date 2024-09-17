@@ -65,7 +65,7 @@ const ForgotPassword = () => {
       <div className="grid h-screen  items-center md:w-3/4 m-auto px-[20px]">
         <div className="grid gap-[20px]">
           <div className=" w-full grid gap-[20px] ">
-            <img src={Image.logo} alt="visum logo" />
+          <img src={Image.logo} alt="paysys logo" className='w-[100px] h-[100px]'/>
             <p className="text-black text-[20px] font-500">Forgot Password</p>
           </div>
           <DefaultInput

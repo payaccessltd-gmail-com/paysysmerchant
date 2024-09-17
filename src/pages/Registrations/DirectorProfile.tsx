@@ -327,7 +327,7 @@ function DirectorProfile() {
                                 !showUplaod &&
                                 <div className="mt-10">
 
-                                    <button onClick={handelSubmit} className="lg:w-1/3 w-72 h-12 rounded-md bg-blue-500 text-white transition-all duration-500 hover:scale-105 hover:brightness-110">Continue</button>
+                                    <button onClick={handelSubmit} className="lg:w-1/3 w-72 h-12 rounded-md bg-primary text-white transition-all duration-500 hover:scale-105 hover:brightness-110">Continue</button>
                                 </div>
                             }
 
@@ -384,7 +384,7 @@ function DirectorProfile() {
                                     <br />
                                   </>
                                  }
-                                    <button onClick={handleUploads} className="lg:w-1/3 w-72 h-12 rounded-md bg-blue-500 text-white transition-all duration-500 hover:scale-105 hover:brightness-110">Continue</button>
+                                    <button onClick={handleUploads} className="lg:w-1/3 w-72 h-12 rounded-md bg-primary text-white transition-all duration-500 hover:scale-105 hover:brightness-110">Continue</button>
                                     {/* navigate("/registrations/document-upload") */}
                                 </div>
                             </div>

@@ -29,7 +29,7 @@ const Settings = () => {
       <p className="text-[24px] font-bold my-5">Settings</p>
 
       <div className="border-y-[1px] py-[20px] flex flex-wrap gap-4 text-[12px] md:justify-between ">
-      {tabsData.map((tab) => (
+      {tabsData?.map((tab) => (
             <p
               className={` py-[5px] hover:cursor-pointer  ${
                 selectedTab === tab.id

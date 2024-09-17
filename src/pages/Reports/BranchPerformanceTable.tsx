@@ -12,7 +12,7 @@ const BranchPerformanceTable = ({search}: any) => {
   const [filteredData, setFilteredData] = useState([]);
   const changeCurrentPage = (data: any) => {
    // console.log(data);
-    setchangePage(data.selected);
+    setchangePage(data?.selected);
   };
   const location = useLocation();
 
@@ -32,7 +32,7 @@ const BranchPerformanceTable = ({search}: any) => {
       headers={BranchHeader}
       currentPage={1}
       totalPages={1}
-      totalValue={filteredData.length}
+      totalValue={filteredData?.length}
       changePage={changeCurrentPage}
       isLoading={JSON.parse(location?.state)?.length === 0 ? true : false}
     >

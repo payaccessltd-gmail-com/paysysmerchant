@@ -25,7 +25,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const getOnboardingStage: any = localStorage.getItem('onboardingStage');
+    const getOnboardingStage: any = localStorage?.getItem('onboardingStage');
     const parseOnboardingStage = JSON.parse(getOnboardingStage);
     setOnboardingStage(parseOnboardingStage?.onboardingStage);
   }, [])
@@ -68,7 +68,7 @@ const Dashboard = () => {
     setloading(false)
     fetchDashData().then(res => {
       setStatData(res);
-      setbranchStats(res.branchStats)
+      setbranchStats(res?.branchStats)
       setloading(true)
     })
   }

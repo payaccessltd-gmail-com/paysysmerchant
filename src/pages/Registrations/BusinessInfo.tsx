@@ -235,7 +235,7 @@ function BusinessInfo() {
                                 <Button title='Continue' />
 
                             </div>
-                            {/* <button className=" h-12 rounded-md bg-blue-500 text-white transition-all duration-500 hover:scale-105 hover:brightness-110">Continue</button> */}
+                            {/* <button className=" h-12 rounded-md bg-primary text-white transition-all duration-500 hover:scale-105 hover:brightness-110">Continue</button> */}
                         </div>
                     </div>
                 </main>

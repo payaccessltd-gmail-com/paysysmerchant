@@ -242,7 +242,8 @@ const [isLoading, setisLoading] = useState(false)
       <div className="grid h-screen  items-center px-[20px]  md:w-3/4 m-auto">
         <div className="flex flex-col gap-[20px] ">
           <div className=" w-full  grid gap-[20px] mb-[20px]">
-            <img src={Image.logo} alt="visum logo" className="m-auto" />
+            <img src={Image.logo} alt="paysys logo" className="m-auto w-[100px] h-[100px]" />
+
             <p className="text-black font-sfpro-semibold text-center text-[25px] font-500">
               Create New Password
             </p>

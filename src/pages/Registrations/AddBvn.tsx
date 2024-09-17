@@ -291,7 +291,7 @@ function AddBvn() {
             <div className="p-4 h-12 rounded-md">
               {
                 showOtp && (
-                  <button className="lg:w-1/3 w-72 h-12 rounded-md bg-blue-500 text-white transition-all duration-500 hover:scale-105 hover:brightness-110">
+                  <button className="lg:w-1/3 w-72 h-12 rounded-md bg-primary text-white transition-all duration-500 hover:scale-105 hover:brightness-110">
                     Continue
                   </button>
                 )
@@ -302,7 +302,7 @@ function AddBvn() {
                 //  <Button title='Continue'  className="lg:w-1/3 w-72 rounded-md"/>
                 <button
                   onClick={handelSubmit}
-                  className="lg:w-1/3 w-72 h-12 rounded-md bg-blue-500 text-white transition-all duration-500 hover:scale-105 hover:brightness-110"
+                  className="lg:w-1/3 w-72 h-12 rounded-md bg-primary text-white transition-all duration-500 hover:scale-105 hover:brightness-110"
                 >
                   Continue
                 </button>

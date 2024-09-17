@@ -77,7 +77,7 @@ function BussinessType() {
                         </div>
 
                         <div className="p-4" onClick={finishReg} >
-                            <button className="lg:w-2/5 w-72 h-12 rounded-md bg-blue-500 text-white transition-all duration-500 hover:scale-105 hover:brightness-110">Continue</button>
+                            <button className="lg:w-2/5 w-72 h-12 rounded-md bg-primary text-white transition-all duration-500 hover:scale-105 hover:brightness-110">Continue</button>
                         </div>
                     </div>
                 </main>

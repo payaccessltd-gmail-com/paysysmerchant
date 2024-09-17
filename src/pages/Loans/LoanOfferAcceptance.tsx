@@ -241,7 +241,7 @@ function LoanOfferAcceptance() {
                                     Congratulations! Build MFB is thrilled to extend a loan facility tailored to your business needs. Simply peruse the below to accept or reject this exclusive offer.
                                 </span>
                             </div>
-                            <div className="bg-gray-300 p-2 rounded-md" style={{ backgroundColor: '#071B7B26' }}>
+                            <div className="bg-gray-300 p-2 rounded-md" style={{ backgroundColor: '#00ACEF26' }}>
 
                             <div className='grid grid-cols-2' style={{ color: '#555555' }}>
                                     <div className="col-span-1 relative">
@@ -312,7 +312,7 @@ function LoanOfferAcceptance() {
 
                             <div className="p-2 rounded-md">
                                 <div className="flex items-center mb-4">
-                                    <input onChange={(e: any) => setShowCTABtns(e?.target?.checked)} id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 cursor-pointer bg-blue-500 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                                    <input onChange={(e: any) => setShowCTABtns(e?.target?.checked)} id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 cursor-pointer bg-primary border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                                     <label htmlFor="default-checkbox" className="ms-2 text-sm ">
                                         <span>
                                             By clicking the check-box, I acknowledge and consent to accept or decline the Loan
@@ -325,10 +325,10 @@ function LoanOfferAcceptance() {
                                 {
                                     showCTABtns &&
                                     <div className="flex">
-                                        <button onClick={toggleTerminalRequestModal} className="bg-blue-500 hover:bg-blue-700 text-white  py-2 px-4 rounded mr-4 font-medium text-sm" style={{ backgroundColor: '#071B7B', width: '225px', fontWeight: '400' }}>
+                                        <button onClick={toggleTerminalRequestModal} className="bg-primary hover:bg-blue-700 text-white  py-2 px-4 rounded mr-4 font-medium text-sm" style={{ backgroundColor: '#00ACEF', width: '225px', fontWeight: '400' }}>
                                             Accept Offer
                                         </button>
-                                        <button onClick={toggleTerminalRequestModal_} className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded font-medium text-sm" style={{ backgroundColor: '#E43434', width: '225px', fontWeight: '400' }}>
+                                        <button onClick={toggleTerminalRequestModal_} className="bg-primary hover:bg-blue-700 text-white py-2 px-4 rounded font-medium text-sm" style={{ backgroundColor: '#E43434', width: '225px', fontWeight: '400' }}>
                                             Reject Offer
                                         </button>
                                     </div>

@@ -92,7 +92,7 @@ const UpdateUtility = ({ toggleDropdown, isOpen }: any) => {
     state?.selectedFile && formData.append("documentType", "UTILITY" || "");
 
     state?.selectedFile &&
-      formData.append("utility", `${identityType || ""}` || "");
+      formData?.append("utility", `${identityType || ""}` || "");
     try {
       const response = await apiCall({
         name: "uploadUtility",

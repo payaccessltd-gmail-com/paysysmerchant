@@ -110,7 +110,7 @@ const RepayAllLoansModal = ({ toggleDropdown, isOpen, stage, setStage }: any) =>
                                                                 </div>
                                                             }
               </button> */}
-                                        <button onClick={handleSubmit} className="relative bg-blue-500 cursor-pointer hover:bg-blue-700 text-white py-2 px-4 rounded mr-4 font-medium text-sm" style={{ backgroundColor: '#071B7B', width: '200px', fontWeight: '400' }}>
+                                        <button onClick={handleSubmit} className="relative bg-primary cursor-pointer hover:bg-blue-700 text-white py-2 px-4 rounded mr-4 font-medium text-sm" style={{ backgroundColor: '#00ACEF', width: '200px', fontWeight: '400' }}>
                                             <span className={`${showSpinner2 ? 'opacity-100' : 'opacity-100'} inline-flex items-center`}>Repay all loans</span> &nbsp;
                                             {showSpinner2 &&
                                                 <div className="absolute ml-28 inset-0 flex items-center justify-center">
@@ -124,7 +124,7 @@ const RepayAllLoansModal = ({ toggleDropdown, isOpen, stage, setStage }: any) =>
                                         </button>
 
 
-                                        <button onClick={() => window?.location.reload()} className="bg-blue-500 cursor-pointer hover:bg-blue-700 text-white py-2 px-4 rounded font-medium text-sm" style={{ backgroundColor: '#E43434', width: '200px', fontWeight: '400' }}>
+                                        <button onClick={() => window?.location.reload()} className="bg-primary cursor-pointer hover:bg-blue-700 text-white py-2 px-4 rounded font-medium text-sm" style={{ backgroundColor: '#E43434', width: '200px', fontWeight: '400' }}>
                                             Cancel
                                         </button>
                                     </div>

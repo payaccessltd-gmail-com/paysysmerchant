@@ -368,7 +368,7 @@ setCheckedSettlementAccount(null);
 
                                     <label className="inline-flex items-center space-x-2 cursor-pointer">
                                         <input type="checkbox" className="hidden" checked={!checked} />
-                                        <div className="w-4 h-4 rounded-full border border-gray-300 bg-blue-500 flex items-center justify-center">
+                                        <div className="w-4 h-4 rounded-full border border-gray-300 bg-primary flex items-center justify-center">
                                             {checkCreatePin === true ?
                                                 <svg className="w-4 h-4 text-white pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.667 12l2.666 2.666L16 9.332"></path>
@@ -385,7 +385,7 @@ setCheckedSettlementAccount(null);
 
                                     <label className="inline-flex items-center space-x-2 cursor-pointer">
                                         <input type="checkbox" className="hidden" checked={!checked} />
-                                        <div className="w-4 h-4 rounded-full border border-gray-300 bg-blue-500 flex items-center justify-center">
+                                        <div className="w-4 h-4 rounded-full border border-gray-300 bg-primary flex items-center justify-center">
                                             {checkSecurityQuestion === true ?
                                                 <svg className="w-4 h-4 text-white pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.667 12l2.666 2.666L16 9.332"></path>
@@ -405,7 +405,7 @@ setCheckedSettlementAccount(null);
 
                                     <label className="inline-flex items-center space-x-2 cursor-pointer">
                                         <input type="checkbox" className="hidden" checked={!checked} />
-                                        <div className="w-4 h-4 rounded-full border border-gray-300 bg-blue-500 flex items-center justify-center">
+                                        <div className="w-4 h-4 rounded-full border border-gray-300 bg-primary flex items-center justify-center">
                                             {
                                                 checkBVNValidation === true ?
                                                     <svg className="w-4 h-4 text-white pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -433,7 +433,7 @@ setCheckedSettlementAccount(null);
                                 <div className='flex items-center'>
                                     <label className="inline-flex items-center space-x-2 cursor-pointer">
                                         <input type="checkbox" className="hidden" checked={!checked} />
-                                        <div className="w-4 h-4 rounded-full border border-gray-300 bg-blue-500 flex items-center justify-center">
+                                        <div className="w-4 h-4 rounded-full border border-gray-300 bg-primary flex items-center justify-center">
                                             {
                                                 checkBusinessType === true ?
                                                     <svg className="w-4 h-4 text-white pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -451,7 +451,7 @@ setCheckedSettlementAccount(null);
                                 <div className='flex items-center'>
                                     <label className="inline-flex items-center space-x-2 cursor-pointer">
                                         <input type="checkbox" className="hidden" checked={!checked} />
-                                        <div className="w-4 h-4 rounded-full border border-gray-300 bg-blue-500 flex items-center justify-center">
+                                        <div className="w-4 h-4 rounded-full border border-gray-300 bg-primary flex items-center justify-center">
                                             {
                                                 checkBusinessInfo === true ?
                                                     <svg className="w-4 h-4 text-white pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -469,7 +469,7 @@ setCheckedSettlementAccount(null);
                                 <div className='flex items-center'>
                                     <label className="inline-flex items-center space-x-2 cursor-pointer">
                                         <input type="checkbox" className="hidden" checked={!checked} />
-                                        <div className="w-4 h-4 rounded-full border border-gray-300 bg-blue-500 flex items-center justify-center">
+                                        <div className="w-4 h-4 rounded-full border border-gray-300 bg-primary flex items-center justify-center">
                                             {
                                                 checkContactVerification === true ?
                                                     <svg className="w-4 h-4 text-white pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -487,7 +487,7 @@ setCheckedSettlementAccount(null);
                                 <div className='flex items-center'>
                                     <label className="inline-flex items-center space-x-2 cursor-pointer">
                                         <input type="checkbox" className="hidden" checked={!checked} />
-                                        <div className="w-4 h-4 rounded-full border border-gray-300 bg-blue-500 flex items-center justify-center">
+                                        <div className="w-4 h-4 rounded-full border border-gray-300 bg-primary flex items-center justify-center">
                                             {
                                                 checkAddress === true ?
                                                     <svg className="w-4 h-4 text-white pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -505,7 +505,7 @@ setCheckedSettlementAccount(null);
                                 <div className='flex items-center'>
                                     <label className="inline-flex items-center space-x-2 cursor-pointer">
                                         <input type="checkbox" className="hidden" checked={!checked} />
-                                        <div className="w-4 h-4 rounded-full border border-gray-300 bg-blue-500 flex items-center justify-center">
+                                        <div className="w-4 h-4 rounded-full border border-gray-300 bg-primary flex items-center justify-center">
                                             {
                                                 checkDirectorProfile === true ?
                                                     <svg className="w-4 h-4 text-white pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -534,7 +534,7 @@ setCheckedSettlementAccount(null);
                                 <div className='flex items-center'>
                                     <label className="inline-flex items-center space-x-2 cursor-pointer">
                                         <input type="checkbox" className="hidden" checked={!checked} />
-                                        <div className="w-4 h-4 rounded-full border border-gray-300 bg-blue-500 flex items-center justify-center">
+                                        <div className="w-4 h-4 rounded-full border border-gray-300 bg-primary flex items-center justify-center">
                                             {
                                                 checkDocumentUpload === true ?
                                                     <svg className="w-4 h-4 text-white pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -561,7 +561,7 @@ setCheckedSettlementAccount(null);
                                 <div className='flex items-center'>
                                     <label className="inline-flex items-center space-x-2 cursor-pointer">
                                         <input type="checkbox" className="hidden" checked={!checked} />
-                                        <div className="w-4 h-4 rounded-full border border-gray-300 bg-blue-500 flex items-center justify-center">
+                                        <div className="w-4 h-4 rounded-full border border-gray-300 bg-primary flex items-center justify-center">
                                             {
                                                 checkSettlementAccount === true ?
                                                     <svg className="w-4 h-4 text-white pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">

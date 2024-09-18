@@ -157,3 +157,10 @@ export type stateTypes = {
     Yobe: string[],
     Zamfara: string[]
 }
+
+
+// Example file: src/types/businessType.ts
+export enum MerchantTypeEnum {
+    INDIVIDUAL,
+    CORPORATE
+}

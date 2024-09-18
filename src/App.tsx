@@ -47,6 +47,9 @@ import LoanRepaymentSchedule from "./pages/Loans/LoanRepaymentSchedule";
 import LoanOfferLetter from "./pages/Loans/LoanOfferLetter";
 import BuildBot from "./pages/AI_Bot/BuildBot";
 import DeleteAccount from "./pages/AccountDeletion";
+import Invoice from "./pages/Invoice/Invoice";
+import Split from "./pages/Split";
+import PaymentLink from "./pages/PaymentLink/Index";
 
 function App() {
 
@@ -379,6 +382,30 @@ function App() {
           element={
             <PrivateRoute>
               <BuildBot />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/payment-link"
+          element={
+            <PrivateRoute>
+              <PaymentLink />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/split"
+          element={
+            <PrivateRoute>
+              <Split/>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/invoice"
+          element={
+            <PrivateRoute>
+              <Invoice />
             </PrivateRoute>
           }
         />

@@ -294,7 +294,7 @@ export const SmWarningIcon = ({ prop }: any) => {
 export const SmPasswordCheckIcon = ({ prop }: any) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="20" height="20" rx="5" transform="matrix(-1 -8.74228e-08 -8.74228e-08 1 22 2)" stroke="#FFAA09" />
+            <rect width="22" height="22" rx="5" transform="matrix(-1 -8.74228e-08 -8.74228e-08 1 22 2)" stroke="#FFAA09" />
             <path d="M11.5 17L11.5 11" stroke="#FFAA09" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M13.5 11L11.5 11" stroke="#FFAA09" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M11.5 8L11.5 7" stroke="#FFAA09" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

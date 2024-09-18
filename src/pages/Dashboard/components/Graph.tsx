@@ -65,17 +65,17 @@ const graphdata = {
     {
       label: 'Card',
       data: labels?.map((label,index) => card[index]),
-      backgroundColor: 'rgba(125, 124, 246, 1)',
+      backgroundColor: 'rgba(245, 128, 31, 1)',
     },
     {
       label: 'Transfer',
       data: labels?.map((label,index) => TransferGraph[index]),
-      backgroundColor: 'rgba(91, 198, 242, 1)',
+      backgroundColor:  'rgba(91, 198, 242, 1)',
     },
     {
       label: 'Cash',
       data: labels?.map((label,index) => CashGraph[index]),
-      backgroundColor: 'rgba(100, 164, 254, 1)',
+      backgroundColor: 'rgba(0, 172, 239, 1)',
     },
   ],
 };

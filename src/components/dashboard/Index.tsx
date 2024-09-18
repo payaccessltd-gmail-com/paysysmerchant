@@ -6,7 +6,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import {
   financialMenuItems,
   managerMenuItems,
+  transactionsMenuItems,
   paymentMenuItems,
+  developerMenuItems
 } from "./SideBarItems";
 import { Storage } from "../../Utils/Stores/inAppStorage";
 import { SpinnerIcon } from "../reusables/icons";
@@ -128,10 +130,10 @@ function togglesecurity() {
               src={Image.logo}
               alt="logo"
               onClick={() => navigate("/dashboard")}
-              className="hover:cursor-pointer"
+              className="hover:cursor-pointer w-[100px] h-[50px]"
             />
             <div className="grid w-full gap-[20px] mt-[40px] items-center ">
-              <p className="text-[16px] font-bold ">Business Financials</p>
+              <p className="text-[16px] font-bold ">Financials</p>
               <div className="grid gap-[20px] justify-between  m-auto md:m-0">
                 {financialMenuItems?.map((items) => (
                   <div
@@ -142,7 +144,7 @@ function togglesecurity() {
                       className={`rounded-lg w-[50px] h-[50px] grid  group-hover:bg-primary  ${
                         currentPath.includes(items.route)
                           ? "bg-primary"
-                          : "bg-[#ECEFF7]"
+                          : "bg-[#E8E9F2]"
                       }`}
                     >
                       {items.icon}
@@ -160,10 +162,42 @@ function togglesecurity() {
                 ))}
               </div>
             </div>
+
             <div className="grid w-full gap-[20px] mt-[40px] items-center ">
-              <p className="text-[16px] font-bold ">Payments</p>
+              <p className="text-[16px] font-bold ">Payment</p>
               <div className="grid gap-[20px] justify-between  m-auto md:m-0">
                 {paymentMenuItems?.map((items) => (
+                  <div
+                    className="flex items-center gap-[10px]   text-center w-full hover:cursor-pointer group"
+                    onClick={() => navigate(`${items.route}`)}
+                  >
+                    <div
+                      className={`rounded-lg w-[50px] h-[50px] grid  group-hover:bg-primary ${
+                        currentPath.includes(items.route)
+                          ? "bg-primary"
+                          : "bg-[#E8E9F2]"
+                      }`}
+                    >
+                      {items.icon}
+                    </div>
+                    <p
+                      className={`text-[14px] font-500 ${
+                        currentPath.includes(items.route)
+                          ? "text-black"
+                          : "text-[#747474]"
+                      }`}
+                    >
+                      {items.name}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid w-full gap-[20px] mt-[40px] items-center ">
+              <p className="text-[16px] font-bold ">Transactions & Billing</p>
+              <div className="grid gap-[20px] justify-between  m-auto md:m-0">
+                {transactionsMenuItems?.map((items) => (
                   <div
                     className="flex items-center gap-[10px]   text-center w-full hover:cursor-pointer group"
                     onClick={() => navigate(`${items.route}`)}
@@ -172,7 +206,7 @@ function togglesecurity() {
                       className={`rounded-lg w-[50px] h-[50px] grid  group-hover:bg-primary  ${
                         currentPath.includes(items.route)
                           ? "bg-primary"
-                          : "bg-[#ECEFF7]"
+                          : "bg-[#E8E9F2]"
                       }`}
                     >
                       {items.icon}
@@ -202,7 +236,37 @@ function togglesecurity() {
                       className={`rounded-lg w-[50px] h-[50px] grid group-hover:bg-primary  ${
                         currentPath.includes(items.route)
                           ? "bg-primary"
-                          : "bg-[#ECEFF7]"
+                          : "bg-[#E8E9F2]"
+                      }`}
+                    >
+                      {items.icon}
+                    </div>
+                    <p
+                      className={`text-[14px] font-500 ${
+                        currentPath.includes(items.route)
+                          ? "text-black"
+                          : "text-[#747474]"
+                      }`}
+                    >
+                      {items.name}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="grid w-full gap-[20px] mt-[40px]">
+              <p className="text-[16px] font-bold  ">Developer Tools</p>
+              <div className="grid  gap-[20px] justify-between m-auto md:m-0">
+                {developerMenuItems?.map((items) => (
+                  <div
+                    className="flex items-center gap-[10px]  text-center hover:cursor-pointer group"
+                    onClick={() => navigate(`${items.route}`)}
+                  >
+                    <div
+                      className={`rounded-lg w-[50px] h-[50px] grid group-hover:bg-primary  ${
+                        currentPath.includes(items.route)
+                          ? "bg-primary"
+                          : "bg-[#E8E9F2]"
                       }`}
                     >
                       {items.icon}
@@ -337,7 +401,7 @@ function togglesecurity() {
                 <p className="text-[#020607] font-bold">
                   {firstName} {lastName}
                 </p>
-                <p className="text-[#3186FD]">{name}</p>
+                <p className="text-primary">{name}</p>
               </div>
             </div>
                 </Menu.Button>
@@ -424,7 +488,7 @@ function togglesecurity() {
               className="hover:cursor-pointer"
             />
             <div className="grid w-full gap-[20px] mt-[40px] items-center ">
-              <p className="text-[16px] font-bold ">Business Financials</p>
+              <p className="text-[16px] font-bold ">Financials</p>
               <div className="grid gap-[20px] justify-between  m-auto md:m-0">
                 {financialMenuItems?.map((items) => (
                   <div
@@ -435,7 +499,7 @@ function togglesecurity() {
                       className={`rounded-lg w-[50px] h-[50px] grid  group-hover:bg-primary  ${
                         currentPath.includes(items.route)
                           ? "bg-primary"
-                          : "bg-[#ECEFF7]"
+                          : "bg-[#E8E9F2]"
                       }`}
                     >
                       {items.icon}
@@ -465,7 +529,7 @@ function togglesecurity() {
                       className={`rounded-lg w-[50px] h-[50px] grid  group-hover:bg-primary  ${
                         currentPath.includes(items.route)
                           ? "bg-primary"
-                          : "bg-[#ECEFF7]"
+                          : "bg-[#E8E9F2]"
                       }`}
                     >
                       {items.icon}
@@ -495,7 +559,7 @@ function togglesecurity() {
                       className={`rounded-lg w-[50px] h-[50px] grid group-hover:bg-primary  ${
                         currentPath.includes(items.route)
                           ? "bg-primary"
-                          : "bg-[#ECEFF7]"
+                          : "bg-[#E8E9F2]"
                       }`}
                     >
                       {items.icon}

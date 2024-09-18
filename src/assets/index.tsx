@@ -2,11 +2,13 @@ import onboarding from './onboarding.svg'
 import logo from './paysys-logo.svg'
 import receipt from './receipt-item.svg'
 import wallet from './wallet-2.svg'
-import bill from './bill.png'
-import building from './building.png'
-import personalcard from './personalcard.png'
-import cardPos from './card-pos.png'
-import setting from './setting-2.svg'
+import bill from './bill-line.svg'
+import building from './community-line.svg'
+import personalcard from './phone-line.svg'
+import cardPos from './mastercard-line.svg'
+import user from './shield-user-line.svg'
+import setting from './settings-2-line.svg'
+import developer from './settings-6-line.svg'
 import circle from './close-circle.svg';
 import checked from './checked.svg';
 import briefcase from './briefcase.svg';
@@ -49,6 +51,14 @@ import file from './file.svg';
 import downloadFile from './downloadFile.jpeg';
 import buildbot from './buildbot_.png';
 import noContent from './404.png';
+import recipients from './user-shared-line.svg';
+import transaction from './swap-line.svg';
+import withraw from './swap-line.svg';
+import loan from './hand-coin-line.svg';
+import invoice from './todo-line.svg';
+import paymentlink from './external-link-line.svg';
+import report from './report.svg'
+
 
 export const Image={
     buildbot,
@@ -86,6 +96,7 @@ export const Image={
     cardPos,
     personalcard,
     setting,
+    developer,
     circle,
     checked,
     briefcase,
@@ -101,7 +112,15 @@ export const Image={
     icon2,
     icon3,
     icon4,
-    icon5
+    icon5,
+    recipients,
+    transaction,
+    withraw,
+    loan,
+    paymentlink,
+    invoice,
+    user,
+    report
 }
 
 export const IsChecked =  (): any  => {

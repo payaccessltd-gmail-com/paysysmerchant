@@ -78,8 +78,8 @@ setState({
     <div className="grid gap-[20px] py-[10%] lg:py-[5%] px-[10%] ">
       <Toaster />
       <p className="font-bold text-[30px] text-center md:text-left">
-        <img src={Image.logo} alt="Logo" />
-        Build Microfinance Bank Account Closure Request Form
+        <img src={Image.logo} alt="Logo" className="w-[100px] h-[80px]"/>
+        Paysys Account Closure Request Form
       </p>
       <p className=" lg:w-1/2 md:w-3/4 text-gray-500">
         Fill in all required information on this form. Once completed, click the "Submit" button at the bottom of this page. A representative may
@@ -159,7 +159,7 @@ setState({
         <p className="text-[12px] text-gray-400">
           Please read the{" "}
           <span
-            className="underline cursor-pointer text-blue-300"
+            className="underline cursor-pointer text-primary"
             onClick={togglepolicy}
           >
             Data Deletion and Retention

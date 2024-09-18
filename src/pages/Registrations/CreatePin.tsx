@@ -134,11 +134,11 @@ useEffect(() => {
   return (
     <div>
       <NavBarItems />
-      <div className="md:flex">
+      <div className="flex items-center justify-center">
         <aside className="md:w-1/4 p-4 hidden sm:block">
           <RegistrationSideBar />
         </aside>
-        <main className="md:flex-1 p-4 my-2">
+        <main className=" p-4 my-2">
           <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1 gap-4">
             <div className="p-4">
               <p className="text-xl">Let's Secure Your Account</p>
@@ -187,7 +187,7 @@ useEffect(() => {
          
 
           
-            <div className="p-4 lg:w-1/3 w-72 h-12 rounded-md">
+            <div className="p-4 lg:w-1/2 w-72 h-12 rounded-md">
               <button disabled={isDisabled} onClick={handelSubmit} className="w-full rounded-lg bg-primary text-white py-[8px] px-[10px] mt-[20px] hover:bg-primary">Continue</button>
               {/* <Button title='Continue' disable={isDisabled}/> */}
             </div>

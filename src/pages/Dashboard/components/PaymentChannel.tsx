@@ -69,14 +69,14 @@ const PaymentChannel = () => {
               transactionObj?.transactionVolumeCash
             ],
             backgroundColor: [
-              'rgba(125, 124, 246, 1)',
+              'rgba(245, 128, 31, 1)',
               'rgba(91, 198, 242, 1)',
-              'rgba(100, 164, 254, 1)'
+              'rgba(0, 172, 239, 1)'
             ],
             borderColor: [
-              'rgba(125, 124, 246, 1)',
+              'rgba(245, 128, 31, 1)',
               'rgba(91, 198, 242, 1)',
-              'rgba(100, 164, 254, 1)'
+              'rgba(0, 172, 239, 1)'
             ],
             borderWidth: 1,
           },

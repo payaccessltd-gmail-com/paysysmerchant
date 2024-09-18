@@ -60,7 +60,7 @@ const BusinessAccount = () => {
       </div>
       <div className="grid gap-1">
         <p className="text-[#747C91] text-[12px]">Bank </p>
-        <p className="text-[15px] text-[#121212]">{'Build Micro-Finance Bank'}</p>
+        <p className="text-[15px] text-[#121212]">{'Merchant Bank'}</p>
       </div>
       <Button title="View Transactions" onClick={()=>navigate('/transaction')}/>
     </div>

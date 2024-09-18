@@ -23,7 +23,7 @@ export function SingleOTPInputComponent(props: SingleOTPInputProps) {
     }
   }, [autoFocus, focus, prevFocus]);
 
-  return <input ref={inputRef} {...rest} type='password' autoComplete="off"/>;
+  return <input ref={inputRef} {...rest} type='password' autoComplete="off" />;
 }
 
 const SingleOTPInput = memo(SingleOTPInputComponent);

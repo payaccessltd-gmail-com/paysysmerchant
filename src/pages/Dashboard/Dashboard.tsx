@@ -144,11 +144,11 @@ const Dashboard = () => {
 
             {
               onboardingStage !== 'settlement' &&
-              <div className="rounded-lg p-[20px] border-[1px]   bg-[#3477E4] bg-opacity-[0.13] border-[#3477E4] gap-[20px]">
-                <p className="text-[20px] font-semibold">Get Started Checklist</p>
+              <div className="rounded-lg p-[20px] border-[1px]   bg-secondary bg-opacity-10 bg-opacity-[0.13] border-secondary gap-[20px]">
+                <p className="text-[20px] font-semibold">Get Started</p>
                 <div className="flex flex-col md:flex-row gap-2  md:items-center">
-                  <div className="h-[5px] rounded-lg w-full bg-[#D2D8F0] dark:bg-neutral-600">
-                    <div className="h-[5px] rounded-lg bg-primary w-[25%]"></div>
+                  <div className="h-[5px] rounded-lg w-full bg-secondary bg-opacity-40 dark:bg-neutral-600">
+                    <div className="h-[5px] rounded-lg bg-secondary w-[25%]"></div>
                   </div>
                   <div className=" whitespace-nowrap">
                     <p>Step 1 of 4</p>
@@ -182,7 +182,7 @@ const Dashboard = () => {
                   </div>
                 </div>
                 <div className="w-fit" onClick={handleRoutes}>
-                  <Button title='Complete Setup' />
+                  <Button title='Complete Setup' className='bg-secondary'  />
 
                 </div>
               </div>

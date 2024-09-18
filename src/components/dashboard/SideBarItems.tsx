@@ -9,14 +9,14 @@ export const financialMenuItems: any[] = [
         name: 'Dashboard',
         route: '/dashboard',
         subMenuItems: [],
-        icon: <RxDashboard className='m-auto text-white text-[25px]' />,
+        icon: <RxDashboard className='m-auto text-secondary text-[25px]' />,
         roles: ""
     },{
         id: 2,
         name: 'Transaction',
         route: '/transaction',
         subMenuItems: [],
-        icon: <img src={Image.receipt} alt="transaction" className='m-auto text-white text-[25px]' />,
+        icon: <img src={Image.transaction} alt="transaction" className='m-auto text-white text-[25px]' />,
         roles: "VIEW_TRANSACTION"
     },
     {
@@ -27,7 +27,7 @@ export const financialMenuItems: any[] = [
             // { name: 'End of Day Report', route: '/reports/eod', role: "VIEW_TRANSACTION" },
             // { name: 'Reconciliation', route: '/reports/reconciliation' }
         ],
-        icon: <img src={Image.bill} alt="transaction" className='m-auto text-white text-[25px]' />,
+        icon: <img src={Image.report} alt="transaction" className='m-auto text-white text-[25px]' />,
         roles: "VIEW_TRANSACTION"
     },
     {
@@ -38,7 +38,7 @@ export const financialMenuItems: any[] = [
             // { name: 'End of Day Report', route: '/reports/eod', role: "VIEW_TRANSACTION" },
             // { name: 'Reconciliation', route: '/reports/reconciliation' }
         ],
-        icon: <img src={Image.personalcard} alt="Recipients" className='m-auto text-white text-[25px]' />,
+        icon: <img src={Image.recipients} alt="Recipients" className='m-auto text-white text-[25px]' />,
         roles: "VIEW_TRANSACTION"
     },
    
@@ -73,14 +73,47 @@ export const paymentMenuItems:any[]=[
         name: 'Withdrawal',
         route: '/withdrawal',
         subMenuItems: [],
-        icon: <img src={Image.wallet} alt="transaction" className='m-auto text-white text-[25px]' />,
+        icon: <img src={Image.withraw} alt="transaction" className='m-auto text-white text-[25px]' />,
         roles: ""
     },{
         id: 4,
         name: 'Loans',
         route: '/loans',
         subMenuItems: [],
-        icon: <img src={Image.bill} alt="transaction" className='m-auto text-white text-[25px]' />,
+        icon: <img src={Image.loan} alt="transaction" className='m-auto text-white text-[25px]' />,
+        roles: ""
+    }
+]
+
+export const transactionsMenuItems:any[]=[
+    {
+        id: 1,
+        name: 'Payment Link',
+        route: '/payment-link',
+        subMenuItems: [
+            // { name: 'Branch management', route: '/branches' },
+            // { name: 'Terminal management', route: '/terminals' },
+            // { name: 'View Admin Users', route: '/users' },
+        ],
+        icon:  <img src={Image.paymentlink} alt="airtime" className='m-auto text-white text-[25px]' />,
+        roles: "VIEW_USER"
+    },{
+        id: 2,
+        name: 'Split/Skill',
+        route: '/split',
+        subMenuItems: [
+            // { name: 'Branch management', route: '/branches' },
+            // { name: 'Terminal management', route: '/terminals' },
+            // { name: 'View Admin Users', route: '/users' },
+        ],
+        icon:  <img src={Image.bill} alt="Bills" className='m-auto text-white text-[25px]' />,
+        roles: "VIEW_USER"
+    },{
+        id: 3,
+        name: 'Invoice',
+        route: '/invoice',
+        subMenuItems: [],
+        icon: <img src={Image.invoice} alt="transaction" className='m-auto text-white text-[25px]' />,
         roles: ""
     }
 ]
@@ -95,7 +128,7 @@ export const managerMenuItems: any[] = [
             // { name: 'Terminal management', route: '/terminals' },
             // { name: 'View Admin Users', route: '/users' },
         ],
-        icon:  <img src={Image.personalcard} alt="transaction" className='m-auto text-white text-[25px]' />,
+        icon:  <img src={Image.user} alt="transaction" className='m-auto text-white text-[25px]' />,
         roles: "VIEW_USER"
     },
     {
@@ -131,6 +164,22 @@ export const managerMenuItems: any[] = [
         icon: <img src={Image.setting} alt="transaction" className='m-auto text-white text-[25px]' />,
         roles: "VIEW_TRANSACTION"
     },
+]
+
+export const developerMenuItems: any[] = [
+    {
+        id: 1,
+        name: 'API & Integrations',
+        route: '/users',
+        subMenuItems: [
+            // { name: 'Branch management', route: '/branches' },
+            // { name: 'Terminal management', route: '/terminals' },
+            // { name: 'View Admin Users', route: '/users' },
+        ],
+        icon:  <img src={Image.developer} alt="transaction" className='m-auto text-white text-[25px]' />,
+        roles: "VIEW_USER"
+    }
+   
 ]
 
 

@@ -1,0 +1,94 @@
+.Modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    outline: 0;
+    /* padding: 0px 16px; */
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-family: 'Poppins';
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.modalcontent {
+    position: relative;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 95%;
+    max-height: 95vh;
+    pointer-events: auto;
+    background-color: #ffffff;
+    background-clip: padding-box;
+    border: 0 solid rgba(0, 0, 0, 0.2);
+    border-radius: 1.25rem;
+    box-shadow: 0px 0.4px 10px rgba(0, 0, 0, 0.25);
+    outline: 0;
+}
+
+.modalheader {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: flex-end;
+    padding: 2rem 1.75rem 0;
+}
+
+.modalbody {
+    position: relative;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 0 1.75rem;
+    overflow-y: auto;
+}
+
+.modaldialog {
+    position: relative;
+    width: max-content;
+    margin: 1.75rem auto;
+    pointer-events: none;
+
+    width: max-content;
+    min-width: fit-content;
+    max-width: 75vw;
+    margin: 1.75rem auto;
+}
+
+.modaldialogcentered {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100% - 1rem);
+    z-index: 200;
+}
+
+@media (min-width: 576px) {
+
+    .modaldialog {
+        width: max-content;
+        min-width: fit-content;
+        max-width: 75vw;
+        margin: 1.75rem auto;
+    }
+
+    .modaldialogcentered {
+        min-height: calc(100% - 3.5rem);
+    }
+}

@@ -52,7 +52,7 @@ const {todayCollection:todayCollect} =todayCollection ?? {}
         thousandSeparator={true}
         prefix={"₦"}
       />,
-      title: 'Your Account Balance',
+      title: 'Account Balance',
       image: Image.icon1
     },
     {
@@ -85,14 +85,15 @@ const {todayCollection:todayCollect} =todayCollection ?? {}
     },
   ]
   return (
-    <div className={`grid ${details.length === 5 ? 'lg:grid-cols-5 md:grid-cols-2' : 'lg:grid-cols-4 md:grid-cols-2'} rounded-lg bg-primary p-[20px] gap-[20px]`}>
+    <div className={`grid  ${details.length === 5 ? 'lg:grid-cols-5 md:grid-cols-2' : 'lg:grid-cols-4 md:grid-cols-2'} rounded-lg bg-[#f9f9f9] p-[20px] gap-[10px]`}>
     {details.map((val, index) => (
-      <div key={index} className={`${index === 1 && ' border-r-white'} border-b-[1px] md:border-b-0 flex gap-[20px] px-[20px] pb-[10px] md:items-center md:justify-center justify-between ml-5`}>
+      <div key={index} className={`${index === 1 && ' border-r-white'} border-b-[1px] md:border-b-0 flex gap-[10px] px-[10px] py-[10px] md:items-center md:justify-center justify-between  bg-[#E8E9F2] rounded-lg w-full`}>
         {/* lg:border-r-[1px]  is the white border line at LHS of border-r-white*/}
-        <img src={val?.image} alt="" height={25} width={25}/>
-        <div className="grid text-right md:text-center">
-          <p className='text-[20px] text-white text-sm font-medium'>{val.amount}</p>
-          <p className="text-[#F0BE0D] text-[12px] font-medium">{val.title}</p>
+   
+        <div className="grid items-center justify-center text-right md:text-left">
+        <img src={val?.image} alt="" height={25} width={25} className="text-secondary"/>
+          <p className='text-[20px] text-black text-sm font-medium'>{val.amount}</p>
+          <p className="text-black text-[10px] font-medium">{val.title}</p>
         </div>
       </div>
     ))}

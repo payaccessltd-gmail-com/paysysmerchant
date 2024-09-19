@@ -339,6 +339,13 @@ export const endPoints: endPointlistTypes | any = {
         auth: true
     },
 
+    getNewMerchantDetails:{
+        url: '/api/v1/merchant/getAcctNo/',
+        method: 'GET',
+        headers: headers,
+        auth: true
+    },
+
     getMerchant: {
         url: '/api/v1/merchant/getMerchants/user/',
         method: 'GET',
@@ -473,7 +480,7 @@ export const endPoints: endPointlistTypes | any = {
         auth: true
     },
     balance: {
-        url: '/api/v1/merchant/balance',
+        url: 'api/v1/merchant/balance/',
         method: 'GET',
         headers: headers,
         auth: true
@@ -659,5 +666,38 @@ export const endPoints: endPointlistTypes | any = {
         auth: true
     },
 
+    //Payment Link
 
+  
+    createPaymentLink: {
+        url: '/api/v1/paymentlinks/createPaymentLink',
+        method: 'POST',
+        headers: headers,
+        auth: true
+    },
+
+    getAllSplitLinks: {
+        url: '/api/v1/paymentlinks/getAllSplitLinks/',
+        method: 'GET',
+        headers: headers,
+        auth: true
+    },
+    getAllSingleLink: {
+        url: '/api/v1/paymentlinks/getAllSingleLink/',
+        method: 'GET',
+        headers: headers,
+        auth: true
+    },
+    getAllBusinessLinks: {
+        url: '/api/v1/paymentlinks/getAllBusinessLinks/',
+        method: 'GET',
+        headers: headers,
+        auth: true
+    },
+    getAllBranchLinks: {
+        url: '/api/v1/paymentlinks/getAllBranchLinks/',
+        method: 'GET',
+        headers: headers,
+        auth: true
+    },
 }

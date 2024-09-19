@@ -65,6 +65,20 @@ const fetchAMerchantData = async (id: any): Promise<any> => {
     }
 }
 
+const fetchNewAMerchantData = async (): Promise<any> => {
+    try {
+        const response = await apiCall({
+            name: "getNewMerchantDetails",
+         
+            action: (): any => (["skip"]),
+            errorAction: (): any => ([""])
+        })
+        return response;
+    } catch (e) {
+        console.error("error>>",e)
+    }
+}
+
 const fetchDashBranchData = async (): Promise<any> => {
 
     const response = await apiCall({
@@ -117,5 +131,59 @@ const fetchMerchantDashboardStats = async (pageNo: any, pageSize: any, search: a
     return response;
 }
 
+const fetchSplitLinkData = async (id: any): Promise<any> => {
+    try {
+        const response = await apiCall({
+            name: "getAllSplitLinks",
+            urlExtra: `${id || 0}`,
+            action: (): any => (["skip"]),
+            errorAction: (): any => ([""])
+        })
+        return response;
+    } catch (e) {
+        console.error("error>>",e)
+    }
+}
 
-export {getPreviousDayCollection,fetchCollectionBalance, fetchDashData, fetchMerchantData, fetchDashBranchData, fetchAMerchantData , getBalance , fetchRecentTransaction, fetchMerchantDashboardStats};
+const fetchSingleLinkData = async (id: any): Promise<any> => {
+    try {
+        const response = await apiCall({
+            name: "getAllSingleLinks",
+            urlExtra: `${id || 0}`,
+            action: (): any => (["skip"]),
+            errorAction: (): any => ([""])
+        })
+        return response;
+    } catch (e) {
+        console.error("error>>",e)
+    }
+}
+
+const fetchBusinessLinkData = async (id: any): Promise<any> => {
+    try {
+        const response = await apiCall({
+            name: "getAllBusinessLinks",
+            urlExtra: `${id || 0}`,
+            action: (): any => (["skip"]),
+            errorAction: (): any => ([""])
+        })
+        return response;
+    } catch (e) {
+        console.error("error>>",e)
+    }
+}
+
+const fetchBranchLinkData = async (id: any): Promise<any> => {
+    try {
+        const response = await apiCall({
+            name: "getAllBranchLinks",
+            urlExtra: `${id || 0}`,
+            action: (): any => (["skip"]),
+            errorAction: (): any => ([""])
+        })
+        return response;
+    } catch (e) {
+        console.error("error>>",e)
+    }
+}
+export {getPreviousDayCollection,fetchCollectionBalance, fetchDashData, fetchMerchantData, fetchDashBranchData, fetchAMerchantData ,fetchNewAMerchantData, getBalance , fetchRecentTransaction, fetchMerchantDashboardStats, fetchBranchLinkData, fetchBusinessLinkData, fetchSplitLinkData, fetchSingleLinkData};

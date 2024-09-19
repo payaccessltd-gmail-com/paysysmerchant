@@ -53,11 +53,11 @@ import buildbot from './buildbot_.png';
 import noContent from './404.png';
 import recipients from './user-shared-line.svg';
 import transaction from './swap-line.svg';
-import withraw from './swap-line.svg';
+import withdraw from './ui-money.svg';
 import loan from './hand-coin-line.svg';
 import invoice from './todo-line.svg';
 import paymentlink from './external-link-line.svg';
-import report from './report.svg'
+import report from './report22.svg'
 
 
 export const Image={
@@ -115,7 +115,7 @@ export const Image={
     icon5,
     recipients,
     transaction,
-    withraw,
+withdraw,
     loan,
     paymentlink,
     invoice,

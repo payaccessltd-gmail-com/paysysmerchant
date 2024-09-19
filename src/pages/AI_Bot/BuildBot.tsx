@@ -120,7 +120,7 @@ function BuildBot() {
                         }}
                     />
                     <button
-                        className="mt-2 px-4 py-2 bg-[#00ACEF] text-white rounded-md"
+                        className="mt-2 px-4 py-2 bg-primary text-white rounded-md"
                         onClick={handleMessageSubmit}
                     >
                         Send

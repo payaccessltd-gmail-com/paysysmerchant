@@ -11,7 +11,7 @@ import { Toaster } from 'react-hot-toast'
 const UpdateBusinessReg = ({toggleDropdown,isOpen}:any) => {
     const { onboardingStage, userId, lastName } = Storage.getItem("userDetails") || { onboardingStage: "", userId: 0, firstName: "", lastName: "" }
     const [state, setState] = useState<any>({
-        selectedFile: null,
+        selectedFile: null, 
         rcNumber: "",
         check: false,
         submittingError: false,
@@ -61,7 +61,7 @@ const UpdateBusinessReg = ({toggleDropdown,isOpen}:any) => {
         })
     }
 
-    const handelSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setState((state: any) => ({
             ...state,
@@ -183,7 +183,7 @@ const UpdateBusinessReg = ({toggleDropdown,isOpen}:any) => {
                                         <Button
                                             title="Submit Document"
                                             isLoading={isSubmitting}
-                                            onClick={handelSubmit}
+                                            onClick={handleSubmit}
                                         />
                                     {/* </div> */}
 

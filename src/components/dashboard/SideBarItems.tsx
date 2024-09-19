@@ -73,7 +73,7 @@ export const paymentMenuItems:any[]=[
         name: 'Withdrawal',
         route: '/withdrawal',
         subMenuItems: [],
-        icon: <img src={Image.withraw} alt="transaction" className='m-auto text-white text-[25px]' />,
+        icon: <img src={Image.withdraw} alt="transaction" className='m-auto text-white text-[25px]' />,
         roles: ""
     },{
         id: 4,

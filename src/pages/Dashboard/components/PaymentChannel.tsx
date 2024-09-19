@@ -71,12 +71,12 @@ const PaymentChannel = () => {
             backgroundColor: [
               'rgba(245, 128, 31, 1)',
               'rgba(91, 198, 242, 1)',
-              'rgba(0, 172, 239, 1)'
+              '#E3ECFF'
             ],
             borderColor: [
               'rgba(245, 128, 31, 1)',
               'rgba(91, 198, 242, 1)',
-              'rgba(0, 172, 239, 1)'
+              '#E3ECFF'
             ],
             borderWidth: 1,
           },

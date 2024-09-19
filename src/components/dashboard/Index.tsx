@@ -389,7 +389,7 @@ function togglesecurity() {
                 <Menu.Button>
                 <div className="flex gap-2 items-center ">
               <div
-                className="rounded-full p-[5px] h-fit bg-[#00ACEF] text-white cursor-pointer"
+                className="rounded-full p-[5px] h-fit bg-primary text-white cursor-pointer"
                 // onClick={() => {
                 //   navigate("/");
                 //   localStorage?.clear();

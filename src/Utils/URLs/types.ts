@@ -32,6 +32,7 @@ export type endPointlistTypes = {
     requestTerminal: endpointTypes;
     terminalStats: endpointTypes;
     getMerchantDetails: endpointTypes;
+    getNewMerchantDetails: endpointTypes;
     renameTerminal: endpointTypes;
     repairTerminal: endpointTypes;
     terminalUnlinkRequest: endpointTypes;
@@ -95,6 +96,11 @@ export type endPointlistTypes = {
     electricitySub:endpointTypes;
     cableTvSub:endpointTypes;
     bettingSub:endpointTypes;
+    createPaymentLink:endPointlistTypes;
+    getAllSplitLinks: endPointlistTypes;
+    getAllBusinessLinks: endPointlistTypes;
+    getAllSingleLink: endPointlistTypes;
+    getAllBranchLinks: endPointlistTypes;
 }
 
 

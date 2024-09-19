@@ -194,10 +194,10 @@ function DirectorProfile() {
         )
 
         state?.selectedFile && formData.append(
-            'utility', sessionStorage.getItem('options') || ""
+            'utility', sessionStorage.getItem('options') || "1"
         )
         state?.selectedFile && formData.append(
-            'rcNumber', sessionStorage.getItem('options') || ""
+            'rcNumber', sessionStorage.getItem('options') || "1"
         )
         try {
             // localStorage.setItem('onboardingStageKey', "uploadId");

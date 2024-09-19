@@ -164,3 +164,8 @@ export enum MerchantTypeEnum {
     INDIVIDUAL,
     CORPORATE
 }
+
+
+export enum IdentityTypeEnum {
+    NIN, PASSPORT, VOTERS_CARD, DRIVERS_LICENSE , SELFIE, BVN, CAC
+}

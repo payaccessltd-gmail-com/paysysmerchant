@@ -32,7 +32,7 @@ import { fetchBranchLinkData, fetchBusinessLinkData, fetchSingleLinkData, fetchS
   //   return response;
   // }
 
-const Split = () => {
+const Invoice = () => {
  const [isLoading, setisLoading] = useState(false)
   const [refresh, setRefresh] = useState(false)
   const [paymentLinkModal, setPaymentLinkModal] = useState(false)
@@ -70,7 +70,7 @@ const Split = () => {
   async function fetchData() {
     setisLoadingTable(true);
     try {
-        const res = await fetchSplitLinkData(userId);
+        const res = await fetchBusinessLinkData(userId);
         console.log("resd",res)
        setPaymentLinkTable(res)
     } catch (error) {
@@ -141,4 +141,4 @@ const Split = () => {
   )
 }
 
-export default Split
+export default Invoice

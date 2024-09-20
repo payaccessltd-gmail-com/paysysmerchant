@@ -47,9 +47,10 @@ import LoanRepaymentSchedule from "./pages/Loans/LoanRepaymentSchedule";
 import LoanOfferLetter from "./pages/Loans/LoanOfferLetter";
 import BuildBot from "./pages/AI_Bot/BuildBot";
 import DeleteAccount from "./pages/AccountDeletion";
-import Invoice from "./pages/Invoice/Invoice";
-import Split from "./pages/Split";
 import PaymentLink from "./pages/PaymentLink/Index";
+
+import Invoice from "./pages/Invoice/Index";
+import Split from "./pages/Split/Index";
 
 function App() {
 
@@ -405,7 +406,7 @@ function App() {
           path="/invoice"
           element={
             <PrivateRoute>
-              <Invoice />
+              <Invoice/>
             </PrivateRoute>
           }
         />

@@ -66,7 +66,7 @@ const PaymentLinkModal = ({ toggleDropdown, isOpen }: any) => {
         }))
 
         let formData = new FormData();
-        state?.selectedFile && formData.append("merchantId", userId || "");
+        state && formData.append("merchantId", userId || "");
         state && formData.append('amount', state?.amount || "")
         state && formData.append('description', state?.description || "")
         state && formData.append('branchId', state?.branchId || "")

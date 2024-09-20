@@ -13,13 +13,26 @@ import { Storage } from "../../Utils/Stores/inAppStorage";
 import { apiCall } from "../../Utils/URLs/axios.index";
 import { fetchBranchLinkData, fetchBusinessLinkData, fetchSingleLinkData, fetchSplitLinkData} from '../../containers/dashboardApis'
 
+  // const fetchMerchantData = async (): Promise<any> => {
 
+  //   const { userId } = Storage.getItem("userDetails") || {};
+  
+  //   const response = await apiCall({
+  //       name: "getMerchantDetails",
+  //       urlExtra: `${userId?.entityId || userId || 0}`,
+  //       action: (): any => (["skip"]),
+  //       errorAction: (): any => (["skip"])
+  //   })
+  //       .then(async (res: any) => {
+  //           const { token } = res;
+  //           const { id, name, email, phone, description, category, type, pin, bvn } = res;
+  
+  //           await Storage.setItem('merchantDetails', res || {})
+  //       })
+  //   return response;
+  // }
 
 const PaymentLink = () => {
-
-
-
-
  const [isLoading, setisLoading] = useState(false)
   const [refresh, setRefresh] = useState(false)
   const [paymentLinkModal, setPaymentLinkModal] = useState(false)
@@ -54,44 +67,26 @@ const PaymentLink = () => {
     exportToExcel(paymentLinks, "List of paymentLinks");
   };
 
-
-
-  // const fetchMerchantData = async (): Promise<any> => {
-
-  //   const { userId } = Storage.getItem("userDetails") || {};
-  
-  //   const response = await apiCall({
-  //       name: "getMerchantDetails",
-  //       urlExtra: `${userId?.entityId || userId || 0}`,
-  //       action: (): any => (["skip"]),
-  //       errorAction: (): any => (["skip"])
-  //   })
-  //       .then(async (res: any) => {
-  //           const { token } = res;
-  //           const { id, name, email, phone, description, category, type, pin, bvn } = res;
-  
-  //           await Storage.setItem('merchantDetails', res || {})
-  //       })
-  //   return response;
-  // }
-  
   async function fetchData() {
+    setisLoadingTable(true);
     try {
         const res = await fetchBusinessLinkData(userId);
         console.log("resd",res)
-       
+       setPaymentLinkTable(res)
     } catch (error) {
         console.error("Error fetching merchant data:", error);
         // You can set a default value or just keep it as null
+    }finally {
+      setisLoadingTable(false);
     }
-  }
   
+  }
+
   useEffect(() => {
 
     fetchData();
 
-  }, [userId]);
-
+  }, [userId,number,refresh]);
 
 
   async function togglepaymentLinkModal() {
@@ -108,32 +103,6 @@ const PaymentLink = () => {
     });
 }
 
-async function getpaymentLink() {
-    setisLoadingTable(true);
-
-  try {
-    const res = await recentBiliing(number, pageSize, '', '');
-    setPaymentLinkTable(res);
-    console.log("res", res.bills)
-    setpages({
-      number: res.pageDetails.number,
-      totalPages: res.pageDetails.totalPages,
-      pageSize: res.pageDetails.size,
-      numberElements: res.pageDetails.numberElements,
-      totalElements: res.pageDetails.totalElements,
-    });
-   // console.log(res)
-   setPaymentLinkTable(res.bills);
-  } catch (error) {
-    console.error(error);
-  } finally {
-    setisLoadingTable(false);
-  }
-}
-    console.log("paymentLink", paymentLinks, paymentLinkTable)
-useEffect(() => {
-  getpaymentLink()
-}, [number,refresh])
 
   return (
     <DashboardLayout>
@@ -162,7 +131,7 @@ useEffect(() => {
           </div>
         )}
       </div>
-      <PaymentLinkTable paymentLinkTable={paymentLinks}
+      <PaymentLinkTable paymentLinkTable={paymentLinkTable}
             page={pages}
             setpages={setpages}
             number={number}

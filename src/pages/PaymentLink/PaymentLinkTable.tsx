@@ -27,7 +27,7 @@ const PaymentLinkTable = ({paymentLinkTable, setpages,number,isLoading}:any) => 
   return (
     <TableComponent
       headers={header}
-      currentPage={number} totalPages={'1'} totalValue={'2'} changePage={changeCurrentPage} isLoading={isLoading}
+      currentPage={number} totalPages={'1'} totalValue={'1'} changePage={changeCurrentPage} isLoading={isLoading}
     >
       {paymentLinkTable?.map((val: any, index: any) => (
         <TableRow
@@ -36,38 +36,62 @@ const PaymentLinkTable = ({paymentLinkTable, setpages,number,isLoading}:any) => 
         >
           <TableCell>
             <div className="text-[12px] text-primary">
-              <p>{val.branchId}</p>
+              <p>{val.id}</p>
             </div>
           </TableCell>
           <TableCell>
-          <p className="text-[12px] "><p className="text-[12px] "><CurrencyFormat
+            <p className="text-[12px] ">  <p className="text-[12px] "><p className="text-[12px] "><CurrencyFormat
                 value={val?.amount || 0}
                 displayType={"text"}
                 thousandSeparator={true}
                 prefix={"₦"}
-              /></p></p>
+              /></p></p></p>
           </TableCell>
           <TableCell>
-          <p className="text-[12px] "><p className="text-[12px] "><CurrencyFormat
-                value={''}
-                displayType={"text"}
-                thousandSeparator={true}
-                prefix={"₦"}
-              /></p></p>
+            <p className="text-[12px] ">{val.currency}</p>
           </TableCell>
           <TableCell>
-          <p className="text-[12px] ">{val.description}</p>
+          <p className="text-[12px] ">{val?.description}</p>
           </TableCell>
           <TableCell>
             <p className="text-[12px] ">{dayjs(val?.date).format("DD MMMM YYYY, hh:mm A")}</p>
           </TableCell>
           <TableCell>
-            <p className="text-[12px] ">{val.transactionId}</p>
+          <p className="text-[12px] ">{dayjs(val?.expiryDate).format("DD MMMM YYYY, hh:mm A")}</p>
           </TableCell>
           <TableCell>
-      
-              <p className="text-[12px]">{val.linkType}</p>
-       
+          <p className="text-[12px] ">{val?.linkType}</p>
+          </TableCell>
+          <TableCell>
+            <div className="flex gap-2 items-center">
+              <div
+                className={`p-1 h-fit rounded-full ${
+                  val?.linkStatus === "PENDING" ? "bg-red-400" : "ACTIVE" ? "bg-[#009236]" : "bg-yellow-400"
+                } `}
+              ></div>
+              <p className="text-[12px]">{val?.linkStatus}</p>
+            </div>
+          </TableCell>
+          <TableCell>
+            <div className="flex gap-2 items-center">
+              <div
+                className={`p-1 h-fit rounded-full ${
+                  val?.transactionStatus === "PENDING" ? "bg-red-400" : "ACTIVE" ? "bg-[#009236]" : "bg-yellow-400"
+                } `}
+              ></div>
+              <p className="text-[12px]">{val?.transactionStatus}</p>
+            </div>
+          </TableCell>
+          <TableCell>
+          <p className="text-[12px]">{val?.linkId}</p>
+          </TableCell>
+          <TableCell>
+          <p className="text-[12px] ">  <p className="text-[12px] "><p className="text-[12px] "><CurrencyFormat
+                value={val?.totalAmount || 0}
+                displayType={"text"}
+                thousandSeparator={true}
+                prefix={"₦"}
+              /></p></p></p>
           </TableCell>
         </TableRow>
       ))}

@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableComponent from "../../components/reusables/Table";
 import { header } from "./MockData";
 import CurrencyFormat from "react-currency-format";
 import dayjs from "dayjs";
+import { paymentLinkBaseURL } from "../../Utils/URLs/api.env";
+import { BsThreeDotsVertical } from "react-icons/bs";
+
 
 const PaymentLinkTable = ({paymentLinkTable, setpages,number,isLoading}:any) => {
+  const [activeIndex, setActiveIndex] = useState(null);
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const [showDeactivate, setDeactivateModal] = useState(false);
+  const [delId, setDelId] = useState("");
+  const [delName, setDelName] = useState("");
   const [changePage, setchangePage] = useState("");
-  //const {pageDetails, paymentLinks} = paymentLinkTable
-  //const {size,totalPages,numberElements,totalElements}=pageDetails ?? {}
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const {pageDetails, paymentLinks} = paymentLinkTable
+  const {size,totalPages,numberElements,totalElements}=pageDetails ?? {}
   const changeCurrentPage = (data: any) => {
     console.log("any",data);
     setchangePage(data?.selected);
@@ -20,14 +29,38 @@ const PaymentLinkTable = ({paymentLinkTable, setpages,number,isLoading}:any) => 
     }))
   };
   console.log("data", paymentLinkTable)
+  const showDeactivateModal = (id: any, name: any) => {
+    setDeactivateModal((prevShoW: boolean) => !prevShoW);
+    setDelId(id);
+    setDelName(name);
+  };
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsDropdownVisible(false);
+      }
+    }
 
+    if (isDropdownVisible) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isDropdownVisible]);
 
   
   return (
     <TableComponent
       headers={header}
-      currentPage={number} totalPages={'1'} totalValue={'1'} changePage={changeCurrentPage} isLoading={isLoading}
+      currentPage={number} totalPages={totalPages} totalValue={paymentLinkTable.length} changePage={changeCurrentPage} isLoading={isLoading}
     >
       {paymentLinkTable?.map((val: any, index: any) => (
         <TableRow
@@ -35,9 +68,9 @@ const PaymentLinkTable = ({paymentLinkTable, setpages,number,isLoading}:any) => 
           className="flex items-center border-b-[1px]  justify-between space-x-[6em]  text-left px-[2em] py-[2em] text-[black] min-w-full "
         >
           <TableCell>
-            <div className="text-[12px] text-primary">
-              <p>{val.id}</p>
-            </div>
+     
+              <p>{val?.linkId}</p>
+         
           </TableCell>
           <TableCell>
             <p className="text-[12px] ">  <p className="text-[12px] "><p className="text-[12px] "><CurrencyFormat
@@ -83,16 +116,39 @@ const PaymentLinkTable = ({paymentLinkTable, setpages,number,isLoading}:any) => 
             </div>
           </TableCell>
           <TableCell>
-          <p className="text-[12px]">{val?.linkId}</p>
+          <div className="text-[12px] text-primary cursor-pointer">
+              <p> 
+              <a href={`${paymentLinkBaseURL}${"/"}${val?.linkId}`} target="_blank">{`${paymentLinkBaseURL}${"/"}${val?.linkId}`}</a>
+              </p>
+            </div>
           </TableCell>
           <TableCell>
-          <p className="text-[12px] ">  <p className="text-[12px] "><p className="text-[12px] "><CurrencyFormat
-                value={val?.totalAmount || 0}
-                displayType={"text"}
-                thousandSeparator={true}
-                prefix={"₦"}
-              /></p></p></p>
+            <div className="relative">
+              <BsThreeDotsVertical
+                onClick={() => {
+                  setActiveIndex(index);
+                  setIsDropdownVisible(!isDropdownVisible);
+                }}
+                className="text-[20px] hover:cursor-pointer"
+              />
+
+              {activeIndex === index && isDropdownVisible && (
+                <div
+                  className="absolute left-[-50%]  bg-white w-[60px] grid border-[1px] rounded-md shadow-md  z-10 text-[10px]"
+                  ref={dropdownRef}
+                >
+                  <p className="hover:bg-[#F7F8FA] p-[10px] text-[#FF0000] hover:cursor-pointer" onClick={()=>{}}>
+                    Delete
+                  </p>
+                 
+                  {/* <p className="hover:bg-[#F7F8FA] p-[10px] hover:cursor-pointer">
+                    Delete Branch
+                  </p> */}
+                </div>
+              )}
+            </div>
           </TableCell>
+       
         </TableRow>
       ))}
     </TableComponent>

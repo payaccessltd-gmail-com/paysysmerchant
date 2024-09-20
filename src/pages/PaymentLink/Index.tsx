@@ -7,30 +7,10 @@ import exportToExcel from '../../Utils/ExportExcel'
 import PaymentLinkModal from './PaymentLinkModal'
 import PaymentLinkTable from './PaymentLinkTable'
 import { Storage } from "../../Utils/Stores/inAppStorage";
-import { apiCall } from "../../Utils/URLs/axios.index";
-import { fetchBranchLinkData, fetchBusinessLinkData, fetchSingleLinkData, fetchSplitLinkData } from '../../containers/dashboardApis'
+import {fetchBusinessLinkData} from '../../containers/dashboardApis'
 
-// const fetchMerchantData = async (): Promise<any> => {
-
-//   const { userId } = Storage.getItem("userDetails") || {};
-
-//   const response = await apiCall({
-//       name: "getMerchantDetails",
-//       urlExtra: `${userId?.entityId || userId || 0}`,
-//       action: (): any => (["skip"]),
-//       errorAction: (): any => (["skip"])
-//   })
-//       .then(async (res: any) => {
-//           const { token } = res;
-//           const { id, name, email, phone, description, category, type, pin, bvn } = res;
-
-//           await Storage.setItem('merchantDetails', res || {})
-//       })
-//   return response;
-// }
 
   const PaymentLink = () => { 
-  const [isLoading, setisLoading] = useState(false)
   const [refresh, setRefresh] = useState(false)
   const [paymentLinkModal, setPaymentLinkModal] = useState(false)
   const [searched, setSearched] = useState<string>("");
@@ -45,6 +25,7 @@ import { fetchBranchLinkData, fetchBusinessLinkData, fetchSingleLinkData, fetchS
   });
   const [pages, setpages] = useState<any>({
     number: 0,
+    pageNo: 0,
     pageSize: 10,
     totalPages: 0,
     numberElements: 0,
@@ -53,12 +34,10 @@ import { fetchBranchLinkData, fetchBusinessLinkData, fetchSingleLinkData, fetchS
   const [isLoadingTable, setisLoadingTable] = useState(false);
   const [paymentLinkTable, setPaymentLinkTable] = useState([]);
 
-  const { number, pageSize, totalPages, numberElements, totalElements } = pages;
+  const { number, pageNo, pageSize, totalPages, numberElements, totalElements } = pages;
   const { search, role, status, isExport } = state;
-  const { merchantDetails, userId } = Storage.getItem("userDetails") || {
-    firstName: "",
-    lastName: "",
-    accountType: "",
+  const { userId } = Storage.getItem("userDetails") || {
+    firstName: ""
   };
   const handleExport = () => {
     exportToExcel(paymentLinkTable, "List of paymentLinkTable");
@@ -67,7 +46,7 @@ import { fetchBranchLinkData, fetchBusinessLinkData, fetchSingleLinkData, fetchS
   async function fetchData() {
     setisLoadingTable(true);
     try {
-      const res = await fetchBusinessLinkData(userId);
+      const res = await fetchBusinessLinkData(userId,pageNo,pageSize);
       console.log("resd", res)
       setPaymentLinkTable(res)
     } catch (error) {

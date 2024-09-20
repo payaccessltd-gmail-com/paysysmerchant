@@ -34,7 +34,7 @@ const Login = () => {
   function handleChange(e: any) {
     setState({ ...state, email: e.target.value })
   }
-  
+
 
   const handelSubmit = async (e: React.FormEvent) => {
     setShowSpinner(true);
@@ -56,7 +56,7 @@ const Login = () => {
             isLoggingIn: false,
             loginError: false,
           })
-          
+
           return ["skip"]
         },
         errorAction: (err?: any) => {
@@ -83,7 +83,7 @@ const Login = () => {
         }
       })
         .then(async (res: any) => {
-         // console.log("login response>>", res);
+          // console.log("login response>>", res);
           const { token } = res;
           const {
             id,
@@ -104,8 +104,8 @@ const Login = () => {
             isAccountNonLocked,
             isCredentialsNonExpired,
             isDeleted,
-            onboardingStage,  
-secreteQuestionsSet
+            onboardingStage,
+            secreteQuestionsSet
           } = res;
 
           await localStorage.setItem('userDetails', JSON.stringify({
@@ -132,8 +132,8 @@ secreteQuestionsSet
             secreteQuestionsSet
           }))
 
-          
-        
+
+
           await localStorage.setItem('onboardingStage', JSON.stringify({
             onboardingStage
           }))
@@ -141,11 +141,12 @@ secreteQuestionsSet
           await localStorage.setItem('merchantDetails', JSON.stringify(entity))
 
           if (onboardingStage === "settlement" || onboardingStage === "") {   //settlement is for a completed reg lifecycle, while "" is for onboarding just starting 
-            navigate('/dashboard',{state:{ securityQuestion: true }})
-          }else if (onboardingStage === "secure_account") {
-            navigate('/registrations/security-questions')}
-            else if (onboardingStage === "securityQuestions") {
-             navigate('/registrations/bvn')
+            navigate('/dashboard', { state: { securityQuestion: true } })
+          } else if (onboardingStage === "secure_account") {
+            navigate('/registrations/security-questions')
+          }
+          else if (onboardingStage === "securityQuestions") {
+            navigate('/registrations/bvn')
           } else if (onboardingStage === "bvn") {
             navigate('/registrations/business-type')
           } else if (onboardingStage === "business_profile") {
@@ -178,30 +179,32 @@ secreteQuestionsSet
   const [isLocked, setisLocked] = useState(false)
 
   useEffect(() => {
-    if(loginErrorMssg==='User account is locked') setisLocked(true)
+    if (loginErrorMssg === 'User account is locked') setisLocked(true)
     else setisLocked(false)
   }, [loginErrorMssg])
-  
-
- // console.log(loginErrorMssg,'the response')
 
 
-  useEffect(() => {    
-    {redirectReason === 'notAuthenticated' && (
-      successAlert({ title: "Not Authenticated", text: "Please Login to have access", icon: "" },{data:'any',errs:'any',message:'any',statusCode:'any'})
-        )}
+  // console.log(loginErrorMssg,'the response')
+
+
+  useEffect(() => {
+    {
+      redirectReason === 'notAuthenticated' && (
+        successAlert({ title: "Not Authenticated", text: "Please Login to have access", icon: "" }, { data: 'any', errs: 'any', message: 'any', statusCode: 'any' })
+      )
+    }
   }, [])
 
-  
-  const handleKeyPress = (event:any) => {
+
+  const handleKeyPress = (event: any) => {
     if (event.key === 'Enter') {
       handelSubmit(event);
     }
   };
-  
+
   return (
     <OnboardingLayout>
-      <Toaster/>
+      <Toaster />
       {
         showSpinner &&
         <div role="status" className='absolute top-0 right-0 p-4'>
@@ -212,32 +215,32 @@ secreteQuestionsSet
       <div className='grid h-screen  md:w-3/4 m-auto items-center px-[20px] '>
 
         <div className=" w-full grid gap-[20px] ">
-          <img src={Image.logo} alt="paysys logo" className='w-[100px] h-100px]'/>
+          <img src={Image.logo} alt="paysys logo" className='w-[100px] h-100px]' />
           <p className='text-black text-[20px] font-[500]'>Sign in to your account</p>
-<div style={{width: '380px'}}>
-  
-{/* <DefaultInput type='text' label='Email' required={true} placeHolder='ts@emaildomain.com' name='email' value={email} handleChange={handleChange} /> */}
-<form>
-<div className="relative">
-{/* <DefaultInput type='text' label='Email' required={true} placeHolder='ts@emaildomain.com' name='email' value={email} handleChange={handleChange} />  */}
-<label> Email</label>
-  <input style={{width: '380px', borderColor: showErrMsg === true ?'red': '#D0D5DD' }} type="email" name='email' value={email} onChange={handleChange}   onKeyDown={handleKeyPress} className="placeholder:text-[#D0D5DD] placeholder-bold py-2 px-10  rounded-lg w-80    border-[2px] border-[#D0D5DD] " placeholder="Enter your email address"/>
-  <img src={Image.emailLeft} style={{marginTop: '12px'}} alt="Left Icon" className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5"/>
-  <img src={Image.emailRight} style={{marginTop: '12px'}} alt="Right Icon" className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5"/>
-</div>
-</form>
-{
-  showErrMsg &&
-<small className='text-[#F04438] font-medium'>Please enter your email address</small>
-}
+          <div style={{ width: '380px' }}>
+
+            {/* <DefaultInput type='text' label='Email' required={true} placeHolder='ts@emaildomain.com' name='email' value={email} handleChange={handleChange} /> */}
+            <form>
+              <div className="relative">
+                {/* <DefaultInput type='text' label='Email' required={true} placeHolder='ts@emaildomain.com' name='email' value={email} handleChange={handleChange} />  */}
+                <label> Email</label>
+                <input style={{ width: '380px', borderColor: showErrMsg === true ? 'red' : '#D0D5DD' }} type="email" name='email' value={email} onChange={handleChange} onKeyDown={handleKeyPress} className="placeholder:text-[#D0D5DD] placeholder-bold py-2 px-10  rounded-lg w-80    border-[2px] border-[#D0D5DD] " placeholder="Enter your email address" />
+                <img src={Image.emailLeft} style={{ marginTop: '12px' }} alt="Left Icon" className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5" />
+                <img src={Image.emailRight} style={{ marginTop: '12px' }} alt="Right Icon" className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5" />
+              </div>
+            </form>
+            {
+              showErrMsg &&
+              <small className='text-[#F04438] font-medium'>Please enter your email address</small>
+            }
 
 
 
-</div>
-          <div className="grid gap-1 text-[#344054]" style={{width: '380px'}}>
+          </div>
+          <div className="grid gap-1 text-[#344054]" style={{ width: '380px' }}>
             <div className="flex justify-between">
               <label htmlFor="Password  text-[16px]">Password</label>
-              <p style={{color: '#00ACEF'}} className="text-primary underline hover:cursor-pointer hover:text-primary/[150]" onClick={() => navigate('forgot-password')}>
+              <p style={{ color: '#00ACEF' }} className="text-primary underline hover:cursor-pointer hover:text-primary/[150]" onClick={() => navigate('forgot-password')}>
                 Forgot password?
               </p>
             </div>
@@ -265,22 +268,22 @@ secreteQuestionsSet
               </button>
             </div>
           </div>
-          {isLocked&& 
-          <p className="text-red-400 underline cursor-pointer" onClick={()=>navigate('/unlock-account')}>Unlock Your Account</p>
-          
+          {isLocked &&
+            <p className="text-red-400 underline cursor-pointer" onClick={() => navigate('/unlock-account')}>Unlock Your Account</p>
+
           }
           {
             showErrMsg &&
-            <div style={{width: '380px'}}>
+            <div style={{ width: '380px' }}>
               <ErrorCard handleClear={() => setState({ ...state, loginError: false })}
-              error={loginErrorMssg} containerVariant={!loginError ? "hidden" : ""} />
+                error={loginErrorMssg} containerVariant={!loginError ? "hidden" : ""} />
             </div>
           }
-          
-          <button style={{width: '380px', height: '50px'}} className='w-full rounded-lg bg-primary text-white py-[8px] px-[10px] mt-[20px] cursor-pointer hover:bg-primary' onClick={handelSubmit}>
+
+          <button style={{ width: '380px', height: '50px' }} className='w-full rounded-lg bg-primary text-white py-[8px] px-[10px] mt-[20px] cursor-pointer hover:bg-primary' onClick={handelSubmit}>
             Login
           </button>
-          <p className='font-medium'>Don’t have an account ? <span style={{color: '#00acef'}} className='text-primary underline m-0 cursor-pointer' onClick={() => navigate('create-account')}>
+          <p className='font-medium'>Don’t have an account ? <span style={{ color: '#00acef' }} className='text-primary underline m-0 cursor-pointer' onClick={() => navigate('create-account')}>
             Sign up
           </span> </p>
         </div>

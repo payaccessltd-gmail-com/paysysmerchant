@@ -4,33 +4,12 @@ import DashboardLayout from '../../components/dashboard/Index'
 import { Button } from '../../components/reusables/DefaultButton'
 import SearchInput from '../../components/reusables/SearchInput/SearchInput'
 import exportToExcel from '../../Utils/ExportExcel'
-
-
-import { recentBiliing } from '../../containers/transactionApis'
-import PaymentLinkModal from './PaymentLinkModal'
-import PaymentLinkTable from './PaymentLinkTable'
+import SplitLinkModal from './SplitLinkModal'
+import SplitLinkTable from './SplitLinkTable'
 import { Storage } from "../../Utils/Stores/inAppStorage";
-import { apiCall } from "../../Utils/URLs/axios.index";
-import { fetchBranchLinkData, fetchBusinessLinkData, fetchSingleLinkData, fetchSplitLinkData} from '../../containers/dashboardApis'
+import { fetchSplitLinkData} from '../../containers/dashboardApis'
 
-  // const fetchMerchantData = async (): Promise<any> => {
-
-  //   const { userId } = Storage.getItem("userDetails") || {};
-  
-  //   const response = await apiCall({
-  //       name: "getMerchantDetails",
-  //       urlExtra: `${userId?.entityId || userId || 0}`,
-  //       action: (): any => (["skip"]),
-  //       errorAction: (): any => (["skip"])
-  //   })
-  //       .then(async (res: any) => {
-  //           const { token } = res;
-  //           const { id, name, email, phone, description, category, type, pin, bvn } = res;
-  
-  //           await Storage.setItem('merchantDetails', res || {})
-  //       })
-  //   return response;
-  // }
+ 
 
 const Split = () => {
  const [isLoading, setisLoading] = useState(false)
@@ -54,7 +33,7 @@ const Split = () => {
     totalElements: 0,
   });
   const [isLoadingTable, setisLoadingTable] = useState(false);
-  const [paymentLinkTable, setPaymentLinkTable] = useState([]);
+  const [splitLinkTable, setSplitLinkTable] = useState([]);
   const [paymentLinks, setPaymentLinks] = useState([]);
   const { number, pageSize, totalPages, numberElements, totalElements } = pages;
   const { search, role, status, isExport } = state;
@@ -71,8 +50,8 @@ const Split = () => {
     setisLoadingTable(true);
     try {
         const res = await fetchSplitLinkData(userId);
-        console.log("resd",res)
-       setPaymentLinkTable(res)
+        console.log("ressplit",res)
+       setSplitLinkTable(res)
     } catch (error) {
         console.error("Error fetching merchant data:", error);
         // You can set a default value or just keep it as null
@@ -108,11 +87,11 @@ const Split = () => {
     <DashboardLayout>
         <div className="flex justify-between items-center">
         <p className="grid gap-[20px] text-[16px] font-semibold mt-[20px]">
-        Payment Link
+        Split Link
         </p>
         <div className="w-fit">
         <Button
-            title="Create Payment Link"
+            title="Split Link"
             className="!w-[181px]"
             onClick={togglepaymentLinkModal}
           />   
@@ -131,12 +110,12 @@ const Split = () => {
           </div>
         )}
       </div>
-      <PaymentLinkTable paymentLinkTable={paymentLinkTable}
+      <SplitLinkTable paymentLinkTable={splitLinkTable}
             page={pages}
             setpages={setpages}
             number={number}
             isLoading={isLoadingTable}/>
-      <PaymentLinkModal toggleDropdown={togglepaymentLinkModal} isOpen={paymentLinkModal} />
+      <SplitLinkModal toggleDropdown={togglepaymentLinkModal} isOpen={paymentLinkModal} />
     </DashboardLayout>
   )
 }

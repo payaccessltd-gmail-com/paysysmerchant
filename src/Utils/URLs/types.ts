@@ -97,6 +97,7 @@ export type endPointlistTypes = {
     cableTvSub:endpointTypes;
     bettingSub:endpointTypes;
     createPaymentLink:endPointlistTypes;
+    createSplitLink:endPointlistTypes;
     getAllSplitLinks: endPointlistTypes;
     getAllBusinessLinks: endPointlistTypes;
     getAllSingleLink: endPointlistTypes;

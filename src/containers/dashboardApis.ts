@@ -159,11 +159,12 @@ const fetchSingleLinkData = async (id: any): Promise<any> => {
     }
 }
 
-const fetchBusinessLinkData = async (id: any): Promise<any> => {
+const fetchBusinessLinkData = async (id:any,pageNo:any,pageSize:any): Promise<any> => {
     try {
         const response = await apiCall({
             name: "getAllBusinessLinks",
-            urlExtra: `${id || 0}`,
+            // urlExtra: `${id || 0}${pageNo || 1}${pageSize || 1}`,
+            urlExtra: `${id || pageSize || pageSize || 0}`,
             action: (): any => (["skip"]),
             errorAction: (): any => ([""])
         })

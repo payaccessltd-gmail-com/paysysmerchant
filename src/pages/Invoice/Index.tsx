@@ -13,24 +13,6 @@ import { Storage } from "../../Utils/Stores/inAppStorage";
 import { apiCall } from "../../Utils/URLs/axios.index";
 import { fetchBranchLinkData, fetchBusinessLinkData, fetchSingleLinkData, fetchSplitLinkData} from '../../containers/dashboardApis'
 
-  // const fetchMerchantData = async (): Promise<any> => {
-
-  //   const { userId } = Storage.getItem("userDetails") || {};
-  
-  //   const response = await apiCall({
-  //       name: "getMerchantDetails",
-  //       urlExtra: `${userId?.entityId || userId || 0}`,
-  //       action: (): any => (["skip"]),
-  //       errorAction: (): any => (["skip"])
-  //   })
-  //       .then(async (res: any) => {
-  //           const { token } = res;
-  //           const { id, name, email, phone, description, category, type, pin, bvn } = res;
-  
-  //           await Storage.setItem('merchantDetails', res || {})
-  //       })
-  //   return response;
-  // }
 
 const Invoice = () => {
  const [isLoading, setisLoading] = useState(false)
@@ -56,7 +38,7 @@ const Invoice = () => {
   const [isLoadingTable, setisLoadingTable] = useState(false);
   const [paymentLinkTable, setPaymentLinkTable] = useState([]);
   const [paymentLinks, setPaymentLinks] = useState([]);
-  const { number, pageSize, totalPages, numberElements, totalElements } = pages;
+  const { number, pageNo, pageSize, totalPages, numberElements, totalElements } = pages;
   const { search, role, status, isExport } = state;
   const { merchantDetails, userId } = Storage.getItem("userDetails") || {
     firstName: "",
@@ -70,7 +52,7 @@ const Invoice = () => {
   async function fetchData() {
     setisLoadingTable(true);
     try {
-        const res = await fetchBusinessLinkData(userId);
+      const res = await fetchBusinessLinkData(userId,pageNo,pageSize);
         console.log("resd",res)
        setPaymentLinkTable(res)
     } catch (error) {

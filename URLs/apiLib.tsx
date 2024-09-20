@@ -478,6 +478,14 @@ export const endPoints: endPointlistTypes | any = {
         auth: true
     },
 
+    createSplitLink: {
+        url: '/api/v1/split/createBranch',
+        method: 'POST',
+        headers: headers,
+        auth: true
+    },
+
+
     getAllSplitLinks: {
         url: '/api/v1/paymentlinks/getAllSplitLinks/',
         method: 'GET',

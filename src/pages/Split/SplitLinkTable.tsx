@@ -6,7 +6,7 @@ import { header } from "./MockData";
 import CurrencyFormat from "react-currency-format";
 import dayjs from "dayjs";
 
-const PaymentLinkTable = ({paymentLinkTable, setpages,number,isLoading}:any) => {
+const SplitLinkTable = ({paymentLinkTable, setpages,number,isLoading}:any) => {
   const [changePage, setchangePage] = useState("");
   //const {pageDetails, paymentLinks} = paymentLinkTable
   //const {size,totalPages,numberElements,totalElements}=pageDetails ?? {}
@@ -99,4 +99,4 @@ const PaymentLinkTable = ({paymentLinkTable, setpages,number,isLoading}:any) => 
   );
 };
 
-export default PaymentLinkTable;
+export default SplitLinkTable;

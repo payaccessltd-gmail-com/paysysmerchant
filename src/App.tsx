@@ -48,7 +48,6 @@ import LoanOfferLetter from "./pages/Loans/LoanOfferLetter";
 import BuildBot from "./pages/AI_Bot/BuildBot";
 import DeleteAccount from "./pages/AccountDeletion";
 import PaymentLink from "./pages/PaymentLink/Index";
-
 import Invoice from "./pages/Invoice/Index";
 import Split from "./pages/Split/Index";
 

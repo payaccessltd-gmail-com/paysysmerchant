@@ -78,6 +78,7 @@ export type endPointlistTypes = {
     acceptLoan: endPointlistTypes;
     repayLoan: endPointlistTypes;
     createPaymentLink: endPointlistTypes;
+    createSplitLink: endPointlistTypes;
     getAllSplitLinks: endPointlistTypes;
     getAllBusinessLinks: endPointlistTypes;
     getAllSingleLink: endPointlistTypes;

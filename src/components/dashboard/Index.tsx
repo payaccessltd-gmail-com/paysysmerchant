@@ -130,7 +130,7 @@ function togglesecurity() {
               src={Image.logo}
               alt="logo"
               onClick={() => navigate("/dashboard")}
-              className="hover:cursor-pointer w-[100px] h-[50px]"
+              className="hover:cursor-pointer w-[60px] h-[60px]"
             />
             <div className="grid w-full gap-[20px] mt-[40px] items-center ">
               <p className="text-[16px] font-bold ">Financials</p>
@@ -164,7 +164,7 @@ function togglesecurity() {
             </div>
 
             <div className="grid w-full gap-[20px] mt-[40px] items-center ">
-              <p className="text-[16px] font-bold ">Payment</p>
+              <p className="text-[16px] font-bold ">Payments</p>
               <div className="grid gap-[20px] justify-between  m-auto md:m-0">
                 {paymentMenuItems?.map((items) => (
                   <div
@@ -195,7 +195,7 @@ function togglesecurity() {
             </div>
 
             <div className="grid w-full gap-[20px] mt-[40px] items-center ">
-              <p className="text-[16px] font-bold ">Transactions & Billing</p>
+              <p className="text-[16px] font-bold ">Products</p>
               <div className="grid gap-[20px] justify-between  m-auto md:m-0">
                 {transactionsMenuItems?.map((items) => (
                   <div
@@ -309,7 +309,7 @@ function togglesecurity() {
             src={Image.logo}
             alt="logo"
             onClick={() => navigate("/dashboard")}
-            className=" w-[10em] hover:cursor-pointer"
+            className=" w-[60px] h-[60px] hover:cursor-pointer"
           />
           <div className="flex items-center gap-2">
           <div className="relative">
@@ -485,7 +485,7 @@ function togglesecurity() {
               src={Image.logo}
               alt="logo"
               onClick={() => navigate("/dashboard")}
-              className="hover:cursor-pointer"
+              className="hover:cursor-pointer h-[60px] w-[60px]"
             />
             <div className="grid w-full gap-[20px] mt-[40px] items-center ">
               <p className="text-[16px] font-bold ">Financials</p>

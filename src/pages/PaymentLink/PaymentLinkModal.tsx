@@ -136,7 +136,7 @@ const PaymentLinkModal = ({ toggleDropdown, isOpen }: any) => {
 
     return (
         <Overlay toggleDropdown={toggleDropdown} isOpen={isOpen}>
-            <div className="grid gap-[20px] w-[70vw] md:w-[40vw] ">
+            <div className="grid gap-[20px] w-[70vw] md:w-[30vw] ">
                 <div className="grid">
                     <p className="text-[#5C5F61] text-[20px] font-bold">Create Payment Link</p>
                     <p className="text-[#07222D] text-[14px]">Complete and enter the following form below  </p>
@@ -144,7 +144,6 @@ const PaymentLinkModal = ({ toggleDropdown, isOpen }: any) => {
 
                 <DefaultInput label='Amount' placeHolder='Input Amount' value={amount} name='amount' handleChange={handleChange} />
                 <DefaultTextArea label='Desciption' placeHolder='oluchi chukwu' value={description} name='description' rows={2} id={''} handleChange={handleChange} />
-                <DefaultInput label='Branch ID' placeHolder='09' value={branchId} name='branchId' handleChange={handleChange} />
                 <DefaultInput label='Invoice ID' placeHolder='20.0%' value={invoiceId} name='invoiceId' handleChange={handleChange} />
 
                 <div className="form-group mb-4 cursor-pointer">
@@ -162,11 +161,7 @@ const PaymentLinkModal = ({ toggleDropdown, isOpen }: any) => {
                     <DefaultInput label='Expiry Date' placeHolder='20.0%' type='date' value={expiryDate} name='expiryDate' handleChange={handleChange} />
                 }
 
-
-
-
-                {/* ghghghgh */}
-                <div className="m-auto w-3/4">
+                <div className="m-auto w-full">
                     <Button title='Continue' onClick={handleSubmit} />
                 </div>
             </div>

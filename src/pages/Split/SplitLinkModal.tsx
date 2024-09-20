@@ -9,36 +9,38 @@ import DefaultTextArea from '../../components/reusables/DefaultTextArea'
 import Overlay from '../../components/reusables/Overlay/Overlay'
 import { apiCall } from '../../Utils/URLs/axios.index'
 
-const PaymentLinkModal = ({ toggleDropdown, isOpen }: any) => {
-    const businessId: any = localStorage.getItem('businessID')
+const SplitLinkModal = ({ toggleDropdown, isOpen }: any) => {
+   // const businessId: any = localStorage.getItem('businessID')
     const { onboardingStage, userId, lastName } = Storage.getItem(
         "userDetails"
     ) || { onboardingStage: "", userId: 0, firstName: "", lastName: "" };
     const [state, setState] = useState<any>({
-        amount: '',
-        description: '',
+   
         branchId: '',
-        merchantId: '',
-        expiryDate: '',
-        linkType: '',
-        invoiceId: '',
+        businessId: '',
+        bank: '',
+        accountName: '',
+        accountNo: '',
+        ration: '',
+        paymentLink: '',
+        accountNumber: '',
         submittingError: false,
         isSubmitting: false,
         errorMssg: ""
     })
 
-    const { amount, description, branchId, invoiceId, merchantId, expiryDate, linkType, isSubmitting, errorMssg } = state
+    const { branchId, businessId, bank, accountName, accountNo, ration, paymentLink,  accountNumber, isSubmitting, errorMssg } = state
 
     const showModalFunc = () => {
         setState({
          
-            amount: '',
-            description: '',
             branchId: '',
-            merchantId: '',
-            expiryDate: '',
-            linkType: '',
-            invoiceId: '',
+            businessId: '',
+            bank: '',
+            accountName: '',
+            ration: '',
+            paymentLink: '',
+            accountNumber: '',
             submittingError: false,
             isSubmitting: false,
             errorMssg: ""
@@ -67,17 +69,18 @@ const PaymentLinkModal = ({ toggleDropdown, isOpen }: any) => {
 
         let formData = new FormData();
         state && formData.append("merchantId", userId || "");
-        state && formData.append('amount', state?.amount || "")
-        state && formData.append('description', state?.description || "")
-        state && formData.append('branchId', state?.branchId || "")
-        state && formData.append('expiryDate', state?.expiryDate || "")
-        state && formData.append('linkType', state?.linkType || "")
-        state && formData.append('invoiceId', state?.invoiceId || "")
- 
+        state && formData.append("branchId", branchId || "");
+        state && formData.append("businessId", state?.businessId || "");
+        state && formData.append("bank", state?.bank || "");
+        state && formData.append("accountName", state?.accountName || "");
+        state && formData.append("ration", state?.ration || "");
+        state && formData.append("paymentLink", state?.paymentLink || "");
+        state && formData.append("accountNumber", state?. accountNumber || "");
+    
 
         try {
             const response = await apiCall({
-                name: "createPaymentLink",
+                name: "createSplitLink",
                 data: formData,
                 action: (): any => {
                     setState({
@@ -136,18 +139,30 @@ const PaymentLinkModal = ({ toggleDropdown, isOpen }: any) => {
 
     return (
         <Overlay toggleDropdown={toggleDropdown} isOpen={isOpen}>
-            <div className="grid gap-[20px] w-[70vw] md:w-[40vw] ">
+            <div className="grid gap-[20px] w-[70vw] md:w-[30vw] ">
                 <div className="grid">
-                    <p className="text-[#5C5F61] text-[20px] font-bold">Create Payment Link</p>
+                    <p className="text-[#5C5F61] text-[20px] font-bold">Create Split Link</p>
                     <p className="text-[#07222D] text-[14px]">Complete and enter the following form below  </p>
                 </div>
 
-                <DefaultInput label='Amount' placeHolder='Input Amount' value={amount} name='amount' handleChange={handleChange} />
-                <DefaultTextArea label='Desciption' placeHolder='oluchi chukwu' value={description} name='description' rows={2} id={''} handleChange={handleChange} />
-                <DefaultInput label='Branch ID' placeHolder='09' value={branchId} name='branchId' handleChange={handleChange} />
-                <DefaultInput label='Invoice ID' placeHolder='20.0%' value={invoiceId} name='invoiceId' handleChange={handleChange} />
 
-                <div className="form-group mb-4 cursor-pointer">
+
+         {/* <CustomDropDown label="Settlement Bank" value={selectedCategory} setValue={setSelectedCategory} options={bankArray} placeHolder="Select a Settlement Bank" /> */}
+       
+
+        {/* <CustomDropDown label="Select Payment Link" value={selectedPaymentLink} setValue={setSelectedPaymentLink} options={paymentArray} placeHolder="Select a Payment Link" /> */}
+
+
+
+
+                <DefaultInput label='bank' placeHolder='Input Amount' value={bank} name='bank' handleChange={handleChange} />
+                <DefaultTextArea label='accountName' placeHolder='oluchi chukwu' value={accountName} name='accountName' rows={2} id={''} handleChange={handleChange} />
+                <DefaultInput label='Branch ID' placeHolder='09' value={branchId} name='branchId' handleChange={handleChange} />
+      
+                <DefaultInput label='Account name' readOnly={true} placeHolder='oluchi chukwu' value={accountName} name='accountName' handleChange={handleChange} />
+        <DefaultInput label='Account Number' placeHolder='09876543212' value={accountNo} name='accountNo' handleChange={handleChange} />
+        <DefaultInput label='Spit Ration' placeHolder='20.0%' value={ration} name='spitRation' handleChange={handleChange} />
+                {/* <div className="form-group mb-4 cursor-pointer">
                     <label className="block text-gray-600 text-sm mb-2" htmlFor="dropdown">Select Link Type</label>
                     <select className="cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="dropdown" value={linkType} name='linkType' onChange={handleChange} >
                         <option value="">--select payment link--</option>
@@ -160,7 +175,7 @@ const PaymentLinkModal = ({ toggleDropdown, isOpen }: any) => {
 
                 {linkType === 'TIMED' &&
                     <DefaultInput label='Expiry Date' placeHolder='20.0%' type='date' value={expiryDate} name='expiryDate' handleChange={handleChange} />
-                }
+                } */}
 
 
 
@@ -174,4 +189,4 @@ const PaymentLinkModal = ({ toggleDropdown, isOpen }: any) => {
     )
 }
 
-export default PaymentLinkModal
+export default SplitLinkModal

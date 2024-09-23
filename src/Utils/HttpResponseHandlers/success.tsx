@@ -1,7 +1,7 @@
 
 import React from "react";
 import { notify } from "./toaster";
-import { SmSuccessModalIcon } from "../../components/reusables/icons";
+import { PaysysIcon } from "../../components/reusables/icons";
 
 
 export default function successAlert(details: { title: any; text: any; icon: any; }, response: { data: any; errs: any; message: any; statusCode: any; }) {
@@ -10,8 +10,7 @@ export default function successAlert(details: { title: any; text: any; icon: any
     const { title, text, icon } = details || {}
     const { data, errs, message, statusCode } = response || {}
 
-   // console.log("titleZZZ>>>", title)
-  //  console.log("messageYYY>>>", text)
+  
 
-    return notify({ header: `${title ? title : "Successful!"}`, details: text ? text : message ? message : null, icon: <SmSuccessModalIcon /> })
+    return notify({ header: `${title ? title : "Successful!"}`, details: text ? text : message ? message : null, icon: <PaysysIcon /> })
 }

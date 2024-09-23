@@ -205,13 +205,7 @@ const Login = () => {
   return (
     <OnboardingLayout>
       <Toaster />
-      {
-        showSpinner &&
-        <div role="status" className='absolute top-0 right-0 p-4'>
-          <SpinnerIcon />
-          <span className="sr-only">Loading...</span>
-        </div>
-      }
+    
       <div className='grid h-screen  md:w-3/4 m-auto items-center px-[20px] '>
 
         <div className=" w-full grid gap-[20px] ">
@@ -281,8 +275,18 @@ const Login = () => {
           }
 
           <button style={{ width: '380px', height: '50px' }} className='w-full rounded-lg bg-primary text-white py-[8px] px-[10px] mt-[20px] cursor-pointer hover:bg-primary' onClick={handelSubmit}>
-            Login
+          {/* absolute top-0 right-0 p-4 */}
+          {
+        showSpinner ?
+        <div role="status">
+          <SpinnerIcon />
+          <span className="sr-only">Loading...</span>
+        </div> : <>Login</>
+      }
+
+           
           </button>
+
           <p className='font-medium'>Don’t have an account ? <span style={{ color: '#00acef' }} className='text-primary underline m-0 cursor-pointer' onClick={() => navigate('create-account')}>
             Sign up
           </span> </p>

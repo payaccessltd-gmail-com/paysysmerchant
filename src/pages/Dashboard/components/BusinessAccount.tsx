@@ -132,30 +132,7 @@ const BusinessAccount = () => {
                  
                 </ul>
                 </div>
-                <div key={user.id} className="grid gap-1">
 
-<p className="text-[#747C91] text-[12px]">Bank Name</p>
- <ul className="text-[15px] text-[#121212]">
- <li>{user.bank || "N/A"} </li>   
- 
-</ul>
-
-<p className="text-[#747C91] text-[12px]">Account Number</p>
-
-
-<ul className="text-[15px] text-[#121212]">
-<li> {user.virtualAcctNo || "N/A"} </li> 
-</ul>
-
-<p className="text-[#747C91] text-[12px]">Beneficiary</p>
-
-
-
- <ul className="text-[15px] text-[#121212]">
-    <li> {user.virtualAcctName || "N/A"} </li>
- 
-</ul>
-</div>
                 </>
          
         ))}

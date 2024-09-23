@@ -8,7 +8,31 @@ const BusinessAccount = () => {
     const navigate = useNavigate();
     const [settlementBank, setSettlementBank] = useState(null);
     const [virtualAccNo, setVirtualAccNo] = useState('');
-    const [bank, setBank] = useState('');
+    const [data, setData] = useState<any>([]);
+//     const [data, setData] = useState({
+        
+
+//         bank: "",
+//         branchId: "",
+//         customerId: "",
+//         date: "",
+//         id: "",
+//         merchantId: "",
+//         merchantReference: "",
+//         source: "",
+//         terminalId: "",
+//         user_id: "",
+//         virtualAccountClass: "",
+//         virtualAccountEntity: "",
+//         virtualAccountStatus: "",
+//         virtualAcctId: "",
+// virtualAcctName: "",
+// virtualAcctNo: "",
+// virtualAcctType: "",
+//     });
+
+    
+    // const [bank, setBank] = useState('');
     const [accountNum, setAccountNum] = useState(null);
     const [userFullName, setUserFullName] = useState("");
     const [merchantName, setMerchantName] = useState("");
@@ -24,8 +48,8 @@ const BusinessAccount = () => {
         try {
             const res = await fetchAMerchantData(userId);
       
-            setSettlementBank(res.settlementBank || null);
-            setAccountNum(res.settlementAccountNo || null);
+           // setSettlementBank(res.settlementBank || null);
+          //  setAccountNum(res.settlementAccountNo || null);
         } catch (error) {
             console.error("Error fetching merchant data:", error);
             // You can set a default value or just keep it as null
@@ -35,9 +59,11 @@ const BusinessAccount = () => {
     async function fetchNewData() {
       try {
           const res = await fetchNewAMerchantData();
-          console.log("parseDetailsNew",res)
-          setVirtualAccNo(res[0].virtualAcctNo || null);
-          setBank(res[0].bank || null);
+         
+          setData(res);
+          console.log("parseDetailss", res)
+          console.log("parseDetailsNeww", data)
+        //  setBank(res[0].bank || null);
         //  setAccountNum(res.settlementAccountNo || null);
       } catch (error) {
           console.error("Error fetching merchant data:", error);
@@ -79,20 +105,67 @@ const BusinessAccount = () => {
                     {accountNumber || accountNum || "N/A"} 
                 </p>
             </div> */}
-               <div className="grid gap-1">
+            <div>
+            {data.map((user:any) => (
+                <>
+               <div key={user.id} className="grid gap-1 my-2 border-b-[1px]">
+
+                <p className="text-[#747C91] text-[12px]">Bank Name</p>
+                 <ul className="text-[15px] text-[#121212]">
+                 <li>{user.bank || "N/A"} </li>   
+                 
+                </ul>
+
                 <p className="text-[#747C91] text-[12px]">Account Number</p>
-                <p className="text-[15px] text-[#121212]">
-                    {virtualAccNo || "N/A"} 
-                </p>
+             
+      
+             <ul className="text-[15px] text-[#121212]">
+              <li> {user.virtualAcctNo || "N/A"} </li> 
+            </ul>
+
+            <p className="text-[#747C91] text-[12px]">Beneficiary</p>
+           
+              
+           
+                 <ul className="text-[15px] text-[#121212]">
+                    <li> {user.virtualAcctName || "N/A"} </li>
+                 
+                </ul>
+                </div>
+                <div key={user.id} className="grid gap-1">
+
+<p className="text-[#747C91] text-[12px]">Bank Name</p>
+ <ul className="text-[15px] text-[#121212]">
+ <li>{user.bank || "N/A"} </li>   
+ 
+</ul>
+
+<p className="text-[#747C91] text-[12px]">Account Number</p>
+
+
+<ul className="text-[15px] text-[#121212]">
+<li> {user.virtualAcctNo || "N/A"} </li> 
+</ul>
+
+<p className="text-[#747C91] text-[12px]">Beneficiary</p>
+
+
+
+ <ul className="text-[15px] text-[#121212]">
+    <li> {user.virtualAcctName || "N/A"} </li>
+ 
+</ul>
+</div>
+                </>
+         
+        ))}
             </div>
-            <div className="grid gap-1">
-                <p className="text-[#747C91] text-[12px]">Beneficiary</p>
-                <p className="text-[15px] text-[#121212]">{merchantName || userFullName || "N/A"}</p> {/* Display "N/A" if no name is available */}
-            </div>
-            <div className="grid gap-1">
-                <p className="text-[#747C91] text-[12px]">Bank</p>
-                <p className="text-[15px] text-[#121212]">{bank || "Merchant Bank"}</p> {/* Default to "Merchant Bank" */}
-            </div>
+      
+               
+      
+        
+           
+          
             <Button title="View Transactions" onClick={() => navigate('/transaction')} />
         </div>
     );

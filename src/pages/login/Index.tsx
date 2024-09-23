@@ -280,7 +280,8 @@ const Login = () => {
         showSpinner ?
         <div role="status">
           <SpinnerIcon />
-          <span className="sr-only">Loading...</span>
+ 
+          {/* <span className="sr-only">Loading...</span> */}
         </div> : <>Login</>
       }
 

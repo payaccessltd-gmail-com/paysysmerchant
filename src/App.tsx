@@ -50,6 +50,7 @@ import DeleteAccount from "./pages/AccountDeletion";
 import PaymentLink from "./pages/PaymentLink/Index";
 import Invoice from "./pages/Invoice/Index";
 import Split from "./pages/Split/Index";
+import DeveloperTools from "./pages/DeveloperTools/DeveloperTools";
 
 function App() {
 
@@ -406,6 +407,14 @@ function App() {
           element={
             <PrivateRoute>
               <Invoice/>
+            </PrivateRoute>
+          }
+        />
+         <Route
+          path="/developer-tools"
+          element={
+            <PrivateRoute>
+              <DeveloperTools/>
             </PrivateRoute>
           }
         />

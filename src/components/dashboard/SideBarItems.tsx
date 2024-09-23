@@ -169,8 +169,8 @@ export const managerMenuItems: any[] = [
 export const developerMenuItems: any[] = [
     {
         id: 1,
-        name: 'API & Integrations',
-        route: '/users',
+        name: 'Developer Tools',
+        route: '/developer-tools',
         subMenuItems: [
             // { name: 'Branch management', route: '/branches' },
             // { name: 'Terminal management', route: '/terminals' },

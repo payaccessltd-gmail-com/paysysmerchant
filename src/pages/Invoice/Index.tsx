@@ -89,36 +89,8 @@ const Invoice = () => {
   return (
     <DashboardLayout>
         <div className="flex justify-between items-center">
-        <p className="grid gap-[20px] text-[16px] font-semibold mt-[20px]">
-        Payment Link
-        </p>
-        <div className="w-fit">
-        <Button
-            title="Create Payment Link"
-            className="!w-[181px]"
-            onClick={togglepaymentLinkModal}
-          />   
-        </div>
+          Coming Soon...
       </div>
-      <div className="flex justify-between  w-full mt-[20px]">
-      <SearchInput placeholder='Search' name='search' value={search} onChange={handleChange}/>
-        {paymentLinks.length > 0 && (
-          <div className="w-fit ">
-            <Button
-              onClick={handleExport}
-              title="Export"
-              className="!bg-white !mt-0 !text-[#3C4257] !border-[1px] shadow-sm m-auto !w-fit"
-              icon={<BsArrowUpRight className="font-bold" />}
-            />
-          </div>
-        )}
-      </div>
-      <PaymentLinkTable paymentLinkTable={paymentLinkTable}
-            page={pages}
-            setpages={setpages}
-            number={number}
-            isLoading={isLoadingTable}/>
-      <PaymentLinkModal toggleDropdown={togglepaymentLinkModal} isOpen={paymentLinkModal} />
     </DashboardLayout>
   )
 }

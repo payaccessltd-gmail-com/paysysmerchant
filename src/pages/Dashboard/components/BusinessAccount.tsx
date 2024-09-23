@@ -108,7 +108,7 @@ const BusinessAccount = () => {
             <div>
             {data.map((user:any) => (
                 <>
-               <div key={user.id} className="grid gap-1 my-2 border-b-[1px]">
+               <div key={user.id} className="grid gap-1 py-2 border-b-[1px]">
 
                 <p className="text-[#747C91] text-[12px]">Bank Name</p>
                  <ul className="text-[15px] text-[#121212]">

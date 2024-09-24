@@ -106,8 +106,8 @@ const Transaction = () => {
       </p>
       <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-y-[20px] w-full mt-[20px] gap-x-[50px]">
         <div className="flex justify-between items-center gap-[20px] text-[14px] w-fit">
-          {tabsData?.map((tab) => (
-            <p
+          {tabsData?.map((tab:any, index:any) => (
+            <p  key={index}
               className={` py-[5px] hover:cursor-pointer ${
                 selectedTab.id === tab.id
                   ? " border-0 border-b-[3px] text-primary border-solid border-primary  "

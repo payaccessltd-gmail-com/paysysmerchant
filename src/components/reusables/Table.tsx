@@ -21,7 +21,7 @@ const TableComponent = ({
   changePage,
 }: any) => {
 
-   console.log("totalValue>>>", data);
+
   // console.log("totalValue>>>", totalValue);
   const changeCurrentPage = (data: any) => {
     console.log(data);
@@ -38,8 +38,8 @@ const TableComponent = ({
                 <TableRow
                   className={` w-full  items-center border-b-[2px] border-b-[#B9BCC0] font-light flex text-[14px]  text-left  px-[20px] space-x-[60px]`}
                 >
-                  {headers?.map((header: any) => (
-                    <th
+                  {headers?.map((header: any, index: any) => (
+                    <th key={index}
                       className={`text-[#747C91] text-left  pl-[20px] py-[10px] `}
                     >
                       {header.charAt(0).toUpperCase() + header.slice(1)}

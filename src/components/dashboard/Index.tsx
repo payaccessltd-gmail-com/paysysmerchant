@@ -136,7 +136,7 @@ function togglesecurity() {
               <p className="text-[16px] font-bold ">Financials</p>
               <div className="grid gap-[20px] justify-between  m-auto md:m-0">
                 {financialMenuItems?.map((items) => (
-                  <div
+                  <div key={items.id}
                     className="flex items-center gap-[10px]   text-center w-full hover:cursor-pointer group"
                     onClick={() => navigate(`${items.route}`)}
                   >
@@ -167,7 +167,7 @@ function togglesecurity() {
               <p className="text-[16px] font-bold ">Payments</p>
               <div className="grid gap-[20px] justify-between  m-auto md:m-0">
                 {paymentMenuItems?.map((items) => (
-                  <div
+                  <div key={items.id}
                     className="flex items-center gap-[10px]   text-center w-full hover:cursor-pointer group"
                     onClick={() => navigate(`${items.route}`)}
                   >
@@ -198,7 +198,7 @@ function togglesecurity() {
               <p className="text-[16px] font-bold ">Products</p>
               <div className="grid gap-[20px] justify-between  m-auto md:m-0">
                 {transactionsMenuItems?.map((items) => (
-                  <div
+                  <div key={items.id}
                     className="flex items-center gap-[10px]   text-center w-full hover:cursor-pointer group"
                     onClick={() => navigate(`${items.route}`)}
                   >
@@ -228,7 +228,7 @@ function togglesecurity() {
               <p className="text-[16px] font-bold  ">Business Manager</p>
               <div className="grid  gap-[20px] justify-between m-auto md:m-0">
                 {managerMenuItems?.map((items) => (
-                  <div
+                  <div key={items.id}
                     className="flex items-center gap-[10px]  text-center hover:cursor-pointer group"
                     onClick={() => navigate(`${items.route}`)}
                   >
@@ -258,7 +258,7 @@ function togglesecurity() {
               <p className="text-[16px] font-bold  ">API & Integrations</p>
               <div className="grid  gap-[20px] justify-between m-auto md:m-0">
                 {developerMenuItems?.map((items) => (
-                  <div
+                  <div key={items.id}
                     className="flex items-center gap-[10px]  text-center hover:cursor-pointer group"
                     onClick={() => navigate(`${items.route}`)}
                   >
@@ -329,7 +329,7 @@ function togglesecurity() {
 
                 <Menu.Items className="absolute right-[0] z-10  w-[140px] origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 text-[16px] focus:outline-none grid">
                   {logoutBtn.map((val: any, index: any) => (
-                    <Menu.Item>
+                    <Menu.Item key={index}>
                       {({ active }) => (
                         <button
                           className={`${active && "bg-primary "} py-[5px]`}
@@ -417,7 +417,7 @@ function togglesecurity() {
 
                 <Menu.Items className="absolute left-[0] z-10 mt-2 w-[140px] origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 text-[16px] focus:outline-none grid ">
                   {logoutBtn.map((val: any, index: any) => (
-                    <Menu.Item>
+                    <Menu.Item  key={index}>
                       {({ active }) => (
                         <button
                           className={`${active && "bg-primary"} py-[10px]`}
@@ -491,7 +491,7 @@ function togglesecurity() {
               <p className="text-[16px] font-bold ">Financials</p>
               <div className="grid gap-[20px] justify-between  m-auto md:m-0">
                 {financialMenuItems?.map((items) => (
-                  <div
+                  <div  key={items.id}
                     className="flex items-center gap-[10px] font-semibold text-center w-full hover:cursor-pointer group"
                     onClick={() => navigate(`${items.route}`)}
                   >
@@ -521,7 +521,7 @@ function togglesecurity() {
               <p className="text-[16px] font-bold ">Payments</p>
               <div className="grid gap-[20px] justify-between  m-auto md:m-0">
                 {paymentMenuItems?.map((items) => (
-                  <div
+                  <div  key={items.id}
                     className="flex items-center gap-[10px]   text-center w-full hover:cursor-pointer group"
                     onClick={() => navigate(`${items.route}`)}
                   >
@@ -551,7 +551,7 @@ function togglesecurity() {
               <p className="text-[16px] font-bold  ">Business Manager</p>
               <div className="grid  gap-[20px] justify-between m-auto md:m-0">
                 {managerMenuItems?.map((items) => (
-                  <div
+                  <div key={items.id}
                     className="flex items-center gap-[10px]  text-center hover:cursor-pointer group"
                     onClick={() => navigate(`${items.route}`)}
                   >

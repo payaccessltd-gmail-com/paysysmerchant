@@ -480,7 +480,7 @@ export const endPoints: endPointlistTypes | any = {
         auth: true
     },
     balance: {
-        url: 'api/v1/merchant/balance/',
+        url: '/api/v1/merchant/balance/',
         method: 'GET',
         headers: headers,
         auth: true

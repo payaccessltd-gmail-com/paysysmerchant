@@ -31,10 +31,11 @@ const CustomDropDown = ({title,options,value,setValue,label,setId,onHandleChange
         >
              <Menu.Items className="absolute right-[0] z-10 mt-2 w-full origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none grid gap-[10px] overflow-auto">
             <div className="px-1 py-1 grid gap-1 max-h-[200px] overflow-y-auto">
-                {options.map((val:any)=>(
-              <Menu.Item>
+                {options.map((val:any, index:any)=>(
+                
+              <Menu.Item  key={index}>
                 {({ active }) => (
-                  <button
+                  <button 
                     className={`${ 
                       active || value===val ? 'bg-primary text-white' : 'text-gray-900'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm  ${value===val }`}
@@ -49,7 +50,7 @@ const CustomDropDown = ({title,options,value,setValue,label,setId,onHandleChange
                   </button>
                 )}
               </Menu.Item>
-
+       
                 ))}
               </div>
               </Menu.Items>

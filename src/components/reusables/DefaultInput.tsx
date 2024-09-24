@@ -22,7 +22,7 @@ const DefaultInput = forwardRef<any, any>(
     checkNum,
     className,
     isDisabled = false,
-  }: DefaultInputType) => {
+  }: DefaultInputType, ref) => {
     const [passwordShown, setPasswordShown] = useState(false);
     const [min, setMin] = useState(false);
     const [cap, setCap] = useState(false);
@@ -80,6 +80,7 @@ const DefaultInput = forwardRef<any, any>(
       <div className="grid gap-1 text-[#344054]">
         {label && <label htmlFor={name}>{label}</label>}
         <input
+        ref={ref}
           id={id}
           type={type === "password" && passwordShown ? "text" : type}
           onChange={onChange}

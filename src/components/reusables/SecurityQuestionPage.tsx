@@ -78,7 +78,7 @@ const SecurityQuestionPage = () => {
 
           <div className="grid w-full md:w-1/2 gap-[20px] mt-[40px]">
             {questions.map((val: any, index: any) => (
-              <div
+              <div 
                 className={`rounded-lg p-[17px] bg-white hover:bg-[#5BC6F2] hover:bg-opacity-30  ${
                   clickedQuestions.length === 3
                     ? "cursor-not-allowed"

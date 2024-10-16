@@ -74,7 +74,6 @@ function DocumentUpload() {
         }))
 
         let formData = new FormData();
-        console.log(formData, "fd")
         state?.selectedFile && formData.append(
             'merchantId',
             userIds || ""
@@ -110,8 +109,7 @@ function DocumentUpload() {
               formData
             );
             setUploadedUrl(response.data.secure_url);
-           console.log(uploadedUrl)
-            alert('File uploaded successfully');
+            console.log('File uploaded successfully');
           }  catch (e) {
             console.error(e + " 'Caught Error.'");
         };

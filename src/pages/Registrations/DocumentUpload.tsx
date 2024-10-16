@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import DefaultInput from '../../components/reusables/DefaultInput';
 import { apiCall } from '../../Utils/URLs/axios.index';
 import { ErrorCard } from '../../Utils/HttpResponseHandlers/error';
+import axios from 'axios';
 
 function DocumentUpload() {
     const navigate = useNavigate();
@@ -93,10 +94,10 @@ function DocumentUpload() {
             'file',
             selectedFile || ""
         )
-        // state?.selectedFile && formData.append(
-        //     'uploadedUrl',
-        //     uploadedUrl || ""
-        // )
+         state?.selectedFile && formData.append(
+             'uploadedUrl',
+             uploadedUrl || ""
+         )
 
         state?.selectedFile && formData.append(
             'upload_preset',
@@ -105,67 +106,14 @@ function DocumentUpload() {
         
 
         try {
-            // localStorage.setItem('onboardingStageKey', "uploadDoc");
-            // await localStorage.setItem('onboardingStage', JSON.stringify({onboardingStage:"uploadDoc"}));  //to be removed later
-            // navigate("/registrations/settlement-information");  //to be removed later
-            const response = await apiCall({
-                name: "uploadRegDoc",
-                data: formData,
-
-                action: (): any => {
-                    setState({
-                        ...state,
-                        isSubmitting: false,
-                        submittingError: false,
-                    });
-                    // router.push(`/create-business/${busType}?stage=addBank`)
-                    return []
-                },
-                successDetails: {
-                    title: "Documents Submitted",
-                    text: `Your Business Registration documents have been submitted for review`,
-                    icon: ""
-                },
-                errorAction: (err?: any) => {
-                    if (err && err?.response?.data) {
-                        setState({
-                            ...state,
-                            submittingError: true,
-                            isSubmitting: false,
-                            errorMssg: err?.response?.data?.errorMssg || err?.response?.errorMssg || err?.response?.data?.respDescription || err?.response?.respDescription || "Action failed, please try again"
-                        })
-                        setErrorMssg(err?.message);
-                        return ["skip"]
-                    } else {
-                        setState({
-                            ...state,
-                            submittingError: true,
-                            isSubmitting: false,
-                            errorMssg: "Action failed, please try again"
-                        })
-                    }
-                }
-            })
-                .then(async (res: any) => {
-                    //   console.log("res>>", res);
-                    localStorage.setItem('onboardingStageKey', "uploadDoc");
-                    await localStorage.setItem('onboardingStage', JSON.stringify({ onboardingStage: "uploadDoc" }));
-                    navigate("/registrations/settlement-information");
-                    setState({
-                        submittingError: false,
-                        isSubmitting: false,
-                        errorMssg: ""
-                    })
-                })
-                //  setUploadedUrl(response.data.secure_url);
-                console.log(response,"resp")
-                setUploadedUrl(response);
-                
-
-                alert('File uploaded successfully');
-
-                
-        } catch (e) {
+            const response = await axios.post(
+              `https://api.cloudinary.com/v1_1/dc2zavmxp/upload`, 
+              formData
+            );
+            setUploadedUrl(response.data.secure_url);
+           
+            alert('File uploaded successfully');
+          }  catch (e) {
             console.error(e + " 'Caught Error.'");
         };
     }

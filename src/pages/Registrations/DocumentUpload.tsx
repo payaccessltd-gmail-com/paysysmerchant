@@ -29,7 +29,6 @@ function DocumentUpload() {
 
     const [state, setState] = useState<any>({
         selectedFile: null,
-        uploadedUrl: "",
         uploadPreset: 'unsigned_upload',
         rcNumber: "",
         check: false,
@@ -111,7 +110,7 @@ function DocumentUpload() {
               formData
             );
             setUploadedUrl(response.data.secure_url);
-           
+           console.log(uploadedUrl)
             alert('File uploaded successfully');
           }  catch (e) {
             console.error(e + " 'Caught Error.'");

@@ -10,7 +10,7 @@ function DocumentUpload() {
     const navigate = useNavigate();
     const [userIds, setUserIds] = useState<any>(0);
     const [fileName, setFileName] = useState('');
-    const [uploadedUrl, setUploadedUrl] = useState('');
+    const [uploadedUrl, setUploadedUrl] = useState<any>('');
 
     useEffect(() => {
         const getUserDetails: any = localStorage.getItem('userDetails');
@@ -157,7 +157,11 @@ function DocumentUpload() {
                         errorMssg: ""
                     })
                 })
-              //  setUploadedUrl(response.data.secure_url);
+                //  setUploadedUrl(response.data.secure_url);
+                console.log(response,"resp")
+                setUploadedUrl(response);
+                
+
                 alert('File uploaded successfully');
 
                 

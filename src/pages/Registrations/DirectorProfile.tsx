@@ -7,10 +7,27 @@ import CustomDropDown from '../../components/reusables/dropdowns/CustomDropDown'
 import { apiCall } from '../../Utils/URLs/axios.index';
 import { ErrorCard } from '../../Utils/HttpResponseHandlers/error';
 import { confirmBVN } from '../../containers/merchantOnboardingApis';
+import useCloudinaryUpload from '../../components/reusables/UploadFile/useCloudinaryUpload';
 
 function DirectorProfile() {
     const navigate = useNavigate();
     const [userIds, setUserIds] = useState<any>(0);
+    const [file, setFile] = useState<any>(null);
+    const [uploadedUrl, setUploadedUrl] = useState<string>('');
+
+    const { uploadFile, isLoading, error } = useCloudinaryUpload();
+    const handleUpload = async () => {
+        if (!file) return;
+        console.log("file")
+        const response = await uploadFile(file);
+        if (response) {
+            setUploadedUrl(response.secure_url);
+        }
+
+        };
+        useEffect(() => {
+            handleUpload()
+        })
 
     useEffect(() => {
         const getUserDetails: any = localStorage.getItem('userDetails');
@@ -57,6 +74,7 @@ function DirectorProfile() {
     const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement> | any) => {
         const file = e?.target?.files[0] || null;
        setFileName(file?.name);
+       setFile(file)
         let fileLabel: Element | null = document.querySelector("p.name");
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         fileLabel ? fileLabel.innerHTML = file?.name : null
@@ -198,6 +216,9 @@ function DirectorProfile() {
         )
         state?.selectedFile && formData.append(
             'rcNumber', sessionStorage.getItem('options') || "1"
+        )
+        state?.selectedFile && formData.append(
+            'UploadUrl', uploadedUrl || ""
         )
         try {
             // localStorage.setItem('onboardingStageKey', "uploadId");

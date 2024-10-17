@@ -7,8 +7,26 @@ import { apiCall } from '../../../Utils/URLs/axios.index'
 import { FaArrowLeft } from 'react-icons/fa'
 import { Image } from '../../../assets'
 import { Toaster } from 'react-hot-toast'
+import { useEffect } from 'react'
+import useCloudinaryUpload from '../../../components/reusables/UploadFile/useCloudinaryUpload'
 
 const UpdateBusinessReg = ({toggleDropdown,isOpen}:any) => {
+    const [file, setFile] = useState<any>(null);
+    const [uploadedUrl, setUploadedUrl] = useState<string>('');
+
+    const { uploadFile, isLoading, error } = useCloudinaryUpload();
+    const handleUpload = async () => {
+        if (!file) return;
+        console.log("file")
+        const response = await uploadFile(file);
+        if (response) {
+            setUploadedUrl(response.secure_url);
+        }
+
+        };
+        useEffect(() => {
+            handleUpload()
+        })
     const { onboardingStage, userId, lastName } = Storage.getItem("userDetails") || { onboardingStage: "", userId: 0, firstName: "", lastName: "" }
     const [state, setState] = useState<any>({
         selectedFile: null, 
@@ -49,6 +67,7 @@ const UpdateBusinessReg = ({toggleDropdown,isOpen}:any) => {
 
     const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement> | any) => {
         const file = e?.target?.files[0] || null;
+        setFile(file)
         let fileLabel: Element | null = document.querySelector("p.name");
         if(fileLabel){
             fileLabel.innerHTML = file?.name
@@ -82,7 +101,9 @@ const UpdateBusinessReg = ({toggleDropdown,isOpen}:any) => {
             state?.selectedFile,
             state?.selectedFile?.name
         )
-
+        state?.selectedFile && formData.append(
+            'UploadUrl', uploadedUrl || ""
+        )
         try {
             const response = await apiCall({
                 name: "uploadRegDoc",

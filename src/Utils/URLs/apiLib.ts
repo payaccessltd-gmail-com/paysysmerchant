@@ -91,8 +91,7 @@ export const endPoints: endPointlistTypes | any = {
         auth: true
     },
     uploadRegDoc: {
-       // url: '/api/v1/merchant/upload_business_reg_doc',
-          url: `https://api.cloudinary.com/v1_1/dc2zavmxp/upload`, 
+        url: '/api/v1/merchant/upload_business_reg_doc',
         method: 'POST',
         headers: FileHeaders,
         auth: true

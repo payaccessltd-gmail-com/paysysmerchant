@@ -5,13 +5,31 @@ import { useNavigate } from 'react-router-dom';
 import DefaultInput from '../../components/reusables/DefaultInput';
 import { apiCall } from '../../Utils/URLs/axios.index';
 import { ErrorCard } from '../../Utils/HttpResponseHandlers/error';
-import axios from 'axios';
+import useCloudinaryUpload from '../../components/reusables/UploadFile/useCloudinaryUpload';
+
 
 function DocumentUpload() {
     const navigate = useNavigate();
     const [userIds, setUserIds] = useState<any>(0);
-    const [fileName, setFileName] = useState('');
-    const [uploadedUrl, setUploadedUrl] = useState<any>('');
+    const [fileName, setFileName] = useState<any>('');
+    const [file, setFile] = useState<any>(null);
+    const [uploadedUrl, setUploadedUrl] = useState<string>('');
+
+    const { uploadFile, isLoading, error } = useCloudinaryUpload();
+    const handleUpload = async () => {
+        if (!file) return;
+        console.log("file")
+        const response = await uploadFile(file);
+        if (response) {
+            setUploadedUrl(response.secure_url);
+        }
+
+        };
+        useEffect(() => {
+            handleUpload()
+        })
+
+
 
     useEffect(() => {
         const getUserDetails: any = localStorage.getItem('userDetails');
@@ -19,6 +37,7 @@ function DocumentUpload() {
         setUserIds(parseDetails?.userId)
     })
     function handleChange(e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) {
+
         setState({
             ...state,
             [e.target.name]: e.target.value,
@@ -29,7 +48,6 @@ function DocumentUpload() {
 
     const [state, setState] = useState<any>({
         selectedFile: null,
-        uploadPreset: 'unsigned_upload',
         rcNumber: "",
         check: false,
         submittingError: false,
@@ -40,11 +58,12 @@ function DocumentUpload() {
     })
     const [errorMsg, setErrorMssg] = useState<any>(null);
 
-    const { selectedFile,  uploadPreset, rcNumber, check, submittingError, isDisabled, isSubmitting, errorMssg } = state;
+    const { selectedFile, rcNumber, check, submittingError, isDisabled, isSubmitting, errorMssg } = state;
 
     const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement> | any) => {
         const file = e?.target?.files[0] || null;
         setFileName(file?.name);
+        setFile(file);
         let fileLabel: Element | null = document.querySelector("p.name");
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         fileLabel ? fileLabel.innerHTML = file?.name : null
@@ -53,6 +72,8 @@ function DocumentUpload() {
             selectedFile: file,
             inputTypeError: false
         })
+
+
     }
 
     useEffect(() => {
@@ -68,6 +89,7 @@ function DocumentUpload() {
 
     const handelSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
         setState((state: any) => ({
             ...state,
             isSubmitting: true
@@ -79,7 +101,7 @@ function DocumentUpload() {
             userIds || ""
         )
         state?.selectedFile && formData.append(
-            'rcNumber',  rcNumber || "1"
+            'rcNumber', rcNumber || "1"
         )
         state?.selectedFile && formData.append(
             'cacDoc',
@@ -87,30 +109,67 @@ function DocumentUpload() {
             state?.selectedFile?.name
         )
 
-      
         state?.selectedFile && formData.append(
-            'file',
-            selectedFile || ""
+            'UploadUrl', uploadedUrl || ""
         )
-         state?.selectedFile && formData.append(
-             'uploadedUrl',
-             uploadedUrl || ""
-         )
-
-        state?.selectedFile && formData.append(
-            'upload_preset',
-            uploadPreset || "unsigned_upload"
-        )
-        
 
         try {
-            const response = await axios.post(
-              `https://api.cloudinary.com/v1_1/dc2zavmxp/upload`, 
-              formData
-            );
-            setUploadedUrl(response.data.secure_url);
-            console.log('File uploaded successfully');
-          }  catch (e) {
+            // localStorage.setItem('onboardingStageKey', "uploadDoc");
+            // await localStorage.setItem('onboardingStage', JSON.stringify({onboardingStage:"uploadDoc"}));  //to be removed later
+            // navigate("/registrations/settlement-information");  //to be removed later
+            const response = await apiCall({
+                name: "uploadRegDoc",
+                data: formData,
+
+                action: (): any => {
+                    setState({
+                        ...state,
+                        isSubmitting: false,
+                        submittingError: false,
+                    });
+                    // router.push(`/create-business/${busType}?stage=addBank`)
+                    return []
+                },
+                successDetails: {
+                    title: "Documents Submitted",
+                    text: `Your Business Registration documents have been submitted for review`,
+                    icon: ""
+                },
+                errorAction: (err?: any) => {
+                    if (err && err?.response?.data) {
+                        setState({
+                            ...state,
+                            submittingError: true,
+                            isSubmitting: false,
+                            errorMssg: err?.response?.data?.errorMssg || err?.response?.errorMssg || err?.response?.data?.respDescription || err?.response?.respDescription || "Action failed, please try again"
+                        })
+                        setErrorMssg(err?.message);
+                        return ["skip"]
+                    } else {
+                        setState({
+                            ...state,
+                            submittingError: true,
+                            isSubmitting: false,
+                            errorMssg: "Action failed, please try again"
+                        })
+                    }
+                }
+            })
+                .then(async (res: any) => {
+                    //   console.log("res>>", res);
+                    localStorage.setItem('onboardingStageKey', "uploadDoc");
+                    await localStorage.setItem('onboardingStage', JSON.stringify({ onboardingStage: "uploadDoc" }));
+                    navigate("/registrations/settlement-information");
+                    setState({
+                        submittingError: false,
+                        isSubmitting: false,
+                        errorMssg: ""
+                    })
+                })
+
+
+
+        } catch (e) {
             console.error(e + " 'Caught Error.'");
         };
     }
@@ -163,6 +222,7 @@ function DocumentUpload() {
                                 <ErrorCard handleClear={() => setState({ ...state, submittingError: false })} error={errorMsg} containerVariant={!submittingError ? "hidden" : ""} />
                             </p>
                             <br />
+
                             <button onClick={handelSubmit} className="lg:w-1/3 w-72 h-12  rounded-md bg-primary text-white transition-all duration-500 hover:scale-105 hover:brightness-110">Continue</button>
                         </div>
                     </div>

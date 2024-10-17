@@ -13,8 +13,6 @@ import { Image } from "../../assets";
 import { SpinnerIcon } from "../../components/reusables/icons";
 import Loading from "../../components/Loading";
 import BranchPerformance from "./components/BranchPerfomance";
-import FileUpload from "../../components/reusables/UploadFile/FileUplaod";
-
 
 
 const Dashboard = () => {

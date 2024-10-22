@@ -94,6 +94,7 @@ const SplitLinkModal = ({ toggleDropdown, isOpen }: any) => {
                         showModalFunc()
 
                     }, 3000);
+                    window.location.reload();
                     console.log("paymentLinkdata", state)
                     return []
 

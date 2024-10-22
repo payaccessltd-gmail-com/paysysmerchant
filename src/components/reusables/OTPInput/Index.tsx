@@ -7,7 +7,7 @@ import SingleInput from './SingleInput';
 export interface OTPInputProps {
   length: number;
   onChangeOTP: (otp: string) => any;
-
+id?: string;
   autoFocus?: boolean;
   clearInputs?: boolean;
   isNumberInput?: boolean;
@@ -22,6 +22,7 @@ export interface OTPInputProps {
 
 export function OTPInputComponent(props: OTPInputProps) {
   const {
+    id,
     length,
     isNumberInput,
     autoFocus,
@@ -197,6 +198,7 @@ export function OTPInputComponent(props: OTPInputProps) {
         .map((_, index) => (
           <SingleInput
             key={`SingleInput-${index}`}
+            id={id}
             focus={activeInput === index}
             autoFocus={autoFocus}
             value={otpValues && otpValues[index]}

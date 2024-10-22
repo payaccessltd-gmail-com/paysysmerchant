@@ -99,7 +99,7 @@ const PaymentLinkTable = ({paymentLinkTable, setpages,number,isLoading}:any) => 
             <div className="flex gap-2 items-center">
               <div
                 className={`p-1 h-fit rounded-full ${
-                  val?.linkStatus === "PENDING" ? "bg-red-400" : "ACTIVE" ? "bg-[#009236]" : "bg-yellow-400"
+                  val?.linkStatus === "EXPIRED" ? "bg-red-400" : "ACTIVE" ? "bg-[#009236]" : "bg-yellow-400"
                 } `}
               ></div>
               <p className="text-[12px]">{val?.linkStatus}</p>

@@ -22,6 +22,18 @@ const confirmBVN = async (bvn: any): Promise<any> => {
     return response;
 }
 
+const confirmOTP = async (otp: any): Promise<any> => {
+
+    const response = await apiCall({
+        name: "validateOtp",
+        params: {otp},
+        action: (): any => (["skip"])
+    })
+    return response;
+}
+
+
+
 const accNameEnquires = async (payload: any): Promise<any> => {
 
     const response = await apiCall({
@@ -43,4 +55,4 @@ const accNameEnquires = async (payload: any): Promise<any> => {
 
 
 
-export { fetchBankList, confirmBVN, accNameEnquires};
+export { fetchBankList, confirmBVN, confirmOTP, accNameEnquires};

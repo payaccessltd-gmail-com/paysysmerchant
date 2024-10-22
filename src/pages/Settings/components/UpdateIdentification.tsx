@@ -130,6 +130,7 @@ const UpdateIdentification = ({ toggleDropdown, isOpen }: any) => {
           setTimeout(() => {
             showModalFunc();
           }, 3000);
+          window.location.reload();
           return [];
         },
         successDetails: {

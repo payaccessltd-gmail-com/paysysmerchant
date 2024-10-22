@@ -7,11 +7,12 @@ import { Button } from "../../components/reusables/DefaultButton";
 import OTPInput from "../../components/reusables/OTPInput/Index";
 import { apiCall } from "../../Utils/URLs/axios.index";
 import { SuccessCard } from "../../Utils/HttpResponseHandlers/error";
-import { confirmBVN } from "../../containers/merchantOnboardingApis";
+import { confirmBVN, confirmOTP } from "../../containers/merchantOnboardingApis";
 import { Toaster } from "react-hot-toast";
 
 function AddBvn() {
   const [showOtp, setShowOtp] = useState<any>(true);
+  const [showButton, setShowButton] = useState<any>(false);
   const [showSuccessMsg, setShowSuccessMsg] = useState<any>(false);
   const [cotp, setCOtp] = useState("");
   const [phonenumber, setPhonenumber] = useState<any>(String);
@@ -55,6 +56,12 @@ function AddBvn() {
     };
   }, []); // Empty dependency array to run effect only once
 
+
+
+
+ 
+
+
   function handleChange(
     e:
       | React.ChangeEvent<HTMLInputElement>
@@ -70,7 +77,7 @@ function AddBvn() {
     const inputBvn = (document.getElementById("bvn") as HTMLInputElement)
       ?.value;
     setBvnName(null);
-    setBvnError(null);
+    setBvnError(null);  
     if (inputBvn?.trim()?.length === 11) {
       setBvnValue(inputBvn);
       setBvnName("Please wait...");
@@ -129,12 +136,111 @@ function AddBvn() {
   //     })
   // }
 
+ async function handleOTPChange( otp: any) {
+      setCOtp(otp);
+      if (cotp.length > 4) {
+        try {
+          await apiCall({
+            name: "validateOtp",
+            data: {
+              otp: cotp,
+            },
+        
+            successDetails: {
+              title: "Successful",
+              text: `Your OTP was verified successfully, please continue`,
+              icon: ""
+            },
+            action: (): any => [""],
+            errorAction: (err?: any) => {
+              setState({
+                ...state,
+                submittingError: true,
+                errorMssg: "Action failed, please try again"
+              })
+            
+              return ["skip"];
+            }
+          })
+          setShowButton(true)
+        } catch (error:any) {
+          console.error(error)
+         
+        }
+      
+    
+      }
+        }
+    
+
   const handelSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setState((state: any) => ({
       ...state,
       isSubmitting: true,
     }));
+    
+    try {
+      // localStorage.setItem('onboardingStageKey', "set_up_location");
+      // await localStorage.setItem('onboardingStage', JSON.stringify({ onboardingStage: "set_up_location" }));  //to be removed later
+      // navigate("/registrations/business-location"); //to be removed later
+    
+
+      
+      await apiCall({
+        name: "selfOnboarding",
+        data: {
+          stage: "verify_phone"
+        },
+        action: (): any => {
+          setState({
+            ...state,
+            isSubmitting: false,
+            submittingError: false,
+          });
+         
+          // router.push(`/create-business/${busType}?stage=location`)
+          return ["skip"]
+        },
+        errorAction: (err?: any) => {
+          if (err && err?.response?.data) {
+            setState({
+              ...state,
+              submittingError: true,
+              isSubmitting: false,
+              errorMssg: err?.response?.data?.errorMssg || err?.response?.errorMssg || err?.response?.data?.respDescription || err?.response?.respDescription || "Action failed, please try again"
+            })
+          
+            return ["skip"]
+          } else {
+            setState({
+              ...state,
+              submittingError: true,
+              isSubmitting: false,
+              errorMssg: "Action failed, please try again"
+            })
+
+          }
+        }
+      })
+        .then(async (res: any) => {
+          //   console.log("res>>", res);
+          localStorage.setItem('onboardingStageKey', "set_up_location");
+          await localStorage.setItem('onboardingStage', JSON.stringify({ onboardingStage: "set_up_location" }));
+          setState({
+            submittingError: false,
+            isSubmitting: false,
+            errorMssg: ""
+          })
+      
+        })
+        navigate("/registrations/business-type");
+    } catch (e) {
+      console.error(e + " 'Caught Error.'");
+    };
+
+
+
     try {
       // localStorage.setItem('onboardingStageKey', "bvn"); //to be removed later
       // localStorage.setItem('onboardingStage', JSON.stringify({ onboardingStage: "bvn" }));  //to be removed later
@@ -189,7 +295,7 @@ function AddBvn() {
           "onboardingStage",
           JSON.stringify({ onboardingStage: "bvn" })
         );
-        navigate("/registrations/business-type");
+      
         setState({
           submittingError: false,
           isSubmitting: false,
@@ -275,12 +381,14 @@ function AddBvn() {
                 <div className="flex mt-2">
                   <div className="grid grid-cols-6 gap-4">
                     <OTPInput
-                      length={6}
+                      length={5}
+                      id="otp"
                       className="flex gap-5"
                       inputClassName="w-9 h-8 text-3xl text-center border border-gray-300 rounded-md focus:border border-gray-200 focus:ring-1 ring-blue-aqua"
                       isNumberInput
                       autoFocus
-                      onChangeOTP={(otp: any) => setCOtp(cotp)}
+
+                      onChangeOTP={handleOTPChange}
                     />
                     {/* containerVariant={!submittingError ? "hidden" : ""}  */}
                   </div>
@@ -289,16 +397,16 @@ function AddBvn() {
             )}
 
             <div className="p-4 h-12 rounded-md">
-              {
+              {/* {
                 showOtp && (
                   <button className="lg:w-1/3 w-72 h-12 rounded-md bg-primary text-white transition-all duration-500 hover:scale-105 hover:brightness-110">
                     Continue
                   </button>
                 )
                 // <Button title='Continue' className="lg:w-1/3 w-72 rounded-md"/>
-              }
+              } */}
 
-              {!showOtp && (
+              {showButton && (
                 //  <Button title='Continue'  className="lg:w-1/3 w-72 rounded-md"/>
                 <button
                   onClick={handelSubmit}

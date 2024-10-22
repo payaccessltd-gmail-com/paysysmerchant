@@ -8,7 +8,7 @@ export interface SingleOTPInputProps
 }
 
 export function SingleOTPInputComponent(props: SingleOTPInputProps) {
-  const { focus, autoFocus, ...rest } = props;
+  const { id, focus, autoFocus, ...rest } = props;
   const inputRef = useRef<HTMLInputElement>(null);
   const prevFocus = usePrevious(!!focus);
   useLayoutEffect(() => {

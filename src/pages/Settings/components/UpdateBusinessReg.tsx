@@ -119,6 +119,7 @@ const UpdateBusinessReg = ({toggleDropdown,isOpen}:any) => {
                         showModalFunc()
                         
                     }, 3000);
+                    window.location.reload();
                     return []
                 },
                 successDetails: {

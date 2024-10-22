@@ -20,17 +20,17 @@ const DeveloperTools = () => {
 
           <div className="grid">
             <CustomCopyText
-              label="Test Secret  Key"
+              label="Test Secret Key"
               text="PAY23456789000444444434567"
             />
             <p className="text-[#CA6B1B] text-[12px] font-bold">
               Generates new Secret key{" "}
             </p>
           </div>
-          <CustomCopyText
+          {/* <CustomCopyText
             label="Test Public Key"
             text="PA2344-5566-7788-9900-98888"
-          />
+          /> */}
         </div>
 
         <div className="border-[2px] bg-white p-[20px] rounded-lg border-[#EEF8FF] grid gap-[20px]">
@@ -42,23 +42,23 @@ const DeveloperTools = () => {
           </div>
 
             <CustomCopyText
-              label="Merchant Code"
+              label="Merchant ID"
               text="PAY23456789000444444434567"
             />
-           <CustomCopyText
+           {/* <CustomCopyText
               label="Client ID"
               text="PAY23456789000444444434567"
             />
           <CustomCopyText
             label="Pay Item ID"
             text="PA2344-5566-7788-9900-98888"
-          />
+          /> */}
         </div>
 
         <div className="border-[2px] bg-white p-[20px] rounded-lg border-[#EEF8FF] grid gap-[20px]">
           <div className="grid text-center">
             <p className=" font-bold text-[16px] text-[#0C394B]">
-            Wed hook for Goodness oil & Gas
+            Merchant Web hook
             </p>
             <p className="text-[14px] text-[#0C394B]">Add a web hook endpoint</p>
           </div>
@@ -67,14 +67,14 @@ const DeveloperTools = () => {
               label="Test webhook URL"
               text="PAY23456789000444444434567"
             />
-            <CustomCopyText
+            {/* <CustomCopyText
               label="Test Callback URL"
               text="PAY23456789000444444434567"
             />
           <CustomCopyText
             label="Pay Item ID"
             text="PA2344-5566-7788-9900-98888"
-          />
+          /> */}
         </div>
 
         <div className="m-auto w-3/4">

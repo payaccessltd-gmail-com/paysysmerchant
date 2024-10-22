@@ -49,6 +49,7 @@ import {fetchBusinessLinkData} from '../../containers/dashboardApis'
       const res = await fetchBusinessLinkData(userId,pageNo,pageSize);
       console.log("resd", res)
       setPaymentLinkTable(res)
+     
     } catch (error) {
       console.error("Error fetching merchant data:", error);
       // You can set a default value or just keep it as null

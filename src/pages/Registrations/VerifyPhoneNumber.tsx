@@ -68,7 +68,8 @@ function VerifyPhoneNumber() {
       await apiCall({
         name: "selfOnboarding",
         data: {
-          stage: "verify_phone"
+          stage: "verify_phone",
+          channel:"web"
         },
         action: (): any => {
           setState({

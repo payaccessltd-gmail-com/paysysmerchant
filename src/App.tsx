@@ -51,6 +51,12 @@ import PaymentLink from "./pages/PaymentLink/Index";
 import Invoice from "./pages/Invoice/Index";
 import Split from "./pages/Split/index";
 import DeveloperTools from "./pages/DeveloperTools/DeveloperTools";
+import InventoryDashboard from "./pages/InventorySystem/Dashboard/Index";
+import InventoryInventory from "./pages/InventorySystem/Inventory/Inventory";
+import InventoryReports from "./pages/InventorySystem/Reports/Index";
+import InventorySuppliers from "./pages/InventorySystem/Supplier/Index";
+import InventoryOrder from "./pages/InventorySystem/Order/Index";
+import InventoryManageStore from "./pages/InventorySystem/ManageStore/Index";
 
 function App() {
 
@@ -418,6 +424,55 @@ function App() {
             </PrivateRoute>
           }
         />
+         <Route
+          path="/inventory/dashboard"
+          element={
+            <PrivateRoute>
+              <InventoryDashboard/>
+            </PrivateRoute>
+          }
+        />
+         <Route
+          path="/inventory/inventory"
+          element={
+            <PrivateRoute>
+              <InventoryInventory/>
+            </PrivateRoute>
+          }
+        />
+         <Route
+          path="/inventory/reports"
+          element={
+            <PrivateRoute>
+              <InventoryReports/>
+            </PrivateRoute>
+          }
+        />
+         <Route
+          path="/inventory/suppliers"
+          element={
+            <PrivateRoute>
+              <InventorySuppliers/>
+            </PrivateRoute>
+          }
+        />
+         <Route
+          path="/inventory/order"
+          element={
+            <PrivateRoute>
+              <InventoryOrder/>
+            </PrivateRoute>
+          }
+        />
+         <Route
+          path="/inventory/manage-store"
+          element={
+            <PrivateRoute>
+              <InventoryManageStore/>
+            </PrivateRoute>
+          }
+        />
+
       </Routes>
     </Router>
   );

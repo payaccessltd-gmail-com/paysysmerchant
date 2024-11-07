@@ -1,24 +1,19 @@
 import React, { Fragment, useEffect, useRef, useState } from "react";
-import { Image } from "../../assets";
+import { Image } from "../../../assets";
 import { AiOutlineBell, AiOutlineMenu } from "react-icons/ai";
 import { CiSearch } from "react-icons/ci";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
-  financialMenuItems,
-  managerMenuItems,
-  transactionsMenuItems,
-  paymentMenuItems,
-  developerMenuItems,
-  InventoryMenuItems
+  MenuItems
 } from "./SideBarItems";
-import { Storage } from "../../Utils/Stores/inAppStorage";
-import { SpinnerIcon } from "../reusables/icons";
+import { Storage } from "../../../Utils/Stores/inAppStorage";
+import { SpinnerIcon } from "../../reusables/icons";
 import { Menu, Transition } from "@headlessui/react";
-import SecurityPopOver from "../../pages/SecurityQuestion/SecurityPopOver";
-import { fetchImpactLoanEligibility } from "../../containers/loanApis";
+import SecurityPopOver from "../../../pages/SecurityQuestion/SecurityPopOver";
+import { fetchImpactLoanEligibility } from "../../../containers/loanApis";
 
 
-const DashboardLayout = ({ children, isLoading }: any) => {
+const InventoryDashboardLayout = ({ children, isLoading }: any) => {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [timeOfDay, setTimeOfDay] = useState("");
   const [userFullName, setUserFullName] = useState<any>("");
@@ -134,9 +129,10 @@ function togglesecurity() {
               className="hover:cursor-pointer w-[60px] h-[60px]"
             />
             <div className="grid w-full gap-[20px] mt-[40px] items-center ">
-              <p className="text-[16px] font-bold ">Financials</p>
-              <div className="grid gap-[20px] justify-between  m-auto md:m-0">
-                {financialMenuItems?.map((items) => (
+              <p className="text-[16px] font-bold grid gap-[30px] justify-between  m-auto md:m-0">
+
+
+                {MenuItems?.map((items:any) => (
                   <div key={items.id}
                     className="flex items-center gap-[10px]   text-center w-full hover:cursor-pointer group"
                     onClick={() => navigate(`${items.route}`)}
@@ -161,160 +157,12 @@ function togglesecurity() {
                     </p>
                   </div>
                 ))}
-              </div>
+             
+              </p>
+             
             </div>
 
-            <div className="grid w-full gap-[20px] mt-[40px] items-center ">
-              <p className="text-[16px] font-bold ">Payments</p>
-              <div className="grid gap-[20px] justify-between  m-auto md:m-0">
-                {paymentMenuItems?.map((items) => (
-                  <div key={items.id}
-                    className="flex items-center gap-[10px]   text-center w-full hover:cursor-pointer group"
-                    onClick={() => navigate(`${items.route}`)}
-                  >
-                    <div
-                      className={`rounded-lg w-[50px] h-[50px] grid  group-hover:bg-primary ${
-                        currentPath.includes(items.route)
-                          ? "bg-primary"
-                          : "bg-[#E8E9F2]"
-                      }`}
-                    >
-                      {items.icon}
-                    </div>
-                    <p
-                      className={`text-[14px] font-500 ${
-                        currentPath.includes(items.route)
-                          ? "text-black"
-                          : "text-[#747474]"
-                      }`}
-                    >
-                      {items.name}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="grid w-full gap-[20px] mt-[40px] items-center ">
-              <p className="text-[16px] font-bold ">Products</p>
-              <div className="grid gap-[20px] justify-between  m-auto md:m-0">
-                {transactionsMenuItems?.map((items) => (
-                  <div key={items.id}
-                    className="flex items-center gap-[10px]   text-center w-full hover:cursor-pointer group"
-                    onClick={() => navigate(`${items.route}`)}
-                  >
-                    <div
-                      className={`rounded-lg w-[50px] h-[50px] grid  group-hover:bg-primary  ${
-                        currentPath.includes(items.route)
-                          ? "bg-primary"
-                          : "bg-[#E8E9F2]"
-                      }`}
-                    >
-                      {items.icon}
-                    </div>
-                    <p
-                      className={`text-[14px] font-500 ${
-                        currentPath.includes(items.route)
-                          ? "text-black"
-                          : "text-[#747474]"
-                      }`}
-                    >
-                      {items.name}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="grid w-full gap-[20px] mt-[40px]">
-              <p className="text-[16px] font-bold  ">Business Manager</p>
-              <div className="grid  gap-[20px] justify-between m-auto md:m-0">
-                {managerMenuItems?.map((items) => (
-                  <div key={items.id}
-                    className="flex items-center gap-[10px]  text-center hover:cursor-pointer group"
-                    onClick={() => navigate(`${items.route}`)}
-                  >
-                    <div
-                      className={`rounded-lg w-[50px] h-[50px] grid group-hover:bg-primary  ${
-                        currentPath.includes(items.route)
-                          ? "bg-primary"
-                          : "bg-[#E8E9F2]"
-                      }`}
-                    >
-                      {items.icon}
-                    </div>
-                    <p
-                      className={`text-[14px] font-500 ${
-                        currentPath.includes(items.route)
-                          ? "text-black"
-                          : "text-[#747474]"
-                      }`}
-                    >
-                      {items.name}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="grid w-full gap-[20px] mt-[40px]">
-              <p className="text-[16px] font-bold  ">API & Integrations</p>
-              <div className="grid  gap-[20px] justify-between m-auto md:m-0">
-                {developerMenuItems?.map((items) => (
-                  <div key={items.id}
-                    className="flex items-center gap-[10px]  text-center hover:cursor-pointer group"
-                    onClick={() => navigate(`${items.route}`)}
-                  >
-                    <div
-                      className={`rounded-lg w-[50px] h-[50px] grid group-hover:bg-primary  ${
-                        currentPath.includes(items.route)
-                          ? "bg-primary"
-                          : "bg-[#E8E9F2]"
-                      }`}
-                    >
-                      {items.icon}
-                    </div>
-                    <p
-                      className={`text-[14px] font-500 ${
-                        currentPath.includes(items.route)
-                          ? "text-black"
-                          : "text-[#747474]"
-                      }`}
-                    >
-                      {items.name}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="grid w-full gap-[20px] mt-[40px]">
-              <p className="text-[16px] font-bold  ">Inventory Management</p>
-              <div className="grid  gap-[20px] justify-between m-auto md:m-0">
-                {InventoryMenuItems?.map((items) => (
-                  <div key={items.id}
-                    className="flex items-center gap-[10px]  text-center hover:cursor-pointer group"
-                    onClick={() => navigate(`${items.route}`)}
-                  >
-                    <div
-                      className={`rounded-lg w-[50px] h-[50px] grid group-hover:bg-primary  ${
-                        currentPath.includes(items.route)
-                          ? "bg-primary"
-                          : "bg-[#E8E9F2]"
-                      }`} 
-                    >
-                      {items.icon}
-                    </div>
-                    <p
-                      className={`text-[14px] font-500 ${
-                        currentPath.includes(items.route)
-                          ? "text-black"
-                          : "text-[#747474]"
-                      }`}
-                    >
-                      {items.name}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
+          
           </div>
           <p className="text-[#F9F9F9]">{divWidth}</p>
 
@@ -404,23 +252,23 @@ function togglesecurity() {
 
         <div className="border-b-[1px] py-[30px] flex  justify-between gap-[20px]">
           <div className="">
-            <p className="text-[21px] font-bold ">
+          <div className="rounded-full p-[10px] bg-[#E7E9F1]">
+              <CiSearch />
+            </div>
+            {/* <p className="text-[21px] font-bold ">
               {timeOfDay},{" "}
               <span className="m-0 text-primary">
                 {name || userFullName}
               </span>{" "}
-            </p>
+            </p> */}
           </div>
           <div className="md:flex gap-[40px] justify-end text-[#292D32] text-[24px] items-center hidden">
-            <div className="rounded-full p-[10px] bg-[#E7E9F1]">
-              <CiSearch />
-            </div>
+          
             <div className="relative">
               <Menu>
                 <Menu.Button>
                 <div className="flex gap-2 items-center ">
-              <div
-                className="rounded-full p-[5px] h-fit bg-primary text-white cursor-pointer"
+              <div className="rounded-full py-[5px] px-[10px] h-fit bg-primary text-white cursor-pointer"
                 // onClick={() => {
                 //   navigate("/");
                 //   localStorage?.clear();
@@ -520,7 +368,7 @@ function togglesecurity() {
             />
             <div className="grid w-full gap-[20px] mt-[40px] items-center ">
               <p className="text-[16px] font-bold ">Financials</p>
-              <div className="grid gap-[20px] justify-between  m-auto md:m-0">
+              {/* <div className="grid gap-[20px] justify-between  m-auto md:m-0">
                 {financialMenuItems?.map((items) => (
                   <div  key={items.id}
                     className="flex items-center gap-[10px] font-semibold text-center w-full hover:cursor-pointer group"
@@ -546,11 +394,11 @@ function togglesecurity() {
                     </p>
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
             <div className="grid w-full gap-[20px] mt-[40px] items-center ">
               <p className="text-[16px] font-bold ">Payments</p>
-              <div className="grid gap-[20px] justify-between  m-auto md:m-0">
+              {/* <div className="grid gap-[20px] justify-between  m-auto md:m-0">
                 {paymentMenuItems?.map((items) => (
                   <div  key={items.id}
                     className="flex items-center gap-[10px]   text-center w-full hover:cursor-pointer group"
@@ -576,11 +424,11 @@ function togglesecurity() {
                     </p>
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
             <div className="grid w-full gap-[20px] mt-[40px] items-center ">
               <p className="text-[16px] font-bold ">Products</p>
-              <div className="grid gap-[20px] justify-between  m-auto md:m-0">
+              {/* <div className="grid gap-[20px] justify-between  m-auto md:m-0">
                 {transactionsMenuItems?.map((items) => (
                   <div key={items.id}
                     className="flex items-center gap-[10px]   text-center w-full hover:cursor-pointer group"
@@ -606,11 +454,11 @@ function togglesecurity() {
                     </p>
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
             <div className="grid w-full gap-[20px] mt-[40px]">
               <p className="text-[16px] font-bold  ">Business Manager</p>
-              <div className="grid  gap-[20px] justify-between m-auto md:m-0">
+              {/* <div className="grid  gap-[20px] justify-between m-auto md:m-0">
                 {managerMenuItems?.map((items) => (
                   <div key={items.id}
                     className="flex items-center gap-[10px]  text-center hover:cursor-pointer group"
@@ -636,11 +484,11 @@ function togglesecurity() {
                     </p>
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
             <div className="grid w-full gap-[20px] mt-[40px]">
               <p className="text-[16px] font-bold  ">API & Integrations</p>
-              <div className="grid  gap-[20px] justify-between m-auto md:m-0">
+              {/* <div className="grid  gap-[20px] justify-between m-auto md:m-0">
                 {developerMenuItems?.map((items) => (
                   <div key={items.id}
                     className="flex items-center gap-[10px]  text-center hover:cursor-pointer group"
@@ -666,11 +514,11 @@ function togglesecurity() {
                     </p>
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
             <div className="grid w-full gap-[20px] mt-[40px]">
               <p className="text-[16px] font-bold  ">Inventory Management</p>
-              <div className="grid  gap-[20px] justify-between m-auto md:m-0">
+              {/* <div className="grid  gap-[20px] justify-between m-auto md:m-0">
                 {InventoryMenuItems?.map((items) => (
                   <div key={items.id}
                     className="flex items-center gap-[10px]  text-center hover:cursor-pointer group"
@@ -696,7 +544,7 @@ function togglesecurity() {
                     </p>
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="bg-[#ECEFF7] p-[20px] gap-[20px] rounded-lg md:m-auto   grid">
@@ -717,4 +565,4 @@ function togglesecurity() {
   );
 };
 
-export default DashboardLayout;
+export default InventoryDashboardLayout;

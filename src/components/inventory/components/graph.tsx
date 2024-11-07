@@ -1,0 +1,96 @@
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+// import faker from 'faker';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
+ const options = {
+  plugins: {
+    title: {
+      display: true,
+      text: '',
+    },
+  },
+  responsive: true,
+  scales: {
+    x: {
+      stacked: true,
+    },
+    y: {
+      stacked: true,
+    },
+  },
+};
+
+const labels = ['Mon','Tue','Wed','Thurs','Fri','Sat','Sun'];
+
+ 
+
+
+const Graph = ({data}:any) => {
+  const {currentWeekCardGraphData,currentWeekCashGraphData,currentWeekTransferGraphData
+
+  }=data
+const card: number[] = Array.isArray(currentWeekCardGraphData?.axis)
+? currentWeekCardGraphData?.axis.map((item:any) => item.total)
+: []
+const CashGraph=Array.isArray(currentWeekCardGraphData?.axis)
+? currentWeekCashGraphData?.axis.map((item:any) => item.total) :[]
+const TransferGraph=Array.isArray(currentWeekCardGraphData?.axis)
+? currentWeekTransferGraphData?.axis.map((item:any) => item.total) :[]
+
+// console.log(TransferGraph,'transfer')
+// console.log(card,'cardr')
+// console.log(CashGraph,'CashGraph')
+
+const graphdata = {
+  labels,
+  datasets: [
+    {
+      label: 'Card',
+      data: labels?.map((label,index) => card[index]),
+      backgroundColor: 'rgba(245, 128, 31, 1)',
+    },
+    {
+      label: 'Transfer',
+      data: labels?.map((label,index) => TransferGraph[index]),
+      backgroundColor:  'rgba(91, 198, 242, 1)',
+    },
+    {
+      label: 'Cash',
+      data: labels?.map((label,index) => CashGraph[index]),
+      backgroundColor: 'rgba(0, 172, 239, 1)',
+    },
+  ],
+};
+
+  return (
+   
+
+
+<div className={`grid border rounded-lg  bg-[#fff] p-[20px] `}>
+<div className="overflow-x-auto w-full" >
+     <p className="text-[#383E49] text-[20px] font-medium">Graph Title</p>
+        <Bar options={options} data={graphdata} />
+
+    </div>
+     </div>
+  )
+}
+
+export default Graph

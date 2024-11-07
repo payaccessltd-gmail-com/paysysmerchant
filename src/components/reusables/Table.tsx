@@ -22,7 +22,7 @@ const TableComponent = ({
 }: any) => {
 
 
-  // console.log("totalValue>>>", totalValue);
+
   const changeCurrentPage = (data: any) => {
     console.log(data);
     changePage(data?.selected);
@@ -61,7 +61,6 @@ const TableComponent = ({
                     </TableCell>
                   </TableRow>
                 ) : totalValue?.totalPages ===  0 || data === undefined ? (
-                  // totalValue
                   <TableRow>
                     <TableCell colSpan={headers?.length}>
                       <div className="p-[100px] m-auto w-full">

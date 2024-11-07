@@ -183,6 +183,24 @@ export const developerMenuItems: any[] = [
 ]
 
 
+
+export const   InventoryMenuItems: any[] = [
+    {
+        id: 1,
+        name: 'Inventory',
+        route: '/inventory/dashboard',
+        subMenuItems: [
+            // { name: 'Branch management', route: '/branches' },
+            // { name: 'Terminal management', route: '/terminals' },
+            // { name: 'View Admin Users', route: '/users' },
+        ],
+        icon:  <img src={Image.developer} alt="transaction" className='m-auto text-white text-[25px]' />,
+        roles: "VIEW_USER"
+    }
+   
+]
+
+
 // export const userRoles = role;
 
 // export const finalMenu = (role: any): any[] => {

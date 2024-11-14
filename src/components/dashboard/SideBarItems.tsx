@@ -77,7 +77,7 @@ export const paymentMenuItems:any[]=[
         roles: ""
     },{
         id: 4,
-        name: 'Loans',
+        name: 'Bulk Payment',
         route: '/loans',
         subMenuItems: [],
         icon: <img src={Image.loan} alt="transaction" className='m-auto text-white text-[25px]' />,

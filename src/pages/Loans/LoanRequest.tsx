@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import * as XLSX from "xlsx";
 import { Button } from "../../components/reusables/DefaultButton";
 import DefaultInput from "../../components/reusables/DefaultInput";
 import CustomDropDown from "../../components/reusables/dropdowns/CustomDropDown";
@@ -10,6 +11,12 @@ import { Image } from "../../assets";
 import { LoanReasons } from "./Mocks";
 import { useNavigate } from "react-router-dom";
 import { fetchImpactLoanEligibility, fetchLoanproduct, loanRequest } from "../../containers/loanApis";
+
+interface DocumentData {
+  name: string;
+  date: string;
+  content: any[];
+}
 
 const LoanRequest = ({  isOpen, stage, setStage,setIsOpen }: any) => {
   const [branchList, setBranchList] = useState<any>([]);
@@ -179,9 +186,44 @@ const [loanproductName, setloanproductName] = useState<any>([])
   }, [eligibility])
 
  // console.log(selectedProduct,'the selected product')
+ 
+ const [documents, setDocuments] = useState<DocumentData[]>([]);
+ const [selectedDocument, setSelectedDocument] = useState<DocumentData | null>(null);
+
+ const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+   const file = event.target.files?.[0];
+   if (!file) return;
+
+   const reader = new FileReader();
+   reader.onload = (e) => {
+     const ab = e.target?.result;
+     const workbook = XLSX.read(ab, { type: "binary" });
+     const sheetName = workbook.SheetNames[0];
+     const worksheet = workbook.Sheets[sheetName];
+     const jsonData = XLSX.utils.sheet_to_json(worksheet);
+
+     const newDocument: DocumentData = {
+       name: file.name,
+       date: new Date().toLocaleString(),
+       content: jsonData,
+     };
+
+     setDocuments((prevDocs) => [...prevDocs, newDocument]);
+   };
+   reader.readAsBinaryString(file);
+ };
+
+ 
 
   return (
     <Overlay toggleDropdown={toggleDropdown} isOpen={isOpen}>
+        <input
+        type="file"
+        accept=".xlsx, .xls, .csv"
+        onChange={handleFileUpload}
+        className="mb-4 p-2 border rounded cursor-pointer"
+      />
+    
       <Toaster />
       {loanStageName===0? <>
         <p className="text-[20px] font-bold">You are eligible for these, please select one:</p>

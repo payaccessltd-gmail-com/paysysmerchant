@@ -7,7 +7,7 @@ import { Toaster } from "react-hot-toast";
 import Loading from "../components/Loading";
 import { SpinnerIcon } from "../components/reusables/icons";
 import { Image } from "../assets";
-import { LoanReasons } from "../pages/Loans/Mocks";
+import { LoanReasons } from "../pages/BulkPayment/Mocks";
 import { getShowPopUp } from "./Emmiters/RxjsServices";
 import { loanRequest } from "../containers/loanApis";
 

@@ -75,16 +75,29 @@ export const paymentMenuItems:any[]=[
         subMenuItems: [],
         icon: <img src={Image.withdraw} alt="transaction" className='m-auto text-white text-[25px]' />,
         roles: ""
-    },{
+    },
+]
+export const BulkPayment:any[]=[
+    {
         id: 4,
         name: 'Bulk Payment',
-        route: '/loans',
+        route: '/bulk-payment',
         subMenuItems: [],
         icon: <img src={Image.loan} alt="transaction" className='m-auto text-white text-[25px]' />,
         roles: ""
+    },{
+        id: 2,
+        name: 'Beneficiary List',
+        route: '/beneficiary-list',
+        subMenuItems: [
+             { name: 'Branch management', route: '/branches' },
+             { name: 'Terminal management', route: '/terminals' },
+             { name: 'View Admin Users', route: '/users' },
+        ],
+        icon:  <img src={Image.bill} alt="Bills" className='m-auto text-white text-[25px]' />,
+        roles: "VIEW_USER"
     }
 ]
-
 export const transactionsMenuItems:any[]=[
     {
         id: 1,

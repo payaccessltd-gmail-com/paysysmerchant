@@ -34,17 +34,17 @@ import ElectricityPage from "./pages/Bills/components/ElectricityPage";
 import CablePage from "./pages/Bills/components/CablePage";
 import Recipients from "./pages/Recipients";
 import RecipientsPage from "./pages/Recipients/components/RecipientsPage";
-import Loans from "./pages/Loans";
-import LoansProfile from "./pages/Loans/LoansProfile";
-import LoanSummary from "./pages/Loans/LoanSummary";
+
+import LoansProfile from "./pages/BulkPayment/LoansProfile";
+import LoanSummary from "./pages/BulkPayment/LoanSummary";
 import TerminalPerformance from "./pages/Reports/TerminalPerformance";
 import BranchPerformance from "./pages/Reports/BranchPerformance";
 import SecurityQuestion from "./pages/Registrations/SecurityQuestion";
 import UnlockAccount from "./pages/login/components/UnlockAccount";
 import SecurityDashboard from "./pages/SecurityQuestion/Index";
-import LoanOfferAcceptance from "./pages/Loans/LoanOfferAcceptance";
-import LoanRepaymentSchedule from "./pages/Loans/LoanRepaymentSchedule";
-import LoanOfferLetter from "./pages/Loans/LoanOfferLetter";
+import LoanOfferAcceptance from "./pages/BulkPayment/LoanOfferAcceptance";
+import LoanRepaymentSchedule from "./pages/BulkPayment/LoanRepaymentSchedule";
+import LoanOfferLetter from "./pages/BulkPayment/LoanOfferLetter";
 import BuildBot from "./pages/AI_Bot/BuildBot";
 import DeleteAccount from "./pages/AccountDeletion";
 import PaymentLink from "./pages/PaymentLink/Index";
@@ -57,6 +57,9 @@ import InventoryReports from "./pages/InventorySystem/Reports/Index";
 import InventorySuppliers from "./pages/InventorySystem/Supplier/Index";
 import InventoryOrder from "./pages/InventorySystem/Order/Index";
 import InventoryManageStore from "./pages/InventorySystem/ManageStore/Index";
+import BulkPayment from "./pages/BulkPayment";
+import BulkPaymentBeneficiaryList from "./pages/BulkPayment/index2";
+
 
 function App() {
 
@@ -112,15 +115,23 @@ function App() {
           }
         />
          <Route
-          path="/loans"
+          path="/bulk-payment"
           element={
             <PrivateRoute>
-              <Loans />
+              <BulkPayment/>
+            </PrivateRoute>
+          }
+        />
+         <Route
+          path="/beneficiary-list"
+          element={
+            <PrivateRoute>
+              <BulkPaymentBeneficiaryList/>
             </PrivateRoute>
           }
         />
            <Route
-          path="/loans/:id"
+          path="/bulk-payment/:id"
           element={
             <PrivateRoute>
               <LoansProfile />
@@ -128,7 +139,7 @@ function App() {
           }
         />
          <Route
-          path="/loans/summary"
+          path="/bulk-payment/summary"
           element={
             <PrivateRoute>
               <LoanSummary />
@@ -136,7 +147,7 @@ function App() {
           }
         />
          <Route
-          path="/loans/acceptance"
+          path="/bulk-payment/acceptance"
           element={
             <PrivateRoute>
               <LoanOfferAcceptance />
@@ -144,7 +155,7 @@ function App() {
           }
         />
          <Route
-          path="/loans/repayments"
+          path="/bulk-payment/repayments"
           element={
             <PrivateRoute>
               <LoanRepaymentSchedule />
@@ -152,7 +163,7 @@ function App() {
           }
         />
            <Route
-          path="/loans/offer-letter"
+          path="/bulk-payment/offer-letter"
           element={
             <PrivateRoute>
               <LoanOfferLetter />

@@ -58,7 +58,7 @@ import InventorySuppliers from "./pages/InventorySystem/Supplier/Index";
 import InventoryOrder from "./pages/InventorySystem/Order/Index";
 import InventoryManageStore from "./pages/InventorySystem/ManageStore/Index";
 import BulkPayment from "./pages/BulkPayment";
-import BulkPaymentBeneficiaryList from "./pages/BulkPayment/index2";
+import BulkPaymentBeneficiaryList from "./pages/BulkPayment/beneficiaryList";
 
 
 function App() {

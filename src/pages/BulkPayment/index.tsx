@@ -5,10 +5,8 @@ import { Button } from '../../components/reusables/DefaultButton'
 import exportToExcel from '../../Utils/ExportExcel';
 import { BsArrowUpRight } from 'react-icons/bs'
 import SearchInput from '../../components/reusables/SearchInput/SearchInput';
-import LoanRequest from './LoanRequest';
 import { headers, TableData } from './Mocks';
 import { fetchLoanproduct, fetchLoanRequests } from '../../containers/loanApis';
-import LoanRequest2 from "./LoanRequest2";
 
 
 interface DocumentData {
@@ -56,14 +54,23 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({ documents, onViewM
 
 
 const BulkPayment = () => {
-  const [terminalData, setTerminalData] = useState([])
-  const [content, setcontent] = useState<any>([]);
   const [contents, setContents] = useState<any>(TableData)
   const [isLoading, setisLoading] = useState(false);
   const [merchantId, setMerchantId] = useState<any>(0);
   const [seach, setSearch] = useState<any>('');
-  const [stage, setStage] = useState(0);
-  const [showRequestLoan, setShowRequestLoan] = useState<any>(false);
+  const [showBulkPaymentList, setShowBulkPaymentList] = useState<any>(false);
+  const [documents, setDocuments] = useState<DocumentData[]>([]);
+  const [selectedDocument, setSelectedDocument] = useState<DocumentData | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [pages, setpages] = useState<any>({
+    number: 0,
+    pageSize: 10,
+    totalPages: 0,
+    numberElements: 0,
+    totalElements: 0,
+  });
+
+  const { number, pageSize, totalPages, numberElements, totalElements } = pages;
 
   const [state, setState] = useState<any>({
     search: "",
@@ -75,16 +82,11 @@ const BulkPayment = () => {
   })
   const { search, role, status, isExport }: any = state;
 
-  const [pageDetails, setpageDetails] = useState({})
-  // const [terminalModal, setTerminalModal] = useState(true);
+
   const handleExport = () => {
     exportToExcel(contents, "List of Loan Applications");
   };
 
-  // async function toggleTerminalRequestModal() {
-  //   await setTerminalModal(!terminalModal);
-  //   setStage(0);
-  // }
   function handleChange(e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | any) {
     setSearch(e.target.value)
     setState({
@@ -93,18 +95,6 @@ const BulkPayment = () => {
       submittingError: false
     });
   }
-  const [pages, setpages] = useState<any>({
-    number: 0,
-    pageSize: 10,
-    totalPages: 0,
-    numberElements: 0,
-    totalElements: 0,
-  });
-
-
-
-  const [documents, setDocuments] = useState<DocumentData[]>([]);
-  const [selectedDocument, setSelectedDocument] = useState<DocumentData | null>(null);
   const handleFileUpload = (eventOrFile: File | React.ChangeEvent<HTMLInputElement>) => {
     let file: File | null = null;
 
@@ -147,44 +137,43 @@ const BulkPayment = () => {
 
 
 
-  const { number, pageSize, totalPages, numberElements, totalElements } = pages;
-  async function loanList() {
-    const getMerchantDetails: any = localStorage.getItem('merchantDetails');
-    const parseMervhantDetails = JSON.parse(getMerchantDetails);
-    const merchantId = parseMervhantDetails?.id;
-    setisLoading(true);
+  // async function loanList() {
+  //   const getMerchantDetails: any = localStorage.getItem('merchantDetails');
+  //   const parseMervhantDetails = JSON.parse(getMerchantDetails);
+  //   const merchantId = parseMervhantDetails?.id;
+  //   setisLoading(true);
 
-    try {
-      const res: any = await fetchLoanRequests(number, pageSize, search, merchantId).then((res: any) => {
-        setContents(res);
-        setpages({
-          // ...pages,
-          number: res.pageDetails.PageNumber,
-          pageSize: res.pageDetails.PageSize,
-          totalPages: res.pageDetails.PageTotalElements,
-          numberElements: res.pageDetails.PageNumberElements,
-          totalElements: res.pageDetails.PageTotalPages
-        })
-      });
+  //   try {
+  //     const res: any = await fetchLoanRequests(number, pageSize, search, merchantId).then((res: any) => {
+  //       setContents(res);
+  //       setpages({
+       
+  //         number: res.pageDetails.PageNumber,
+  //         pageSize: res.pageDetails.PageSize,
+  //         totalPages: res.pageDetails.PageTotalElements,
+  //         numberElements: res.pageDetails.PageNumberElements,
+  //         totalElements: res.pageDetails.PageTotalPages
+  //       })
+  //     });
 
-      const filterThrough = contents?.find((elem: any) => elem?.loanStatus === "OFFER_READY")
-      if (filterThrough) {
-        setShowRequestLoan(false);
-      } else setShowRequestLoan(true);
-    } catch (error: any) {
-      console.error(error)
-    } finally {
-      setisLoading(false);
-    }
-  }
+  //     const filterThrough = contents?.find((elem: any) => elem?.loanStatus === "OFFER_READY")
+  //     if (filterThrough) {
+  //       setShowBulkPaymentList(false);
+  //     } else setShowBulkPaymentList(true);
+  //   } catch (error: any) {
+  //     console.error(error)
+  //   } finally {
+  //     setisLoading(false);
+  //   }
+  // }
 
 
   useEffect(() => {
-    loanList()
+    // loanList()
   }, [number, pageSize, search])
 
 
-  const [isDragging, setIsDragging] = useState(false);
+
 
   const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
@@ -200,7 +189,7 @@ const BulkPayment = () => {
     setIsDragging(false);
 
     const file = event.dataTransfer.files[0];
-    if (file) handleFileUpload(file); // Pass the file directly
+    if (file) handleFileUpload(file); 
   };
 
 
@@ -251,7 +240,7 @@ const BulkPayment = () => {
     Bulk Payment
       </p>
 
-      {(showRequestLoan === true || contents?.length === 0) && (
+      {(showBulkPaymentList === true || contents?.length === 0) && (
         <div
           className={`w-full max-w-sm p-4 border-dashed border-2 rounded-lg ${isDragging ? "border-blue-500 bg-blue-50" : "border-gray-300"
             }`}
@@ -270,7 +259,7 @@ const BulkPayment = () => {
             <input
               type="file"
               accept=".xlsx, .xls, .csv"
-              onChange={(event) => handleFileUpload(event)} // Pass the event directly
+              onChange={(event) => handleFileUpload(event)}
               className="hidden"
             />
 

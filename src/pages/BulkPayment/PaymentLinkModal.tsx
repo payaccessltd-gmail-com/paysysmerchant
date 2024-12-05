@@ -5,7 +5,7 @@ import { Button } from '../../components/reusables/DefaultButton'
 import DefaultInput from '../../components/reusables/DefaultInput'
 import Overlay from '../../components/reusables/Overlay/Overlay'
 import { apiCall } from '../../Utils/URLs/axios.index'
-import PaymentLinkModal2 from './PaymentLinkModal2';
+//import PaymentLinkModal2 from './PaymentLinkModal2';
 
 
 interface DocumentData2 {
@@ -76,17 +76,17 @@ const PaymentLinkModal: React.FC<{
         endDate: null,
       });
     const { name, amount, description, branchId, expiryDate, startDate, endDate, isSubmitting } = state;
-    const [paymentLinkModal2, setPaymentLinkModal2] = useState(true)
+  //  const [paymentLinkModal2, setPaymentLinkModal2] = useState(true)
 
   
   
-    async function togglepaymentLinkModal2() {
-      await setPaymentLinkModal2(!paymentLinkModal2)
-    }
+//     async function togglepaymentLinkModal2() {
+//       await setPaymentLinkModal2(!paymentLinkModal2)
+//     }
     
-  const togglePaymentLinkModal2 = () => {
-    setPaymentLinkModal2(!paymentLinkModal2);
-  };
+//     const togglePaymentLinkModal2 = () => {
+//     setPaymentLinkModal2(!paymentLinkModal2);
+//   };
   
   const handleAddDocument2 = (newDocument: DocumentData2) => {
     let file: File | null = null;
@@ -165,31 +165,7 @@ const PaymentLinkModal: React.FC<{
                 ...state,
                 isSubmitting: true
             }));
-            // console.log("Form Data Submitted:", {
-            //     name: state?.name,
-            //     merchantId: userId,
-            //     amount: state?.amount,
-            //     description: state?.description,
-            //     branchId: state?.branchId,
-            //     expiryDate: state?.expiryDate,
-            //     linkType: state?.linkType,
-            //     invoiceId: state?.invoiceId,
-            // });
-        
-            // const newDocument: DocumentData = {
-            //     name: state.name || "Untitled",
-            //     date: new Date().toLocaleString(),
-            //   };
-            // let formData = new FormData();
-            // state && formData.append("name", state?.name || "");
-            // state && formData.append("merchantId", userId || "");
-            // state && formData.append('amount', state?.amount || "");
-            // state && formData.append('description', state?.description || "");
-            // state && formData.append('branchId', state?.branchId || "");
-            // state && formData.append('expiryDate', state?.expiryDate || "");
-            // state && formData.append('linkType', state?.linkType || "");
-            // state && formData.append('invoiceId', state?.invoiceId || "");
-            // onAddDocument(formData);
+          
             const newDocument = {
                 ...formData,
                 date: new Date().toLocaleString(),
@@ -300,10 +276,10 @@ const PaymentLinkModal: React.FC<{
                 </div> */}
             </div>
 
-            
+{/*             
 <PaymentLinkModal2  isOpen={paymentLinkModal2}
 toggleDropdown={togglePaymentLinkModal2}
-onAddDocument={handleAddDocument2}  />
+onAddDocument={handleAddDocument2}  /> */}
 
 
         </Overlay>

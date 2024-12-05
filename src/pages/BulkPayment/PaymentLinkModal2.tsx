@@ -30,7 +30,7 @@ const PaymentLinkModal2: React.FC<{
     const [formData, setFormData] = useState({
         fullName: '',
         bankName: '',
-        accNo: '',
+        accNumber: '',
         amount: '',
         startDate: null,
         endDate: null,
@@ -97,7 +97,7 @@ const PaymentLinkModal2: React.FC<{
                 </div>
         <DefaultInput label="Full Name" name="fullName" value={formData.fullName} handleChange={handleChange} />
         <DefaultInput label="Bank Name" name="bankName" value={formData.bankName} handleChange={handleChange} />
-        <DefaultInput label="Account No" name="accNo" value={formData.accNo} handleChange={handleChange} />
+        <DefaultInput label="Account No" name="accNumber" value={formData.accNumber} handleChange={handleChange} />
         <DefaultInput label="Amount" name="amount" value={formData.amount} handleChange={handleChange} />
         <Button title='Add Beneficiary' onClick={handleSubmit} />
             </div>

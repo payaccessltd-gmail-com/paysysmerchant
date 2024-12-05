@@ -168,9 +168,9 @@ const BulkPayment = () => {
   // }
 
 
-  useEffect(() => {
-    // loanList()
-  }, [number, pageSize, search])
+  // useEffect(() => {
+  //    loanList()
+  // }, [number, pageSize, search])
 
 
 
@@ -290,7 +290,6 @@ const BulkPayment = () => {
     </div>
 
     <DocumentTable documents={documents} onViewMore={handleViewMore} />
-   
   </DashboardLayout>
   );
 };

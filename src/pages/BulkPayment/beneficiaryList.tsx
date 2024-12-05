@@ -5,31 +5,34 @@ import { Button } from '../../components/reusables/DefaultButton'
 import exportToExcel from '../../Utils/ExportExcel';
 import { BsArrowUpRight } from 'react-icons/bs'
 import SearchInput from '../../components/reusables/SearchInput/SearchInput';
-import LoanRequest from './LoanRequest';
 import { headers, TableData } from './Mocks';
 import { fetchLoanproduct, fetchLoanRequests } from '../../containers/loanApis';
-import LoanRequest2 from "./LoanRequest2";
 import PaymentLinkModal from "./PaymentLinkModal";
 import PaymentLinkModal2 from "./PaymentLinkModal2";
 
 
-interface Beneficiary {
-    name: string;
-    alias: string;
-    accountNumber: string;
-    amount: number;
-  }
 interface DocumentData {
   name: string;
   alias: string;
   date: string;
- // content: any[];
 }
 
 
+interface DocumentData2 {
+  fullName: string;
+  accName: string;
+  accountNumber: string;
+  amount: number;
+}
 
 interface DocumentTableProps {
   documents: DocumentData[];
+  onViewMore: (document: DocumentData) => void;
+}
+
+  
+interface DocumentTable2Props {
+  documents2: DocumentData2[];
   onViewMore: (document: DocumentData) => void;
 }
 
@@ -54,7 +57,6 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({ documents, onViewM
                 <td className="border-x-1 px-4 py-1 text-center">{document.date}</td>
                 <td className=" px-4 py-1 flex items-center justify-center">
                   <Button title='  View More' onClick={() => onViewMore(document)} className='text-[12px] !w-auto bg-white border border-[1px] border-[#00ADEF] rounded-[8px] !px-4 !text-[#00adef] ' />
-  
                 </td>
               </tr>
             ))}
@@ -65,27 +67,6 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({ documents, onViewM
   };
 
 
-  
-interface Beneficiary {
-    fullName: string;
-    accName: string;
-    accountNumber: string;
-    amount: number;
-  }
-interface DocumentData2 {
-    fullName: string;
-    accName: string;
-    accountNumber: string;
-    amount: number;
- // content: any[];
-}
-
-
-
-interface DocumentTable2Props {
-  documents2: DocumentData2[];
-  onViewMore: (document: DocumentData) => void;
-}
 
 
 export const DocumentTable2: React.FC<DocumentTable2Props> = ({ documents2, onViewMore }) => {
@@ -120,17 +101,14 @@ export const DocumentTable2: React.FC<DocumentTable2Props> = ({ documents2, onVi
 
 
 const BulkPayment = () => {
-  const [terminalData, setTerminalData] = useState([])
-  const [content, setcontent] = useState<any>([]);
+
   const [contents, setContents] = useState<any>(TableData)
   const [isLoading, setisLoading] = useState(false);
-  const [merchantId, setMerchantId] = useState<any>(0);
   const [seach, setSearch] = useState<any>('');
-  const [stage, setStage] = useState(0);
   const [showRequestLoan, setShowRequestLoan] = useState<any>(false);
   const [paymentLinkModal, setPaymentLinkModal] = useState(false)
   const [paymentLinkModal2, setPaymentLinkModal2] = useState(false)
-
+  const [pageDetails, setpageDetails] = useState({})
   
   async function togglepaymentLinkModal() {
     await setPaymentLinkModal(!paymentLinkModal)
@@ -150,16 +128,11 @@ const BulkPayment = () => {
   })
   const { search, role, status, isExport }: any = state;
 
-  const [pageDetails, setpageDetails] = useState({})
-  // const [terminalModal, setTerminalModal] = useState(true);
+
   const handleExport = () => {
     exportToExcel(contents, "List of Loan Applications");
   };
 
-  // async function toggleTerminalRequestModal() {
-  //   await setTerminalModal(!terminalModal);
-  //   setStage(0);
-  // }
   function handleChange(e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement> | any) {
     setSearch(e.target.value)
     setState({
@@ -181,7 +154,7 @@ const BulkPayment = () => {
   const [documents, setDocuments] = useState<DocumentData[]>([]);
   const [documents2, setDocuments2] = useState<DocumentData2[]>([]);
   const [selectedDocument, setSelectedDocument] = useState<DocumentData | null>(null);
-
+  const { number, pageSize, totalPages, numberElements, totalElements } = pages;
   
 
 
@@ -219,10 +192,6 @@ const BulkPayment = () => {
         accName:  "Untitled Document",
         accountNumber:  "Untitled Document",
         amount:  400,
-
-        // alias: file?.name || "Untitled Document",
-        // date: new Date().toLocaleString(),
-      //  content: jsonData,
       };
  
       setDocuments2((prevDocs) => [...prevDocs, newDocument]);
@@ -256,7 +225,7 @@ const BulkPayment = () => {
         name: file?.name || "Untitled Document",
         alias: file?.name || "Untitled Document",
         date: new Date().toLocaleString(),
-      //  content: jsonData,
+    
       };
     
       setDocuments((prevDocs) => [...prevDocs, newDocument]);
@@ -266,7 +235,6 @@ const BulkPayment = () => {
 
 
   const handleViewMore = (document: DocumentData) => {
-    // {(doc: any) => console.log(doc)}
     setSelectedDocument(document);
    
     
@@ -275,45 +243,6 @@ const BulkPayment = () => {
   const handleCloseModal = () => {
     setSelectedDocument(null);
   };
-
-
-
-
-  const { number, pageSize, totalPages, numberElements, totalElements } = pages;
-  async function loanList() {
-    const getMerchantDetails: any = localStorage.getItem('merchantDetails');
-    const parseMervhantDetails = JSON.parse(getMerchantDetails);
-    const merchantId = parseMervhantDetails?.id;
-    setisLoading(true);
-
-    try {
-      const res: any = await fetchLoanRequests(number, pageSize, search, merchantId).then((res: any) => {
-        setContents(res);
-        setpages({
-          // ...pages,
-          number: res.pageDetails.PageNumber,
-          pageSize: res.pageDetails.PageSize,
-          totalPages: res.pageDetails.PageTotalElements,
-          numberElements: res.pageDetails.PageNumberElements,
-          totalElements: res.pageDetails.PageTotalPages
-        })
-      });
-
-      const filterThrough = contents?.find((elem: any) => elem?.loanStatus === "OFFER_READY")
-      if (filterThrough) {
-        setShowRequestLoan(false);
-      } else setShowRequestLoan(true);
-    } catch (error: any) {
-      console.error(error)
-    } finally {
-      setisLoading(false);
-    }
-  }
-
-
-  useEffect(() => {
-    loanList()
-  }, [number, pageSize, search])
 
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
@@ -383,32 +312,6 @@ const BulkPayment = () => {
 
            
             <DocumentTable2 documents2={documents2}  onViewMore={handleViewMore}  />
-          
-          
-            {/* <div className="overflow-x-auto">
-              <table className="min-w-full bg-white border">
-                <thead>
-                  <tr>
-                    {Object.keys(selectedDocument.content[0] || {}).map((col) => (
-                      <th key={col} className="border px-4 py-2 bg-gray-100">
-                        {col}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {selectedDocument.content.map((row, index) => (
-                    <tr key={index} className="border-t">
-                      {Object.keys(row).map((col) => (
-                        <td key={col} className="border px-4 py-2">
-                          {row[col]}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div> */}
           </div>
         </div>
       )}
@@ -433,7 +336,7 @@ const BulkPayment = () => {
 
 
    
-    {/* {selectedDocument && ( */}
+   
 
 <PaymentLinkModal  isOpen={paymentLinkModal}
 toggleDropdown={togglePaymentLinkModal}
@@ -444,7 +347,7 @@ onAddDocument={handleAddDocument}  />
 toggleDropdown={togglePaymentLinkModal2}
 onAddDocument={handleAddDocument2}  />
 
-  {/* )} */}
+ 
 
   
   </DashboardLayout>

@@ -1,16 +1,11 @@
 import React, { useState } from 'react'
-import { IoIosArrowForward } from 'react-icons/io'
-import { useNavigate } from 'react-router-dom'
 import { Storage } from "../../Utils/Stores/inAppStorage";
 import { Image } from '../../assets'
 import { Button } from '../../components/reusables/DefaultButton'
 import DefaultInput from '../../components/reusables/DefaultInput'
-import DefaultTextArea from '../../components/reusables/DefaultTextArea'
 import Overlay from '../../components/reusables/Overlay/Overlay'
 import { apiCall } from '../../Utils/URLs/axios.index'
-import DateInput from '../../components/reusables/DateInput/DateInput';
 import PaymentLinkModal2 from './PaymentLinkModal2';
-
 
 
 interface DocumentData2 {
@@ -18,14 +13,11 @@ interface DocumentData2 {
     accName: string;
     accountNumber: string;
     amount: number;
- // content: any[];
 }
-
 
 
 interface DocumentTable2Props {
   documents: DocumentData2[];
- // onViewMore: (document: DocumentData) => void;
 }
 
 

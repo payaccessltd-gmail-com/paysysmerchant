@@ -17,7 +17,6 @@ interface DocumentData {
   date: string;
 }
 
-
 interface DocumentData2 {
   fullName: string;
   accName: string;
@@ -66,9 +65,6 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({ documents, onViewM
     );
   };
 
-
-
-
 export const DocumentTable2: React.FC<DocumentTable2Props> = ({ documents2, onViewMore }) => {
   return (
     <div className="overflow-x-auto w-full">
@@ -97,27 +93,13 @@ export const DocumentTable2: React.FC<DocumentTable2Props> = ({ documents2, onVi
 };
 
 
-
-
-
 const BulkPayment = () => {
-
   const [contents, setContents] = useState<any>(TableData)
   const [isLoading, setisLoading] = useState(false);
   const [seach, setSearch] = useState<any>('');
   const [showRequestLoan, setShowRequestLoan] = useState<any>(false);
   const [paymentLinkModal, setPaymentLinkModal] = useState(false)
   const [paymentLinkModal2, setPaymentLinkModal2] = useState(false)
-  const [pageDetails, setpageDetails] = useState({})
-  
-  async function togglepaymentLinkModal() {
-    await setPaymentLinkModal(!paymentLinkModal)
-  }
-
-  async function togglepaymentLinkModal2() {
-    await setPaymentLinkModal2(!paymentLinkModal2)
-  }
-
   const [state, setState] = useState<any>({
     search: "",
     role: "",
@@ -126,7 +108,27 @@ const BulkPayment = () => {
     isExport: false,
     errorMssg: ''
   })
+  
+  const [documents, setDocuments] = useState<DocumentData[]>([]);
+  const [documents2, setDocuments2] = useState<DocumentData2[]>([]);
+  const [selectedDocument, setSelectedDocument] = useState<DocumentData | null>(null);
+  
+  const [pages, setpages] = useState<any>({
+    number: 0,
+    pageSize: 10,
+    totalPages: 0,
+    numberElements: 0,
+    totalElements: 0,
+  });
+  const { number, pageSize, totalPages, numberElements, totalElements } = pages;
   const { search, role, status, isExport }: any = state;
+  async function togglepaymentLinkModal() {
+    await setPaymentLinkModal(!paymentLinkModal)
+  }
+
+  async function togglepaymentLinkModal2() {
+    await setPaymentLinkModal2(!paymentLinkModal2)
+  }
 
 
   const handleExport = () => {
@@ -141,22 +143,6 @@ const BulkPayment = () => {
       submittingError: false
     });
   }
-  const [pages, setpages] = useState<any>({
-    number: 0,
-    pageSize: 10,
-    totalPages: 0,
-    numberElements: 0,
-    totalElements: 0,
-  });
-
-
-
-  const [documents, setDocuments] = useState<DocumentData[]>([]);
-  const [documents2, setDocuments2] = useState<DocumentData2[]>([]);
-  const [selectedDocument, setSelectedDocument] = useState<DocumentData | null>(null);
-  const { number, pageSize, totalPages, numberElements, totalElements } = pages;
-  
-
 
   const togglePaymentLinkModal = () => {
     setPaymentLinkModal(!paymentLinkModal);
@@ -174,11 +160,7 @@ const BulkPayment = () => {
   
   const handleAddDocument2 = (newDocument: DocumentData2) => {
      let file: File | null = null;
-
-  
-
     if (!file) return;
-
     const reader = new FileReader();
     reader.onload = (e) => {
       const ab = e.target?.result;
@@ -186,14 +168,12 @@ const BulkPayment = () => {
       const sheetName = workbook.SheetNames[0];
       const worksheet = workbook.Sheets[sheetName];
       const jsonData = XLSX.utils.sheet_to_json(worksheet);
-
       const newDocument: DocumentData2 = {
         fullName:  "Untitled Document",
         accName:  "Untitled Document",
         accountNumber:  "Untitled Document",
         amount:  400,
       };
- 
       setDocuments2((prevDocs) => [...prevDocs, newDocument]);
     };
     reader.readAsBinaryString(file);

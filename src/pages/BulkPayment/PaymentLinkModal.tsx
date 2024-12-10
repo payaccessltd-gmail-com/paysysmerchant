@@ -62,9 +62,7 @@ const PaymentLinkModal: React.FC<{
         amount: '',
         description: '',
         branchId: '',
-        expiryDate: '',
-        startDate: null,
-        endDate: null,
+      
         isSubmitting: false,
         errorMssg: '',
     })
@@ -72,8 +70,7 @@ const PaymentLinkModal: React.FC<{
     const [formData, setFormData] = useState({
         name: '',
         alias: '',
-        startDate: null,
-        endDate: null,
+       
       });
     const { name, amount, description, branchId, expiryDate, startDate, endDate, isSubmitting } = state;
   //  const [paymentLinkModal2, setPaymentLinkModal2] = useState(true)
@@ -149,6 +146,7 @@ const PaymentLinkModal: React.FC<{
         });
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
+        console.log("okll", formData)
     }
     // const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
     //     setState({
@@ -167,74 +165,75 @@ const PaymentLinkModal: React.FC<{
             }));
           
            
-
+           
               
                 let formData = new FormData();
-                state && formData.append("fileAddress", userId || "");
-                state && formData.append('alias', state?.amount || "")
+                state && formData.append("name", state.name);
+              
                 const newDocument = {
                     ...formData,
+                    // id: 1,
+                    name: state.name,
+                    alias:state.alias,
                     date: new Date().toLocaleString(),
                   };
+                  console.log( state.name,"kdd")
+               
                   onAddDocument(newDocument);
-                // try {
-                //     const response = await apiCall({
-                //         name: "uploadBulkPaySchedule",
-                //         data: formData,
-                //         action: (): any => {
-                //             setState({
-                //                 ...state,
-                //                 isSubmitting: false,
-                //                 submittingError: false,
-                //                 errorMssg: ""
-                //             });
+                try {
+                    const response = await apiCall({
+                        name: "CreateBeneficiary",
+                        data: formData,
+                        action: (): any => {
+                            setState({
+                                ...state,
+                                isSubmitting: false,
+                                submittingError: false,
+                                errorMssg: ""
+                            });
                           
                            
-                //             setTimeout(() => {
-                //                 showModalFunc()
-        
-                //             }, 3000);
-                //             window.location.reload();
+                        
                           
-                //             return []
-        
-                //         },
-                //         successDetails: {
-                //             title: "Documents Submitted",
-                //             text: `Your Business Registration documents have been submitted for review`,
-                //             icon: ""
-                //         },
-                //         errorAction: (err?: any) => {
-                //             if (err && err?.response?.data) {
-                //                 setState({
-                //                     ...state,
-                //                     submittingError: true,
-                //                     isSubmitting: false,
-                //                     errorMssg: err?.response?.data?.errorMssg || err?.response?.errorMssg || err?.response?.data?.respDescription || err?.response?.respDescription || "Action failed, please try again"
-                //                 })
-                //                 return ["skip"]
-                //             } else {
-                //                 setState({
-                //                     ...state,
-                //                     submittingError: true,
-                //                     isSubmitting: false,
-                //                     errorMssg: "Action failed, please try again"
-                //                 })
-                //             }
-                //         }
-                //     })
-                //         .then(async (res: any) => {
-                //             setState({
-                //                 submittingError: false,
-                //                 isSubmitting: false,
-                //                 errorMssg: ""
-                //             })
-                //         })
+                       
+                        },
+                        successDetails: {
+                            title: "Documents Submitted",
+                            text: `Your Business Registration documents have been submitted for review`,
+                            icon: ""
+                        },
+                        errorAction: (err?: any) => {
+                            if (err && err?.response?.data) {
+                                setState({
+                                    ...state,
+                                    submittingError: true,
+                                    isSubmitting: false,
+                                    errorMssg: err?.response?.data?.errorMssg || err?.response?.errorMssg || err?.response?.data?.respDescription || err?.response?.respDescription || "Action failed, please try again"
+                                })
+                                return ["skip"]
+                            } else {
+                                setState({
+                                    ...state,
+                                    submittingError: true,
+                                    isSubmitting: false,
+                                    errorMssg: "Action failed, please try again"
+                                })
+                            }
+                        }
+                    })
+                        .then(async (res: any) => {
+                            setState({
+                                submittingError: false,
+                                isSubmitting: false,
+                                errorMssg: ""
+                            })
+                        })
                      
-                // } catch (e) {
-                //     console.error(e + " 'Caught Error.'");
-                // };
-        }; 
+                } catch (e) {
+                    console.error(e + " 'Caught Error.'");
+                };
+      
+            }; 
         
     //}
 
@@ -258,39 +257,11 @@ const PaymentLinkModal: React.FC<{
 
         <DefaultInput label="Name" name="name" value={formData.name} handleChange={handleChange} />
         <DefaultInput label="Alias" name="alias" value={formData.alias} handleChange={handleChange} />
-        {/* <DateInput
-          label="Select Date"
-            name="date"
-          startDate={formData.startDate}
-          endDate={formData.endDate}
-          onChange={handleChange}
-        /> */}
+       
         <Button title='Add Beneficiary List' onClick={handleSubmit} />
 
-                {/* <DefaultInput label='name' placeHolder='name' value={name} name='name' handleChange={handleChange} />
-                <DefaultInput label='alais' placeHolder='name' value={name} name='name' handleChange={handleChange} />
-             
-                <DateInput
-            label="Select Date"
-            name="date"
-            startname="startDate"
-            endname="endDate"
-            onChange={handleChange}
-            startDate={startDate}
-            endDate={endDate}
-          />
-     
-
-               
-                <div className="m-auto w-full">
-                    <Button title='Add Beneficiary' onClick={handleSubmit} />
-                </div> */}
+              
             </div>
-
-{/*             
-<PaymentLinkModal2  isOpen={paymentLinkModal2}
-toggleDropdown={togglePaymentLinkModal2}
-onAddDocument={handleAddDocument2}  /> */}
 
 
         </Overlay>

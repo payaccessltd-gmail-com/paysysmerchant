@@ -140,5 +140,23 @@ const fetchImpactLoanEligibility = async (): Promise<any> => {
     return response;
 }
 
+const deleteBulkUploadItemId = async (id:any): Promise<any> => {
+    const response = await apiCall({
+        name: "deleteBulkUploadItemId",
+        action: (): any => (["skip"]),
+        errorAction: (): any => (["skip"]),
+        urlExtra:`/${id}`
+    })
+    return response;
+}
 
-export {earlyRepayment,rejectLoanOffer,rejectLoans,getLoanProperty,fetchLoanBalance, repayAllLoans, fetchRepaymentList,acceptLoan,repayLoan, fetchLoanRequests, loanRequest,fetchLoanproduct,fetchImpactLoanEligibility}
+const deleteBeneficiaryId = async (id:any): Promise<any> => {
+    const response = await apiCall({
+        name: "deleteBeneficiaryId",
+        action: (): any => (["skip"]),
+        errorAction: (): any => (["skip"]),
+        urlExtra:`/${id}`
+    })
+    return response;
+}
+export {earlyRepayment,rejectLoanOffer,deleteBulkUploadItemId,deleteBeneficiaryId,rejectLoans,getLoanProperty,fetchLoanBalance, repayAllLoans, fetchRepaymentList,acceptLoan,repayLoan, fetchLoanRequests, loanRequest,fetchLoanproduct,fetchImpactLoanEligibility}

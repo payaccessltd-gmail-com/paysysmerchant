@@ -9,9 +9,11 @@ import { headers, TableData } from './Mocks';
 import { fetchLoanproduct, fetchLoanRequests } from '../../containers/loanApis';
 import PaymentLinkModal from "./PaymentLinkModal";
 import PaymentLinkModal2 from "./PaymentLinkModal2";
+import {deleteBeneficiaryId} from '../../containers/loanApis';
 
 
 interface DocumentData {
+  id: any; 
   name: string;
   alias: string;
   date: string;
@@ -27,16 +29,18 @@ interface DocumentData2 {
 interface DocumentTableProps {
   documents: DocumentData[];
   onViewMore: (document: DocumentData) => void;
+  onDelete: (id: number) => void;
 }
 
   
 interface DocumentTable2Props {
   documents2: DocumentData2[];
   onViewMore: (document: DocumentData) => void;
+
 }
 
 
-export const DocumentTable: React.FC<DocumentTableProps> = ({ documents, onViewMore }) => {
+export const DocumentTable: React.FC<DocumentTableProps> = ({ documents, onViewMore ,  onDelete}) => {
     return (
       <div className="overflow-x-auto w-full">
         <table className="min-w-full bg-white border">
@@ -56,7 +60,7 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({ documents, onViewM
                 <td className="border-x-1 px-4 py-1 text-center">{document.date}</td>
                 <td className=" px-4 py-1 flex items-center justify-center">
                   <Button title='  View More' onClick={() => onViewMore(document)} className='text-[12px] !w-auto bg-white border border-[1px] border-[#00ADEF] rounded-[8px] !px-4 !text-[#00adef] ' />
-                  <Button title='Delete' onClick={() => {}} className='text-[12px] !w-auto bg-white ml-2 !px-4 !text-[#FF0000] ' />
+                  <Button title='Delete'  onClick={() => onDelete(index)} className='text-[12px] !w-auto bg-white ml-2 !px-4 !text-[#FF0000] ' />
                
                 </td>
               </tr>
@@ -159,12 +163,36 @@ const BulkPayment = () => {
       }
   
       const data = await response.json();
-      return data.secure_url; // Return the uploaded file URL
+      return data.secure_url; 
     } catch (error) {
       console.error("Error uploading file to Cloudinary:", error);
       throw error;
     }
   };
+
+  
+const handleDelete = async (id: number) => {
+  console.log("uu",id, documents)
+  try {
+    const response = await deleteBeneficiaryId(id);
+    if (response) {
+      console.log("00",id, documents)
+
+      setDocuments((prevDocs) =>
+        
+        prevDocs.filter((doc) =>  2 != id)
+      
+      );
+      console.log(`Document with id ${id} deleted successfully.`, response, documents);
+    } else {
+      console.error(`Unexpected response from delete API:`, response);
+    }
+  } catch (err: any) {
+    const errorMessage = err?.response?.data?.respDescription || err.message || "Unknown error occurred";
+    console.error(`Failed to delete document with id ${id}:`, errorMessage);
+  }
+};
+
   const handleFileUpload = async (eventOrFile: File | React.ChangeEvent<HTMLInputElement>) => {
     let file: File | null = null;
   
@@ -191,10 +219,12 @@ const BulkPayment = () => {
       try {
       
         const uploadedUrl = await handleFileUploadToCloudinary(file as File); 
-
+console.log(documents,"k")
+        const Id = documents.length > 0 ? Math.max(...documents.map((doc) => doc.id)) + 1 : 1;
         const newDocument: DocumentData = {
+          id: Id,
           name: file!.name || "Untitled Document",
-          alias: file!.name || "Untitled Document",
+          alias:  "Untitled Document",
           date: new Date().toLocaleString(),
         };
   
@@ -243,7 +273,7 @@ const BulkPayment = () => {
           onClick={togglePaymentLinkModal}
         />
       </div>
-      <DocumentTable documents={documents} onViewMore={handleViewMore} />
+      <DocumentTable documents={documents} onViewMore={handleViewMore}  onDelete={handleDelete}/>
 
       <div className="flex flex-col items-center p-4">
         {selectedDocument && (
@@ -265,7 +295,7 @@ const BulkPayment = () => {
                 </button>
                 </div>
               </div>
-              <DocumentTable2 documents2={documents2} onViewMore={handleViewMore} />
+              <DocumentTable2 documents2={documents2} onViewMore={handleViewMore}  />
               <div className="flex items-center justify-end mt-4">
               <Button
                   title="Save List"

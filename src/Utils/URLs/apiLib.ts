@@ -708,7 +708,7 @@ export const endPoints: endPointlistTypes | any = {
         auth: true
     },
 
-    
+
 
     //Bulk Payment
     
@@ -719,13 +719,13 @@ export const endPoints: endPointlistTypes | any = {
         auth: true
     },
     deleteBulkUploadItemId: {
-        url: '/api/v1/bulkpay/deleteBulkUploadItem/1',
+        url: '/api/v1/bulkpay/deleteBulkUploadItem',
         method: 'POST',
         headers: headers,
         auth: true
     },
     deleteBeneficiaryId: {
-        url: '/api/v1/bulkpay/deleteBeneficiary/1',
+        url: '/api/v1/bulkpay/deleteBeneficiary',
         method: 'POST',
         headers: headers,
         auth: true
@@ -750,13 +750,13 @@ export const endPoints: endPointlistTypes | any = {
     },
     getAllbeneficiaryList: {
         url: '/api/v1/bulkpay/getAllbeneficiaryList',
-        method: 'POST',
+        method: 'GET',
         headers: headers,
         auth: true
     },
     getAllbeneficiaryItemId: {
         url: '/api/v1/bulkpay/getAllbeneficiaryItem/1',
-        method: 'POST',
+        method: 'GET',
         headers: headers,
         auth: true
     },

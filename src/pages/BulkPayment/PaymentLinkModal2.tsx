@@ -80,11 +80,86 @@ const PaymentLinkModal2: React.FC<{
                 ...state,
                 isSubmitting: true
             }));
-            const newDocument = {
-                ...formData,
-                date: new Date().toLocaleString(),
-              };
-              onAddDocument(newDocument);
+           
+      
+
+              let formData = new FormData();
+              state && formData.append("name", state.name);
+            
+              const newDocument = {
+                  ...formData,
+                  // id: 1,
+                  name: state.name,
+                  alias:state.alias,
+
+                  beneficiaryName: "string",
+                  merchantId: "string",
+                  charge: 0,
+                  bankName: "string",
+                  accountNo: "string",
+                  beneficiaryId: 0,
+                  bank: "string",
+                  amount: 0,
+                  merchantName: "string",
+
+                  date: new Date().toLocaleString(),
+                };
+                console.log( state.name,"kdd")
+             
+                onAddDocument(newDocument);
+
+              try {
+                const response = await apiCall({
+                    name: "CreateBeneficiaryItem",
+                    data: formData,
+                    action: (): any => {
+                        setState({
+                            ...state,
+                            isSubmitting: false,
+                            submittingError: false,
+                            errorMssg: ""
+                        });
+                      
+                       
+                    
+                      
+                   
+                    },
+                    successDetails: {
+                        title: "Documents Submitted",
+                        text: `Your Business Registration documents have been submitted for review`,
+                        icon: ""
+                    },
+                    errorAction: (err?: any) => {
+                        if (err && err?.response?.data) {
+                            setState({
+                                ...state,
+                                submittingError: true,
+                                isSubmitting: false,
+                                errorMssg: err?.response?.data?.errorMssg || err?.response?.errorMssg || err?.response?.data?.respDescription || err?.response?.respDescription || "Action failed, please try again"
+                            })
+                            return ["skip"]
+                        } else {
+                            setState({
+                                ...state,
+                                submittingError: true,
+                                isSubmitting: false,
+                                errorMssg: "Action failed, please try again"
+                            })
+                        }
+                    }
+                })
+                    .then(async (res: any) => {
+                        setState({
+                            submittingError: false,
+                            isSubmitting: false,
+                            errorMssg: ""
+                        })
+                    })
+                 
+            } catch (e) {
+                console.error(e + " 'Caught Error.'");
+            };
         };
         
     //}

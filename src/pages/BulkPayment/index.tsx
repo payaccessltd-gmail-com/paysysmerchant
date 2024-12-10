@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as XLSX from "xlsx";
 import DashboardLayout from '../../components/dashboard/Index';
 import { Button } from '../../components/reusables/DefaultButton';
 import SearchInput from '../../components/reusables/SearchInput/SearchInput';
 import { headers, TableData } from './Mocks';
 import { apiCall } from '../../Utils/URLs/axios.index'
+import {deleteBulkUploadItemId} from '../../containers/loanApis';
+import { v4 as uuidv4 } from 'uuid';
+import { getBulkUploadSchedule} from '../../containers/dashboardApis'
+
 
 interface DocumentData {
+  id: any; 
   name: string;
   date: string;
   content: any[];
@@ -16,9 +21,9 @@ interface DocumentData {
 interface DocumentTableProps {
   documents: DocumentData[];
   onViewMore: (document: DocumentData) => void;
+  onDelete: (id: number) => void;
 }
-
-export const DocumentTable: React.FC<DocumentTableProps> = ({ documents, onViewMore }) => {
+export const DocumentTable: React.FC<DocumentTableProps> = ({ documents, onViewMore, onDelete }) => {
   return (
     <div className="overflow-x-auto w-full">
       <table className="min-w-full bg-white border">
@@ -40,8 +45,11 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({ documents, onViewM
                   onClick={() => onViewMore(document)}
                   className="text-[12px] !w-auto bg-white border border-[1px] border-[#00ADEF] rounded-[8px] !px-4 !text-[#00adef]"
                 />
-                  <Button title='Delete' onClick={() => {}} className='text-[12px] !w-auto bg-white ml-2 !px-4 !text-[#FF0000] ' />
-               
+                <Button
+                  title="Delete"
+                  onClick={() => onDelete(document.id)}
+                  className="text-[12px] !w-auto bg-white ml-2 !px-4 !text-[#FF0000]"
+                />
               </td>
             </tr>
           ))}
@@ -57,6 +65,7 @@ const BulkPayment = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [search, setSearch] = useState("");
   const [state, setState] = useState<any>({
+
     name: '',
     amount: '',
     description: '',
@@ -67,13 +76,29 @@ const BulkPayment = () => {
     isSubmitting: false,
     errorMssg: '',
 })
+ 
 
+const handleDelete = async (id: number) => {
+ 
+  try {
+    const response = await deleteBulkUploadItemId(id);
+    if (response) {
+    
 
-   
-
+      setDocuments((prevDocs) =>
         
+        prevDocs.filter((doc) => doc.id !== id)
       
-
+      );
+      console.log(`Document with id ${id} deleted successfully.`, response, documents);
+    } else {
+      console.error(`Unexpected response from delete API:`, response);
+    }
+  } catch (err: any) {
+    const errorMessage = err?.response?.data?.respDescription || err.message || "Unknown error occurred";
+    console.error(`Failed to delete document with id ${id}:`, errorMessage);
+  }
+};
 
   const handleFileUpload = async (eventOrFile: File | React.ChangeEvent<HTMLInputElement>) => {
     let file: File | null = null;
@@ -117,8 +142,11 @@ const BulkPayment = () => {
         const data = await response.json();
   
         if (response.ok) {
+          const Id = documents.length > 0 ? Math.max(...documents.map((doc) => doc.id)) + 1 : 1;
 
           const newDocument: DocumentData = {
+            // id: uuidv4(),
+            id: Id,
             name: file!.name, 
             date: new Date().toLocaleString(),
             content: jsonData,
@@ -143,7 +171,7 @@ const BulkPayment = () => {
                   
                    
                    
-                    // window.location.reload();
+                  
                   
                     return []
 
@@ -183,7 +211,7 @@ const BulkPayment = () => {
         } catch (e) {
             console.error(e + " 'Caught Error.'");
         };
-          console.log("ok")
+         
         } else {
           console.error("Error uploading to Cloudinary:", data.error.message);
         }
@@ -208,6 +236,27 @@ const BulkPayment = () => {
   const handleCloseModal = () => {
     setSelectedDocument(null);
   };
+
+  async function fetchData() {
+   
+    try {
+      const res = await getBulkUploadSchedule("1","5","10");
+        console.log("resdok",res)
+      // setPaymentLinkTable(res)
+    } catch (error) {
+        console.error("Error fetching merchant data:", error);
+        // You can set a default value or just keep it as null
+    }finally {
+     
+    }
+  
+  }
+
+  useEffect(() => {
+
+    fetchData();
+
+  }, []);
 
   return (
     <DashboardLayout>
@@ -311,7 +360,11 @@ const BulkPayment = () => {
         />
       </div>
 
-      <DocumentTable documents={documents} onViewMore={handleViewMore} />
+      <DocumentTable
+        documents={documents}
+        onViewMore={handleViewMore}
+        onDelete={handleDelete}
+      />
     </DashboardLayout>
   );
 };

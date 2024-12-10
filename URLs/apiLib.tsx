@@ -522,7 +522,7 @@ export const endPoints: endPointlistTypes | any = {
         auth: true
     },
     deleteBulkUploadItemId: {
-        url: '/api/v1/bulkpay/deleteBulkUploadItem/1',
+        url: '/api/v1/bulkpay/deleteBulkUploadItem',
         method: 'POST',
         headers: headers,
         auth: true

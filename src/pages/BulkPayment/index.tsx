@@ -4,6 +4,7 @@ import DashboardLayout from '../../components/dashboard/Index';
 import { Button } from '../../components/reusables/DefaultButton';
 import SearchInput from '../../components/reusables/SearchInput/SearchInput';
 import { headers, TableData } from './Mocks';
+import { apiCall } from '../../Utils/URLs/axios.index'
 
 interface DocumentData {
   name: string;
@@ -55,6 +56,23 @@ const BulkPayment = () => {
   const [selectedDocument, setSelectedDocument] = useState<DocumentData | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [search, setSearch] = useState("");
+  const [state, setState] = useState<any>({
+    name: '',
+    amount: '',
+    description: '',
+    branchId: '',
+    expiryDate: '',
+    startDate: null,
+    endDate: null,
+    isSubmitting: false,
+    errorMssg: '',
+})
+
+
+   
+
+        
+      
 
 
   const handleFileUpload = async (eventOrFile: File | React.ChangeEvent<HTMLInputElement>) => {
@@ -86,8 +104,10 @@ const BulkPayment = () => {
      
       try {
         const formData = new FormData();
-        formData.append("file", file!); // Use non-null assertion
+        formData.append("file", file!);
         formData.append("upload_preset", "unsigned_upload");
+
+      
   
         const response = await fetch(`https://api.cloudinary.com/v1_1/dc2zavmxp/upload`, {
           method: "POST",
@@ -97,20 +117,82 @@ const BulkPayment = () => {
         const data = await response.json();
   
         if (response.ok) {
+
           const newDocument: DocumentData = {
-            name: file!.name, // Use non-null assertion
+            name: file!.name, 
             date: new Date().toLocaleString(),
             content: jsonData,
-            url: data.secure_url, // Cloudinary URL
+            url: data.secure_url, 
           };
-  
+          const payload = new FormData();
+          payload.append("fileaddress", data.secure_url);
+          payload.append("alias", "alias");
           setDocuments((prevDocs) => [...prevDocs, newDocument]);
+
+          try {
+            const response = await apiCall({
+                name: "uploadBulkPaySchedule",
+                data:  payload,
+                action: (): any => {
+                    setState({
+                        ...state,
+                        isSubmitting: false,
+                        submittingError: false,
+                        errorMssg: ""
+                    });
+                  
+                   
+                   
+                    // window.location.reload();
+                  
+                    return []
+
+                },
+                successDetails: {
+                    title: "Documents Submitted",
+                    text: `Your Business Registration documents have been submitted for review`,
+                    icon: ""
+                },
+                errorAction: (err?: any) => {
+                    if (err && err?.response?.data) {
+                        setState({
+                            ...state,
+                            submittingError: true,
+                            isSubmitting: false,
+                            errorMssg: err?.response?.data?.errorMssg || err?.response?.errorMssg || err?.response?.data?.respDescription || err?.response?.respDescription || "Action failed, please try again"
+                        })
+                        return ["skip"]
+                    } else {
+                        setState({
+                            ...state,
+                            submittingError: true,
+                            isSubmitting: false,
+                            errorMssg: "Action failed, please try again"
+                        })
+                    }
+                }
+            })
+                .then(async (res: any) => {
+                    setState({
+                        submittingError: false,
+                        isSubmitting: false,
+                        errorMssg: ""
+                    })
+                })
+             
+        } catch (e) {
+            console.error(e + " 'Caught Error.'");
+        };
+          console.log("ok")
         } else {
           console.error("Error uploading to Cloudinary:", data.error.message);
         }
       } catch (err) {
         console.error("Upload failed:", err);
       }
+
+
+   
     };
   
     reader.readAsBinaryString(file);

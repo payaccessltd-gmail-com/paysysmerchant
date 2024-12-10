@@ -166,64 +166,75 @@ const PaymentLinkModal: React.FC<{
                 isSubmitting: true
             }));
           
-            const newDocument = {
-                ...formData,
-                date: new Date().toLocaleString(),
-              };
-              onAddDocument(newDocument);
+           
 
-            // try {
-            //     const response = await apiCall({
-            //         name: "createPaymentLink",
-            //         data: formData,
-            //         action: (): any => {
-            //             setState({
-            //                 ...state,
-            //                 isSubmitting: false,
-            //                 submittingError: false,
-            //                 errorMssg: ""
-            //             });
-            //             setTimeout(() => {
-            //                 showModalFunc();
-            //             }, 3000);
-            //             window.location.reload();
-            //             console.log("paymentLinkdata", state);
-            //             return [];
-            //         },
-            //         successDetails: {
-            //             title: "Documents Submitted",
-            //             text: `Your Business Registration documents have been submitted for review`,
-            //             icon: ""
-            //         },
-            //         errorAction: (err?: any) => {
-            //             if (err && err?.response?.data) {
-            //                 setState({
-            //                     ...state,
-            //                     submittingError: true,
-            //                     isSubmitting: false,
-            //                     errorMssg: err?.response?.data?.errorMssg || err?.response?.errorMssg || err?.response?.data?.respDescription || err?.response?.respDescription || "Action failed, please try again"
-            //                 });
-            //                 return ["skip"];
-            //             } else {
-            //                 setState({
-            //                     ...state,
-            //                     submittingError: true,
-            //                     isSubmitting: false,
-            //                     errorMssg: "Action failed, please try again"
-            //                 });
-            //             }
-            //         }
-            //     }).then(async (res: any) => {
-            //         setState({
-            //             submittingError: false,
-            //             isSubmitting: false,
-            //             errorMssg: ""
-            //         });
-            //     });
-            // } catch (e) {
-            //     console.error(e + " 'Caught Error.'");
-            // }
-        };
+              
+                let formData = new FormData();
+                state && formData.append("fileAddress", userId || "");
+                state && formData.append('alias', state?.amount || "")
+                const newDocument = {
+                    ...formData,
+                    date: new Date().toLocaleString(),
+                  };
+                  onAddDocument(newDocument);
+                // try {
+                //     const response = await apiCall({
+                //         name: "uploadBulkPaySchedule",
+                //         data: formData,
+                //         action: (): any => {
+                //             setState({
+                //                 ...state,
+                //                 isSubmitting: false,
+                //                 submittingError: false,
+                //                 errorMssg: ""
+                //             });
+                          
+                           
+                //             setTimeout(() => {
+                //                 showModalFunc()
+        
+                //             }, 3000);
+                //             window.location.reload();
+                          
+                //             return []
+        
+                //         },
+                //         successDetails: {
+                //             title: "Documents Submitted",
+                //             text: `Your Business Registration documents have been submitted for review`,
+                //             icon: ""
+                //         },
+                //         errorAction: (err?: any) => {
+                //             if (err && err?.response?.data) {
+                //                 setState({
+                //                     ...state,
+                //                     submittingError: true,
+                //                     isSubmitting: false,
+                //                     errorMssg: err?.response?.data?.errorMssg || err?.response?.errorMssg || err?.response?.data?.respDescription || err?.response?.respDescription || "Action failed, please try again"
+                //                 })
+                //                 return ["skip"]
+                //             } else {
+                //                 setState({
+                //                     ...state,
+                //                     submittingError: true,
+                //                     isSubmitting: false,
+                //                     errorMssg: "Action failed, please try again"
+                //                 })
+                //             }
+                //         }
+                //     })
+                //         .then(async (res: any) => {
+                //             setState({
+                //                 submittingError: false,
+                //                 isSubmitting: false,
+                //                 errorMssg: ""
+                //             })
+                //         })
+                     
+                // } catch (e) {
+                //     console.error(e + " 'Caught Error.'");
+                // };
+        }; 
         
     //}
 

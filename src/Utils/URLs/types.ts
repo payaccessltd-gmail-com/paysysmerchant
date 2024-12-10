@@ -102,6 +102,15 @@ export type endPointlistTypes = {
     getAllBusinessLinks: endPointlistTypes;
     getAllSingleLink: endPointlistTypes;
     getAllBranchLinks: endPointlistTypes;
+    uploadBulkPaySchedule:endPointlistTypes;
+    deleteBulkUploadItemId:endPointlistTypes;
+    deleteBeneficiaryId:endPointlistTypes;
+    CreateBeneficiary:endPointlistTypes;
+    CreateBeneficiaryItem:endPointlistTypes;
+    getBulkUploadSchedule:endPointlistTypes;
+    getAllbeneficiaryList:endPointlistTypes;
+    getAllbeneficiaryItemId:endPointlistTypes;
+
 }
 
 

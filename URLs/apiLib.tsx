@@ -510,4 +510,57 @@ export const endPoints: endPointlistTypes | any = {
         headers: headers,
         auth: true
     },
+
+
+    
+    //Bulk Payment
+    
+    uploadBulkPaySchedule: {
+        url: '/api/v1/bulkpay/uploadBulkPaySchedule',
+        method: 'POST',
+        headers: headers,
+        auth: true
+    },
+    deleteBulkUploadItemId: {
+        url: '/api/v1/bulkpay/deleteBulkUploadItem/1',
+        method: 'POST',
+        headers: headers,
+        auth: true
+    },
+    deleteBeneficiaryId: {
+        url: '/api/v1/bulkpay/deleteBeneficiary/1',
+        method: 'POST',
+        headers: headers,
+        auth: true
+    },
+    CreateBeneficiary: {
+        url: '/api/v1/bulkpay/CreateBeneficiary',
+        method: 'POST',
+        headers: headers,
+        auth: true
+    },
+    CreateBeneficiaryItem: {
+        url: '/api/v1/bulkpay/CreateBeneficiaryItem',
+        method: 'POST',
+        headers: headers,
+        auth: true
+    },
+    getBulkUploadSchedule: {
+        url: '/api/v1/bulkpay/getBulkUploadSchedule',
+        method: 'GET',
+        headers: headers,
+        auth: true
+    },
+    getAllbeneficiaryList: {
+        url: '/api/v1/bulkpay/getAllbeneficiaryList',
+        method: 'POST',
+        headers: headers,
+        auth: true
+    },
+    getAllbeneficiaryItemId: {
+        url: '/api/v1/bulkpay/getAllbeneficiaryItem/1',
+        method: 'POST',
+        headers: headers,
+        auth: true
+    },
 }

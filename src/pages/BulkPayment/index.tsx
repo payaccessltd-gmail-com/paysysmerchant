@@ -5,17 +5,17 @@ import { Button } from '../../components/reusables/DefaultButton';
 import SearchInput from '../../components/reusables/SearchInput/SearchInput';
 import { headers, TableData } from './Mocks';
 import { apiCall } from '../../Utils/URLs/axios.index'
-import {deleteBulkUploadItemId} from '../../containers/loanApis';
+import { deleteBulkUploadItemId } from '../../containers/loanApis';
 import { v4 as uuidv4 } from 'uuid';
-import { getBulkUploadSchedule} from '../../containers/dashboardApis'
+import { getBulkUploadSchedule } from '../../containers/dashboardApis'
 
 
 interface DocumentData {
-  id: any; 
+  id: any;
   name: string;
   date: string;
   content: any[];
-  url?: string; 
+  url?: string;
 }
 
 interface DocumentTableProps {
@@ -75,45 +75,40 @@ const BulkPayment = () => {
     endDate: null,
     isSubmitting: false,
     errorMssg: '',
-})
- 
+  })
 
-const handleDelete = async (id: number) => {
- 
-  try {
-    const response = await deleteBulkUploadItemId(id);
-    if (response) {
-    
+  const handleDelete = async (id: any) => {
+    try {
+      const response = await deleteBulkUploadItemId(id);
 
-      setDocuments((prevDocs) =>
-        
-        prevDocs.filter((doc) => doc.id !== id)
-      
-      );
-      console.log(`Document with id ${id} deleted successfully.`, response, documents);
-    } else {
-      console.error(`Unexpected response from delete API:`, response);
+      if (response?.success) {
+        setDocuments((prevDocs) => prevDocs.filter((doc) => doc.id !== id));
+        console.log(`Document with id ${id} deleted successfully.`);
+      } else {
+        console.error(`Failed to delete document with id ${id}. Response:`, response);
+      }
+    } catch (err: any) {
+      const errorMessage = err?.response?.data?.respDescription || err.message || "Unknown error occurred";
+      console.error(`Failed to delete document with id ${id}:`, errorMessage);
     }
-  } catch (err: any) {
-    const errorMessage = err?.response?.data?.respDescription || err.message || "Unknown error occurred";
-    console.error(`Failed to delete document with id ${id}:`, errorMessage);
-  }
-};
+  };
+
+
 
   const handleFileUpload = async (eventOrFile: File | React.ChangeEvent<HTMLInputElement>) => {
     let file: File | null = null;
-  
+
     if (eventOrFile instanceof File) {
       file = eventOrFile;
     } else {
       file = eventOrFile.target.files?.[0] || null;
     }
-  
+
     if (!file) {
       console.error("No file selected");
-      return; // Exit if the file is null
+      return; 
     }
-  
+
     const reader = new FileReader();
     reader.onload = async (e) => {
       const ab = e.target?.result;
@@ -121,114 +116,94 @@ const handleDelete = async (id: number) => {
         console.error("Failed to read file");
         return;
       }
-  
+
       const workbook = XLSX.read(ab, { type: "binary" });
       const sheetName = workbook.SheetNames[0];
       const worksheet = workbook.Sheets[sheetName];
       const jsonData = XLSX.utils.sheet_to_json(worksheet);
-     
+
       try {
         const formData = new FormData();
         formData.append("file", file!);
         formData.append("upload_preset", "unsigned_upload");
-
-      
-  
         const response = await fetch(`https://api.cloudinary.com/v1_1/dc2zavmxp/upload`, {
           method: "POST",
           body: formData,
         });
 
         const data = await response.json();
-  
+
         if (response.ok) {
           const Id = documents.length > 0 ? Math.max(...documents.map((doc) => doc.id)) + 1 : 1;
 
           const newDocument: DocumentData = {
             // id: uuidv4(),
             id: Id,
-            name: file!.name, 
+            name: file!.name,
             date: new Date().toLocaleString(),
             content: jsonData,
-            url: data.secure_url, 
+            url: data.secure_url,
           };
           const payload = new FormData();
           payload.append("fileaddress", data.secure_url);
           payload.append("alias", "alias");
-          setDocuments((prevDocs) => [...prevDocs, newDocument]);
-
           try {
             const response = await apiCall({
-                name: "uploadBulkPaySchedule",
-                data:  payload,
-                action: (): any => {
-                    setState({
-                        ...state,
-                        isSubmitting: false,
-                        submittingError: false,
-                        errorMssg: ""
-                    });
-                  
-                   
-                   
-                  
-                  
-                    return []
-
-                },
-                successDetails: {
-                    title: "Documents Submitted",
-                    text: `Your Business Registration documents have been submitted for review`,
-                    icon: ""
-                },
-                errorAction: (err?: any) => {
-                    if (err && err?.response?.data) {
-                        setState({
-                            ...state,
-                            submittingError: true,
-                            isSubmitting: false,
-                            errorMssg: err?.response?.data?.errorMssg || err?.response?.errorMssg || err?.response?.data?.respDescription || err?.response?.respDescription || "Action failed, please try again"
-                        })
-                        return ["skip"]
-                    } else {
-                        setState({
-                            ...state,
-                            submittingError: true,
-                            isSubmitting: false,
-                            errorMssg: "Action failed, please try again"
-                        })
-                    }
+              name: "uploadBulkPaySchedule",
+              data: payload,
+              action: (): any => {
+                setState({
+                  ...state,
+                  isSubmitting: false,
+                  submittingError: false,
+                  errorMssg: ""
+                });
+                return []
+              },
+              successDetails: {
+                title: "Documents Submitted",
+                text: `Your Business Registration documents have been submitted for review`,
+                icon: ""
+              },
+              errorAction: (err?: any) => {
+                if (err && err?.response?.data) {
+                  setState({
+                    ...state,
+                    submittingError: true,
+                    isSubmitting: false,
+                    errorMssg: err?.response?.data?.errorMssg || err?.response?.errorMssg || err?.response?.data?.respDescription || err?.response?.respDescription || "Action failed, please try again"
+                  })
+                  return ["skip"]
+                } else {
+                  setState({
+                    ...state,
+                    submittingError: true,
+                    isSubmitting: false,
+                    errorMssg: "Action failed, please try again"
+                  })
                 }
+              }
             })
-                .then(async (res: any) => {
-                    setState({
-                        submittingError: false,
-                        isSubmitting: false,
-                        errorMssg: ""
-                    })
+              .then(async (res: any) => {
+                setState({
+                  submittingError: false,
+                  isSubmitting: false,
+                  errorMssg: ""
                 })
-             
-        } catch (e) {
+              })
+
+          } catch (e) {
             console.error(e + " 'Caught Error.'");
-        };
-         
+          };
         } else {
           console.error("Error uploading to Cloudinary:", data.error.message);
         }
       } catch (err) {
         console.error("Upload failed:", err);
       }
-
-
-   
     };
-  
     reader.readAsBinaryString(file);
   };
-  
-
- 
-
   const handleViewMore = (document: DocumentData) => {
     setSelectedDocument(document);
   };
@@ -238,18 +213,28 @@ const handleDelete = async (id: number) => {
   };
 
   async function fetchData() {
-   
+
     try {
-      const res = await getBulkUploadSchedule("1","5","10");
-        console.log("resdok",res)
-      // setPaymentLinkTable(res)
+
+      const res = await getBulkUploadSchedule();
+
+      if (res && Array.isArray(res)) {
+        const newDocuments = res.map((item) => ({
+          id: item.id || item.fileaddress, 
+          name: item.status || "Unknown File",
+          date: item.dateCreated || new Date().toLocaleString(),
+          content: item.content || [],
+          url: item.fileaddress || "",
+        }));
+
+        setDocuments(newDocuments);
+      }
     } catch (error) {
-        console.error("Error fetching merchant data:", error);
-        // You can set a default value or just keep it as null
-    }finally {
-     
+      console.error("Error fetching merchant data:", error);
+    } finally {
+
     }
-  
+
   }
 
   useEffect(() => {
@@ -260,112 +245,72 @@ const handleDelete = async (id: number) => {
 
   return (
     <DashboardLayout>
-      <div className="flex flex-col items-center p-4">
-        {selectedDocument && (
-          <div className="z-[99] fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-            <div className="bg-white p-4 rounded-lg max-w-5xl w-full">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-semibold">
-                  {selectedDocument.name} - {selectedDocument.date}
-                </h2>
-                <button
-                  onClick={handleCloseModal}
-                  className="text-red-500 text-[28px] mb-[10px]"
-                >
-                  &times;
-                </button>
-              </div>
-              <div
-                className="overflow-y-auto"
-                style={{
-                  maxHeight: "70vh",
-                  paddingBottom: "1rem",
-                }}
+    <div className="flex flex-col items-center p-4">
+      {selectedDocument && (
+        <div className="z-[99] fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-4 rounded-lg max-w-5xl w-full">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-lg font-semibold">
+                {selectedDocument.name} - {selectedDocument.date}
+              </h2>
+              <button
+                onClick={handleCloseModal}
+                className="text-red-500 text-[28px] mb-[10px]"
               >
-                <table className="min-w-full bg-white border">
-                  <thead>
-                    <tr>
-                      {Object.keys(selectedDocument.content[0] || {}).map((col) => (
-                        <th key={col} className="border px-4 py-2 bg-gray-100">
-                          {col}
-                        </th>
+                &times;
+              </button>
+            </div>
+            <div
+              className="overflow-y-auto"
+              style={{
+                maxHeight: "70vh",
+                paddingBottom: "1rem",
+              }}
+            >
+              <table className="min-w-full bg-white border">
+                <thead>
+                  <tr>
+                    {Object.keys(selectedDocument.content[0] || {}).map((col) => (
+                      <th key={col} className="border px-4 py-2 bg-gray-100">
+                        {col}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {selectedDocument.content.map((row, index) => (
+                    <tr key={index} className="border-t">
+                      {Object.keys(row).map((col) => (
+                        <td key={col} className="border px-4 py-2">
+                          {row[col]}
+                        </td>
                       ))}
                     </tr>
-                  </thead>
-                  <tbody>
-                    {selectedDocument.content.map((row, index) => (
-                      <tr key={index} className="border-t">
-                        {Object.keys(row).map((col) => (
-                          <td key={col} className="border px-4 py-2">
-                            {row[col]}
-                          </td>
-                        ))}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              <div className="flex items-center justify-end mt-4">
-                <Button
-                  title="Initiate Bulk Payment"
-                  onClick={() => {}}
-                  className="text-[12px] !w-auto bg-white border border-[1px] border-[#00ADEF] rounded-[8px] !px-4 !text-[#00adef] hover:!text-[#fff] hover:!bg-[#00adef]"
-                />
-              </div>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
-        )}
-      </div>
-
-      <div className="flex justify-between items-center">
-        <p className="grid gap-[20px] text-[16px] font-sfpro-medium mt-[20px]">Bulk Payment</p>
-        <div
-          className={`w-full max-w-sm p-4 border-dashed border-2 rounded-lg ${
-            isDragging ? "border-blue-500 bg-blue-50" : "border-gray-300"
-          }`}
-          onDragOver={(e) => {
-            e.preventDefault();
-            setIsDragging(true);
-          }}
-          onDragLeave={() => setIsDragging(false)}
-          onDrop={(e) => {
-            e.preventDefault();
-            setIsDragging(false);
-            const file = e.dataTransfer.files[0];
-            if (file) handleFileUpload(file);
-          }}
-        >
-          <p className="text-center text-gray-500">
-            Drag & drop your file here or click to upload
-          </p>
-          <label className="block mt-4 w-full text-center">
-            <span className="text-primary cursor-pointer underline">Upload Excel Sheet</span>
-            <input
-              type="file"
-              accept=".xlsx, .xls, .csv"
-              onChange={(event) => handleFileUpload(event)}
-              className="hidden"
-            />
-          </label>
         </div>
-      </div>
+      )}
+    </div>
 
-      <div className="flex justify-between w-full mt-[20px]">
-        <SearchInput
-          placeholder="Search"
-          name="search"
-          value={search}
-          onChange={(e: any) => setSearch(e.target.value)}
-          className="mb-4"
-        />
-      </div>
-
-      <DocumentTable
-        documents={documents}
-        onViewMore={handleViewMore}
-        onDelete={handleDelete}
+    <div className="flex justify-between w-full mt-[20px]">
+      <SearchInput
+        placeholder="Search"
+        name="search"
+        value={search}
+        onChange={(e: any) => setSearch(e.target.value)}
+        className="mb-4"
       />
-    </DashboardLayout>
+    </div>
+
+    <DocumentTable
+      documents={documents}
+      onViewMore={handleViewMore}
+      onDelete={handleDelete}
+    />
+  </DashboardLayout>
   );
 };
 

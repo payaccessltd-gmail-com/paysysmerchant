@@ -175,11 +175,27 @@ const fetchBusinessLinkData = async (id:any,pageNo:any,pageSize:any): Promise<an
 }
 
 
-const  getBulkUploadSchedule = async (id:any,pageNo:any,pageSize:any): Promise<any> => {
+
+const  getBulkUploadSchedule = async (): Promise<any> => {
     try {
         const response = await apiCall({
-            name: " getBulkUploadSchedule",
-             urlExtra: `${id || 0}${pageNo || 1}${pageSize || 1}`,
+            name: "getBulkUploadSchedule",
+           //  urlExtra: `${id || 0}${pageNo || 1}${pageSize || 1}`,
+           // urlExtra: `${id || pageSize || pageSize || 0}`,
+            action: (): any => (["skip"]),
+            errorAction: (): any => ([""])
+        })
+        return response;
+    } catch (e) {
+        console.error("error>>",e)
+    }
+}
+
+const  getAllbeneficiaryList = async (): Promise<any> => {
+    try {
+        const response = await apiCall({
+            name: "getAllbeneficiaryList",
+           //  urlExtra: `${id || 0}${pageNo || 1}${pageSize || 1}`,
            // urlExtra: `${id || pageSize || pageSize || 0}`,
             action: (): any => (["skip"]),
             errorAction: (): any => ([""])
@@ -203,4 +219,4 @@ const fetchBranchLinkData = async (id: any): Promise<any> => {
         console.error("error>>",e)
     }
 }
-export {getPreviousDayCollection,fetchCollectionBalance, fetchDashData, fetchMerchantData, fetchDashBranchData, fetchAMerchantData ,fetchNewAMerchantData, getBalance , fetchRecentTransaction, fetchMerchantDashboardStats, fetchBranchLinkData, fetchBusinessLinkData, getBulkUploadSchedule, fetchSplitLinkData, fetchSingleLinkData};
+export {getPreviousDayCollection,fetchCollectionBalance, fetchDashData, fetchMerchantData, fetchDashBranchData, fetchAMerchantData ,fetchNewAMerchantData, getBalance , fetchRecentTransaction, fetchMerchantDashboardStats, fetchBranchLinkData, fetchBusinessLinkData,getAllbeneficiaryList, getBulkUploadSchedule, fetchSplitLinkData, fetchSingleLinkData};

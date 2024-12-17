@@ -62,7 +62,7 @@ export const DocumentTable: React.FC<DocumentTableProps> = ({ documents, onViewM
               <td className="border-x-1 px-4 py-1 text-center">{document.date}</td>
               <td className=" px-4 py-1 flex items-center justify-center">
                 <Button title='  View More' onClick={() => onViewMore(document)} className='text-[12px] !w-auto bg-white border border-[1px] border-[#00ADEF] rounded-[8px] !px-4 !text-[#00adef] ' />
-                <Button title='Delete' onClick={() => onDelete(index)} className='text-[12px] !w-auto bg-white ml-2 !px-4 !text-[#FF0000] ' />
+                <Button title='Delete' onClick={() => onDelete(document.id)} className='text-[12px] !w-auto bg-white ml-2 !px-4 !text-[#FF0000] ' />
 
               </td>
             </tr>
@@ -172,28 +172,55 @@ const BulkPayment = () => {
     }
   };
 
-
-  const handleDelete = async (id: number) => {
-    console.log("uu", id, documents)
+  const handleDelete = async (id: any) => {
     try {
       const response = await deleteBeneficiaryId(id);
-      if (response) {
-        console.log("00", id, documents)
 
-        setDocuments((prevDocs) =>
-
-          prevDocs.filter((doc) => 2 != id)
-
-        );
-        console.log(`Document with id ${id} deleted successfully.`, response, documents);
+     // setDocuments((prevDocs) => prevDocs.filter((doc) => doc.id !== id));
+     // const updatedData = data.filter((row) => row.id !== rowId);
+   
+ if (response?.respDescription == "SUCCESS") {
+  const updatedData = documents.filter((row) => row.id !== id);
+  setDocuments(updatedData);
+  window.location.reload();
+      
       } else {
-        console.error(`Unexpected response from delete API:`, response);
+        console.error(`Failed to delete document with id ${id}. Response:`, response);
       }
+      // if (response?.success) {
+      //   setDocuments((prevDocs) => prevDocs.filter((doc) => doc.id !== id));
+      //   console.log(`Document with id ${id} deleted successfully.`);
+      // } else {
+      //   console.error(`Failed to delete document with id ${id}. Response:`, response);
+      // }
     } catch (err: any) {
       const errorMessage = err?.response?.data?.respDescription || err.message || "Unknown error occurred";
       console.error(`Failed to delete document with id ${id}:`, errorMessage);
+      window.location.reload();
+      
     }
   };
+  // const handleDelete = async (id: number) => {
+  //   console.log("uu", id, documents)
+  //   try {
+  //     const response = await deleteBeneficiaryId(id);
+  //     if (response) {
+  //       console.log("00", id, documents)
+
+  //       setDocuments((prevDocs) =>
+
+  //         prevDocs.filter((doc) => 2 != id)
+
+  //       );
+  //       console.log(`Document with id ${id} deleted successfully.`, response, documents);
+  //     } else {
+  //       console.error(`Unexpected response from delete API:`, response);
+  //     }
+  //   } catch (err: any) {
+  //     const errorMessage = err?.response?.data?.respDescription || err.message || "Unknown error occurred";
+  //     console.error(`Failed to delete document with id ${id}:`, errorMessage);
+  //   }
+  // };
 
   const handleFileUpload = async (eventOrFile: File | React.ChangeEvent<HTMLInputElement>) => {
     let file: File | null = null;

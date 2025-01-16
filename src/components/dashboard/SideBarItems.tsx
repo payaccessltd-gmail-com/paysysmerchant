@@ -201,7 +201,8 @@ export const   InventoryMenuItems: any[] = [
     {
         id: 1,
         name: 'Inventory',
-        route: '/inventory/dashboard',
+        route: '#',
+        // route: '/inventory/dashboard',
         subMenuItems: [
             // { name: 'Branch management', route: '/branches' },
             // { name: 'Terminal management', route: '/terminals' },

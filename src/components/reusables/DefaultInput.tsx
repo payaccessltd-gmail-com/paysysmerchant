@@ -2,12 +2,14 @@ import React, { forwardRef, useEffect, useState } from "react";
 import { DefaultInputType } from "../types";
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import { BsFillCheckCircleFill, BsFillXCircleFill } from 'react-icons/bs';
-const DefaultInput = forwardRef<any, any>(
-  ({
+const DefaultInput = forwardRef<HTMLInputElement, DefaultInputType>(({
+  
     id,
     type,
     name,
     label,
+    noLabel = () => false,
+    topLabel,
     handleChange = () => null,
     handleBlur,
     value,
@@ -15,8 +17,9 @@ const DefaultInput = forwardRef<any, any>(
     validate,
     maxLength = 1000,
     minLength = 0,
-    validationFunc = () => null,
+    validationFunc = () => false,
     placeHolder,
+    placeholder,
     required,
     readOnly,
     checkNum,
@@ -38,7 +41,7 @@ const DefaultInput = forwardRef<any, any>(
         setMin(true);
       } else if (value?.length < 8) {
         setMin(false);
-        validationFunc();
+        validationFunc(String(value));
       }
       if (/\d/.test(value)) {
         setNum(true);
@@ -56,7 +59,7 @@ const DefaultInput = forwardRef<any, any>(
         setCap(false);
       }
       if (min && cap && low && num) {
-        validationFunc();
+        validationFunc(String(value));
       }
     }, [value]);
 
@@ -79,6 +82,7 @@ const DefaultInput = forwardRef<any, any>(
     return (
       <div className="grid gap-1 text-[#344054]">
         {label && <label htmlFor={name}>{label}</label>}
+        {!noLabel && label && <label htmlFor={id}>{label}</label>}
         <input
         ref={ref}
           id={id}

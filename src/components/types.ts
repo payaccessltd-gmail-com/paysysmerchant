@@ -2,13 +2,16 @@ import { MouseEventHandler } from "react"
 
 
 export type DefaultInputType = {
-    type?: string
-    name: string,
-    className?:string,
+    type?: string,
+    name?: string,
+    className?: any,
     label?: React.ReactNode,
-    topLabel?: "",
-    handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined,
-    handleBlur: React.FocusEventHandler<HTMLInputElement> | undefined,
+    topLabel?: string;
+    placeholder?: string;
+    // handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined,
+    // handleBlur: React.FocusEventHandler<HTMLInputElement> | undefined,
+    handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    handleBlur?: (event: React.FocusEvent<HTMLInputElement>) => void; 
     value: string,
     error?: string,
     placeHolder?: string,
@@ -19,16 +22,16 @@ export type DefaultInputType = {
     icon?: any,
     required?: boolean,
     validate?: boolean,
-    validationFunc: () => any,
+    validationFunc?: (value: string) => boolean;
     readOnly?: boolean,
     isDisabled?: boolean,
     currCheck?: boolean,
     currency?: string,
-    confirmPassword: boolean,
+    confirmPassword?: boolean,
     compare?: string,
-    maxLength: number,
-    minLength: number,
-    noLabel: boolean,
+    maxLength?: number,
+    minLength?: number,
+    noLabel?: (value: string) => boolean;
     confirm?: boolean,
     checkNum?: boolean,
     id?: string

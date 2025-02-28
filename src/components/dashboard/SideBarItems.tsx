@@ -85,7 +85,9 @@ export const BulkPayment:any[]=[
         subMenuItems: [],
         icon: <img src={Image.loan} alt="transaction" className='m-auto text-white text-[25px]' />,
         roles: ""
-    },{
+    },
+   
+    {
         id: 2,
         name: 'Beneficiary List',
         route: '/beneficiary-list',
@@ -96,7 +98,19 @@ export const BulkPayment:any[]=[
         ],
         icon:  <img src={Image.bill} alt="Bills" className='m-auto text-white text-[25px]' />,
         roles: "VIEW_USER"
-    }
+    },
+    {
+        id: 3,
+        name: 'History',
+        route: '/bulk-history',
+        subMenuItems: [
+            // { name: 'Branch management', route: '/branches' },
+            // { name: 'Terminal management', route: '/terminals' },
+            // { name: 'View Admin Users', route: '/users' },
+        ],
+        icon:  <img src={Image.recipients} alt="transaction" className='m-auto text-white text-[25px]' />,
+        roles: "VIEW_USER"
+    },
 ]
 export const transactionsMenuItems:any[]=[
     {
@@ -146,6 +160,18 @@ export const managerMenuItems: any[] = [
     },
     {
         id: 2,
+        name: 'Customers',
+        route: '/customers',
+        subMenuItems: [
+            // { name: 'Branch management', route: '/branches' },
+            // { name: 'Terminal management', route: '/terminals' },
+            // { name: 'View Admin Users', route: '/users' },
+        ],
+        icon:  <img src={Image.recipients} alt="transaction" className='m-auto text-white text-[25px]' />,
+        roles: "VIEW_USER"
+    },
+    {
+        id: 3,
         name: 'Branches',
         route: '/branches',
         subMenuItems: [
@@ -157,7 +183,7 @@ export const managerMenuItems: any[] = [
         roles: "VIEW_BRANCH"
     },
     {   
-        id: 3,
+        id: 4,
         name: 'Terminal',
         route: '/terminals',
         subMenuItems: [
@@ -169,7 +195,7 @@ export const managerMenuItems: any[] = [
         roles: "VIEW_TERMINAL"
     },
     {
-        id: 4,
+        id: 5,
         name: 'settings',
         route:'/settings',
         subMenuItems: [

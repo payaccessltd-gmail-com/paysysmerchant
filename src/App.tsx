@@ -58,7 +58,9 @@ import InventorySuppliers from "./pages/InventorySystem/Supplier/Index";
 import InventoryOrder from "./pages/InventorySystem/Order/Index";
 import InventoryManageStore from "./pages/InventorySystem/ManageStore/Index";
 import BulkPayment from "./pages/BulkPayment";
-import BulkPaymentBeneficiaryList from "./pages/BulkPayment/beneficiaryList";
+import BulkPaymentBeneficiaryList from "./pages/BulkPayment/beneficiaryList"
+import BulkPaymentHistory from "./pages/BulkPayment/History/BulkPaymentHistory";
+import Customers from "./pages/Customers/Index";
 
 
 function App() {
@@ -170,6 +172,14 @@ function App() {
             </PrivateRoute>
           }
         />
+          <Route
+          path="/bulk-history"
+          element={
+            <PrivateRoute>
+              <BulkPaymentHistory/>
+            </PrivateRoute>
+          }
+        />
         <Route
           path="/recipients/:id"
           element={
@@ -272,6 +282,14 @@ function App() {
           element={
             <PrivateRoute>
               <Users />
+            </PrivateRoute>
+          }
+        />
+         <Route
+          path="/customers"
+          element={
+            <PrivateRoute>
+              <Customers />
             </PrivateRoute>
           }
         />

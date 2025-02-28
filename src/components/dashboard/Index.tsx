@@ -196,7 +196,7 @@ function togglesecurity() {
               </div>
             </div>  
 
-            {/* <div className="grid w-full gap-[20px] mt-[40px] items-center ">
+            <div className="grid w-full gap-[20px] mt-[40px] items-center ">
               <p className="text-[16px] font-bold ">Bulk Payment</p>
               <div className="grid gap-[20px] justify-between m-auto md:m-0">
                 {BulkPayment?.map((items) => (
@@ -225,7 +225,7 @@ function togglesecurity() {
                   </div>
                 ))}
               </div>
-            </div> */}
+            </div> 
 
             <div className="grid w-full gap-[20px] mt-[40px] items-center ">
               <p className="text-[16px] font-bold ">Products</p>

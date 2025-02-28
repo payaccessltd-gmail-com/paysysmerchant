@@ -55,7 +55,7 @@ function LoanOfferLetter() {
                         </div> */}
             <div className="flex justify-between">
               <p className="text-[20px] font-bold ml-4">Dear {userName},</p>
-              <img src={Image.logo} width={100} className="mr-2"/>
+              <img src={Image.logo} width={100} className="object-contain mr-2"/>
             </div>
             <br />
 

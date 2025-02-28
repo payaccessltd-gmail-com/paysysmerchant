@@ -84,7 +84,7 @@ const PaymentLinkModal: React.FC<{
                 <Button
                     title={state.isSubmitting ? 'Submitting...' : 'Add Beneficiary List'}
                     onClick={handleSubmit}
-                    disabled={state.isSubmitting}
+                  //  disabled={state.isSubmitting}
                 />
             </div>
         </Overlay>

@@ -205,6 +205,36 @@ const  getAllbeneficiaryList = async (): Promise<any> => {
         console.error("error>>",e)
     }
 }
+const  getAllbeneficiaryListItem =async (id: any): Promise<any> => {
+    try {
+        const response = await apiCall({
+            name: "getAllbeneficiaryListItem",
+           //  urlExtra: `${id || 0}${pageNo || 1}${pageSize || 1}`,
+           // urlExtra: `${id || pageSize || pageSize || 0}`,
+           urlExtra: `${id || 0}`,
+            action: (): any => (["skip"]),
+            errorAction: (): any => ([""])
+        })
+        return response;
+    } catch (e) {
+        console.error("error>>",e)
+    }
+}
+
+const  getAllbeneficiaryLists = async (): Promise<any> => {
+    try {
+        const response = await apiCall({
+            name: "getAllbeneficiaryLists",
+           //  urlExtra: `${id || 0}${pageNo || 1}${pageSize || 1}`,
+           // urlExtra: `${id || pageSize || pageSize || 0}`,
+            action: (): any => (["skip"]),
+            errorAction: (): any => ([""])
+        })
+        return response;
+    } catch (e) {
+        console.error("error>>",e)
+    }
+}
 
 const fetchBranchLinkData = async (id: any): Promise<any> => {
     try {
@@ -219,4 +249,18 @@ const fetchBranchLinkData = async (id: any): Promise<any> => {
         console.error("error>>",e)
     }
 }
-export {getPreviousDayCollection,fetchCollectionBalance, fetchDashData, fetchMerchantData, fetchDashBranchData, fetchAMerchantData ,fetchNewAMerchantData, getBalance , fetchRecentTransaction, fetchMerchantDashboardStats, fetchBranchLinkData, fetchBusinessLinkData,getAllbeneficiaryList, getBulkUploadSchedule, fetchSplitLinkData, fetchSingleLinkData};
+
+const fetchbulkPay = async (id: any): Promise<any> => {
+    try {
+        const response = await apiCall({
+            name: "bulkPay",
+            urlExtra: `${id || 0}`,
+            action: (): any => (["skip"]),
+            errorAction: (): any => ([""])
+        })
+        return response;
+    } catch (e) {
+        console.error("error>>",e)
+    }
+}
+export {fetchbulkPay,getAllbeneficiaryLists,getAllbeneficiaryListItem,getPreviousDayCollection,fetchCollectionBalance, fetchDashData, fetchMerchantData, fetchDashBranchData, fetchAMerchantData ,fetchNewAMerchantData, getBalance , fetchRecentTransaction, fetchMerchantDashboardStats, fetchBranchLinkData, fetchBusinessLinkData,getAllbeneficiaryList, getBulkUploadSchedule, fetchSplitLinkData, fetchSingleLinkData};

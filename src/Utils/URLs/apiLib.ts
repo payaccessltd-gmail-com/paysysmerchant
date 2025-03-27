@@ -340,7 +340,7 @@ export const endPoints: endPointlistTypes | any = {
     },
 
     getNewMerchantDetails:{
-        url: '/api/v1/merchant/getAcctNo/',
+        url: '/api/v1/merchant/getAcctNo2/',
         method: 'GET',
         headers: headers,
         auth: true

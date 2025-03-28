@@ -121,6 +121,7 @@ const PaymentLinkTable = ({paymentLinkTable, setpages,number,isLoading}:any) => 
               <a href={`${paymentLinkBaseURL}${"/"}${val?.linkId}`} target="_blank">{`${paymentLinkBaseURL}${"/"}${val?.linkId}`}</a>
               </p>
             </div>
+            
           </TableCell>
           <TableCell>
             <div className="relative">
